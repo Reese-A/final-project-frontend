@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './Header.css';
@@ -10,7 +10,13 @@ class Header extends Component {
   }
 
   render() {
-    return <header id="header">HEADER</header>;
+    return (
+      <header id="header">
+        <NavLink exact to={`/camera`}>
+          Camera
+        </NavLink>
+      </header>
+    );
   }
 }
 
