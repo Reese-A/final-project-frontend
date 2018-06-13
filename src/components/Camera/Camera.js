@@ -14,24 +14,48 @@ class Camera extends React.Component {
     // );
     const supported = 'mediaDevices' in navigator;
     if (supported) {
-      const player = document.getElementById('player');
-      const canvas = document.getElementById('canvas');
-      const context = canvas.getContext('2d');
-      const captureButton = document.getElementById('capture');
+      const viewPort = document.getElementById('view_port');
+
+      const shutterBtn = document.getElementById('shutter_btn');
+
+      // console.log(canvas.clientWidth);
 
       const constraints = {
-        video: true
+        audio: false,
+        video: {
+          facingMode: 'environment'
+        }
       };
 
-      captureButton.addEventListener('click', () => {
+      shutterBtn.onclick = () => {
         // Draw the video frame to the canvas.
-        context.drawImage(player, 0, 0, canvas.width, canvas.height);
-        player.srcObject.getVideoTracks().forEach(track => track.stop());
-      });
+        const canvas = document.createElement('canvas');
+
+        canvas.width = viewPort.clientWidth;
+        canvas.height = viewPort.clientHeight;
+
+        const context = canvas.getContext('2d');
+        context.drawImage(viewPort, 0, 0, canvas.width, canvas.height);
+        console.log(context);
+        console.log(canvas.toDataURL());
+        const camera = document.getElementById('camera');
+        const img = new Image();
+
+        img.src = canvas.toDataURL();
+        camera.innerHTML = '';
+
+        camera.appendChild(img);
+
+        canvas.toBlob(blob => {
+          console.log(blob);
+        });
+        // viewPort.srcObject.getVideoTracks().forEach(track => track.stop());
+      };
 
       // Attach the video stream to the video element and autoplay.
       navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-        player.srcObject = stream;
+        viewPort.srcObject = stream;
+        // view_port.play();
       });
     }
   }
@@ -39,9 +63,10 @@ class Camera extends React.Component {
   render() {
     return (
       <div id="camera">
-        <video id="player" autoPlay muted />
-        <button id="capture">Capture</button>
-        <canvas id="canvas" width={320} height={240} />
+        <div id="view_port_container">
+          <video id="view_port" autoPlay muted />
+        </div>
+        <button id="shutter_btn" />
         <input type="file" accept="image/*" capture="environment" />
       </div>
     );
