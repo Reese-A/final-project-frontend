@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
+import Home from '../Home/Home';
 import Camera from '../Camera/Camera';
 import NoMatch from '../NoMatch/NoMatch';
 
@@ -17,6 +18,7 @@ class Main extends React.Component {
     return (
       <main id="main">
         <Switch>
+          <Route exact path="/" component={Home} />
           <Route exact path="/camera" component={Camera} />
           <Route component={NoMatch} />
         </Switch>
