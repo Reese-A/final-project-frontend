@@ -1,0 +1,29 @@
+#camera {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 70vh 1fr 1fr; }
+  #camera #view_port_container {
+    grid-area: 1/1/1/1;
+    height: 70vh;
+    width: 100vw;
+    overflow: hidden; }
+    #camera #view_port_container video {
+      height: 100%;
+      object-fit: unset; }
+  #camera button {
+    grid-area: 1/1/1/1;
+    z-index: 1;
+    justify-self: center;
+    align-self: end;
+    height: 64px;
+    width: 64px;
+    position: relative;
+    top: -16px;
+    border-radius: 50%;
+    background: gainsboro;
+    border: 5px white solid;
+    transition: all 0.3s ease-in-out; }
+  #camera button:hover {
+    background: #cbcbcb;
+    border: 6px white solid;
+    transition: all 0.3s ease-in-out; }
