@@ -119,14 +119,9 @@ class Camera extends React.Component {
 
           navigator.mediaDevices.getUserMedia(constraints).then(stream => {
             viewPort.srcObject = stream;
-            this.setState(
-              {
-                video: stream.getVideoTracks()[0].getSettings()
-              },
-              () => {
-                console.log(this.state);
-              }
-            );
+            this.setState({
+              video: stream.getVideoTracks()[0].getSettings()
+            });
           });
         });
     }
@@ -168,17 +163,16 @@ class Camera extends React.Component {
 
           navigator.mediaDevices.getUserMedia(constraints).then(stream => {
             viewPort.srcObject = stream;
-            this.setState(
-              {
-                video: stream.getVideoTracks()[0].getSettings()
-              },
-              () => {
-                console.log(this.state);
-              }
-            );
+            this.setState({
+              video: stream.getVideoTracks()[0].getSettings()
+            });
           });
         });
     }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
   }
 
   render() {
