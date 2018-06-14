@@ -1,16 +1,21 @@
 #camera {
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
   display: grid;
-  grid-template-rows: 70vh 1fr 1fr; }
+  grid-template-rows: 70vh 1fr;
+  overflow: hidden; }
   #camera #view_port_container {
     grid-area: 1/1/1/1;
     height: 70vh;
-    width: 100vw;
     overflow: hidden; }
     #camera #view_port_container video {
       height: 100%;
-      object-fit: unset; }
-  #camera button {
+      object-fit: unset;
+      position: relative;
+      left: 50%;
+      /* top: 50%; */
+      transform: translateX(-50%); }
+  #camera #shutter_btn {
     grid-area: 1/1/1/1;
     z-index: 1;
     justify-self: center;
@@ -23,7 +28,10 @@
     background: gainsboro;
     border: 5px white solid;
     transition: all 0.3s ease-in-out; }
-  #camera button:hover {
+  #camera #shutter_btn:hover {
     background: #cbcbcb;
     border: 6px white solid;
     transition: all 0.3s ease-in-out; }
+  #camera #file_input {
+    justify-self: center;
+    align-self: center; }
