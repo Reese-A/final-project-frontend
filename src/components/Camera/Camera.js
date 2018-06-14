@@ -65,27 +65,27 @@ class Camera extends React.Component {
 
         const container = document.getElementById('view_port_container');
 
-        // const img = new Image();
-        // img.src = canvas.toDataURL();
+        const img = new Image();
+        img.src = canvas.toDataURL();
 
-        // container.innerHTML = '';
+        container.innerHTML = '';
 
-        // container.appendChild(img);
+        container.appendChild(img);
 
-        const data = new FormData();
-        const uri = canvas.toDataURL().split('base64,')[1];
+        // const data = new FormData();
+        // const uri = canvas.toDataURL().split('base64,')[1];
 
-        data.append('img_url', uri);
+        // data.append('img_url', uri);
 
-        fetch('/api/images', {
-          method: 'POST',
-          body: data,
-          credentials: 'same-origin'
-        })
-          .then(res => res.json())
-          .then(data => {
-            console.log(data);
-          });
+        // fetch('/api/images', {
+        //   method: 'POST',
+        //   body: data,
+        //   credentials: 'same-origin'
+        // })
+        //   .then(res => res.json())
+        //   .then(data => {
+        //     console.log(data);
+        //   });
 
         // viewPort.srcObject.getVideoTracks().forEach(track => track.stop());
       };
@@ -188,12 +188,12 @@ class Camera extends React.Component {
           <video id="view_port" autoPlay muted />
         </div>
         <button id="shutter_btn" />
-        <input
+        {/* <input
           id="file_input"
           type="file"
           accept="image/*"
           capture="environment"
-        />
+        /> */}
       </div>
     );
   }

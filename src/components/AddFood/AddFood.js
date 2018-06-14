@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Header from '../../components/Header/Header';
 import Camera from '../Camera/Camera';
 import SearchForm from '../SearchForm/SearchForm';
 
@@ -21,11 +22,18 @@ class AddFood extends React.Component {
   }
 
   render() {
-    console.log(this.state.showCamera);
     return (
       <div id="add_food">
+        <Header />
         {this.state.showCamera ? <Camera /> : <SearchForm />}
-        <button onClick={this.toggleForm}>Toggle</button>
+        <div className="or_line_seperator">
+          <div className="line_seperator" />
+          <span>OR</span>
+          <div className="line_seperator" />
+        </div>
+        <button id="toggle" onClick={this.toggleForm}>
+          {this.state.showCamera ? 'Search Food Instead' : 'Use Camera'}
+        </button>
       </div>
     );
   }

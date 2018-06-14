@@ -1,12 +1,11 @@
 #camera {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   display: grid;
-  grid-template-rows: 70vh 1fr;
   overflow: hidden; }
   #camera #view_port_container {
     grid-area: 1/1/1/1;
-    height: 70vh;
+    height: 100%;
     overflow: hidden; }
     #camera #view_port_container video {
       height: 100%;
