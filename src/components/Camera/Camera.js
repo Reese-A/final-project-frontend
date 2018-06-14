@@ -9,9 +9,7 @@ class Camera extends React.Component {
     this.updateDimensions = this.updateDimensions.bind(this);
   }
   updateDimensions() {
-    this.setState({ width: window.innerWidth }, () => {
-      console.log(this.state);
-    });
+    this.setState({ width: window.innerWidth }, () => {});
   }
   componentDidMount() {
     window.addEventListener('resize', this.updateDimensions);
@@ -29,8 +27,6 @@ class Camera extends React.Component {
           facingMode: 'environment'
         }
       };
-      console.log(window.innerWidth);
-      console.log(constraints);
 
       shutterBtn.onclick = () => {
         const canvas = document.createElement('canvas');
@@ -59,7 +55,8 @@ class Camera extends React.Component {
         })
           .then(res => res.json())
           .then(data => {
-            console.log(data);
+            console.log(data.responses[0].labelAnnotations);
+            // console.log(data.responses[0].webDetection.webEntities);
           });
 
         // viewPort.srcObject.getVideoTracks().forEach(track => track.stop());
