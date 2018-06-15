@@ -12,8 +12,8 @@ class App extends Component {
     return (
       <div id="app">
         <div id="app_main">
+          {/* <Header /> */}
           <Main />
-          <Header />
         </div>
       </div>
     );

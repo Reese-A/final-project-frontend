@@ -5,13 +5,23 @@ import './Camera.css';
 class Camera extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { width: 0 };
+    this.state = {
+      window_width: 0,
+      video: {
+        aspectRatio: 0,
+        deviceId: '',
+        frameRate: 0,
+        height: 0,
+        width: 0
+      }
+    };
     this.updateDimensions = this.updateDimensions.bind(this);
   }
   updateDimensions() {
-    this.setState({ width: window.innerWidth }, () => {});
+    this.setState({ window_width: window.innerWidth });
   }
   componentDidMount() {
+    this.setState({ window_width: window.innerWidth });
     window.addEventListener('resize', this.updateDimensions);
 
     const supported = 'mediaDevices' in navigator;
@@ -31,17 +41,36 @@ class Camera extends React.Component {
       shutterBtn.onclick = () => {
         const canvas = document.createElement('canvas');
 
-        canvas.width = viewPortContainer.clientWidth;
+        const canvasWidth =
+          viewPort.clientWidth > viewPortContainer.clientWidth
+            ? viewPortContainer.clientWidth
+            : viewPort.clientWidth;
+
+        canvas.width = canvasWidth;
         canvas.height = viewPortContainer.clientHeight;
+
+        const xOffset =
+          viewPort.clientWidth > viewPortContainer.clientWidth
+            ? -(viewPort.clientWidth - viewPortContainer.clientWidth) / 2
+            : 0;
 
         const context = canvas.getContext('2d');
         context.drawImage(
           viewPort,
-          0,
+          xOffset,
           0,
           viewPort.clientWidth,
           viewPort.clientHeight
         );
+
+        // const container = document.getElementById('view_port_container');
+
+        // const img = new Image();
+        // img.src = canvas.toDataURL();
+
+        // container.innerHTML = '';
+
+        // container.appendChild(img);
 
         const data = new FormData();
         const uri = canvas.toDataURL().split('base64,')[1];
@@ -55,8 +84,7 @@ class Camera extends React.Component {
         })
           .then(res => res.json())
           .then(data => {
-            console.log(data.responses[0].labelAnnotations);
-            // console.log(data.responses[0].webDetection.webEntities);
+            console.log(data);
           });
 
         // viewPort.srcObject.getVideoTracks().forEach(track => track.stop());
@@ -91,13 +119,16 @@ class Camera extends React.Component {
 
           navigator.mediaDevices.getUserMedia(constraints).then(stream => {
             viewPort.srcObject = stream;
+            this.setState({
+              video: stream.getVideoTracks()[0].getSettings()
+            });
           });
         });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.width !== prevState.width) {
+    if (this.state.window_width !== prevState.window_width) {
       const viewPortContainer = document.getElementById('view_port_container');
       const viewPort = document.getElementById('view_port');
       if (!viewPort) return;
@@ -132,8 +163,19 @@ class Camera extends React.Component {
 
           navigator.mediaDevices.getUserMedia(constraints).then(stream => {
             viewPort.srcObject = stream;
+            this.setState({
+              video: stream.getVideoTracks()[0].getSettings()
+            });
           });
         });
+    }
+  }
+
+  componentWillUnmount() {
+    const viewPort = document.getElementById('view_port');
+    window.removeEventListener('resize', this.updateDimensions);
+    if (viewPort.srcObject) {
+      viewPort.srcObject.getVideoTracks().forEach(track => track.stop());
     }
   }
 
@@ -144,7 +186,12 @@ class Camera extends React.Component {
           <video id="view_port" autoPlay muted />
         </div>
         <button id="shutter_btn" />
-        <input type="file" accept="image/*" capture="environment" />
+        {/* <input
+          id="file_input"
+          type="file"
+          accept="image/*"
+          capture="environment"
+        /> */}
       </div>
     );
   }
