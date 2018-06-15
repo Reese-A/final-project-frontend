@@ -1,2 +1,47 @@
 #search_form {
-  border: 1px solid black; }
+  border: 1px solid black;
+  display: grid;
+  grid-template-rows: 64px calc(85% - 64px) 1fr; }
+  #search_form form {
+    margin: 16px; }
+    #search_form form .add_food_search_container {
+      width: 100%;
+      height: 100%;
+      display: grid; }
+      #search_form form .add_food_search_container input {
+        grid-area: 1/1/1/1;
+        width: 100%;
+        height: 100%;
+        padding: 12px 8px;
+        padding-right: 52px;
+        outline: none;
+        border-radius: 12px;
+        border: 1px solid lightblue;
+        font-size: 1rem;
+        transition: all 0.3s ease-in-out; }
+      #search_form form .add_food_search_container input::placeholder {
+        color: rgba(0, 0, 0, 0.3); }
+      #search_form form .add_food_search_container input:focus {
+        box-shadow: inset 0 0 4px 0 rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out; }
+      #search_form form .add_food_search_container button {
+        grid-area: 1/1/1/1;
+        justify-self: end;
+        padding: 0 8px;
+        background: none;
+        border: none;
+        border-left: 1px solid lightblue;
+        border-radius: 0 12px 12px 0;
+        transition: all 0.5s ease-in-out; }
+        #search_form form .add_food_search_container button i {
+          color: #4c86ed; }
+      #search_form form .add_food_search_container button:focus,
+      #search_form form .add_food_search_container button:hover {
+        outline: none;
+        background: lightgreen;
+        border: none;
+        transition: all 0.3s ease-in-out; }
+        #search_form form .add_food_search_container button:focus i,
+        #search_form form .add_food_search_container button:hover i {
+          color: white;
+          transition: all 0.3s ease-in-out; }
