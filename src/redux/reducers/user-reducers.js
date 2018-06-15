@@ -1,11 +1,15 @@
-import { LOAD_USER } from '../actions/user-actions';
+import { LOAD_USER, LOGIN_USER } from '../actions/user-actions';
 
-// const initialState = {};
+const initialState = {
+  online: false,
+};
 
-const user = (state = { email: '', firstname: '', lastname: '' }, action) => {
+const user = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_USER:
-      return action.user;
+      return { ...state, user: action.user };
+    case LOGIN_USER:
+      return { ...state, online: action.online }
     default:
       return state;
   }
