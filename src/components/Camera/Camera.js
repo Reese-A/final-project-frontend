@@ -55,7 +55,7 @@ class Camera extends React.Component {
         })
           .then(res => res.json())
           .then(data => {
-            console.log(data.responses[0].labelAnnotations);
+            console.log(data);
             // console.log(data.responses[0].webDetection.webEntities);
           });
 
