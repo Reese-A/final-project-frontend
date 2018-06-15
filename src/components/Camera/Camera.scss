@@ -54,6 +54,9 @@ $button_height: 64px;
 
     transition: all 0.3s ease-in-out;
   }
+  #shutter_btn:focus {
+    outline: none;
+  }
   #file_input {
     justify-self: center;
     align-self: center;

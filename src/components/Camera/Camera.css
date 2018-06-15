@@ -31,6 +31,8 @@
     background: #cbcbcb;
     border: 6px white solid;
     transition: all 0.3s ease-in-out; }
+  #camera #shutter_btn:focus {
+    outline: none; }
   #camera #file_input {
     justify-self: center;
     align-self: center; }
