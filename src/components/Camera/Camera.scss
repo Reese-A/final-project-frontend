@@ -1,14 +1,16 @@
-$camera_height: 70vh;
+$camera_height: 100%;
 $button_height: 64px;
 #camera {
   height: 100%;
+  width: 100vw;
   display: grid;
-  grid-template-rows: $camera_height 1fr 1fr;
+  // grid-template-rows: $camera_height 1fr;
+  overflow: hidden;
 
   #view_port_container {
     grid-area: 1/1/1/1;
     height: $camera_height;
-    width: 100vw;
+    // width: 100%;
     // border-rdisplay: flex;
     // justify-content: center;
     // align-items: center;
@@ -20,10 +22,14 @@ $button_height: 64px;
       height: 100%;
       object-fit: unset;
       // object-position: center;
+      position: relative;
+      left: 50%;
+      /* top: 50%; */
+      transform: translateX(-50%);
     }
   }
 
-  button {
+  #shutter_btn {
     grid-area: 1/1/1/1;
     z-index: 1;
     justify-self: center;
@@ -42,10 +48,19 @@ $button_height: 64px;
 
     transition: all 0.3s ease-in-out;
   }
-  button:hover {
+  #shutter_btn:hover {
     background: rgb(203, 203, 203);
     border: 6px white solid;
 
     transition: all 0.3s ease-in-out;
+  }
+  #shutter_btn:focus {
+    outline: none;
+  }
+  #file_input {
+    justify-self: center;
+    align-self: center;
+    // width: 100px;
+    // height: 32px;
   }
 }

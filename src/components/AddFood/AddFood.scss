@@ -1,0 +1,39 @@
+$header_height: 54px;
+#add_food {
+  // height: calc(100vh - 64px);
+  height: 100vh;
+  display: grid;
+  grid-template-rows: $header_height calc(80% - 54px) 1fr 1fr;
+
+  .or_line_seperator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .line_seperator {
+      width: 64px;
+      height: 1px;
+      background: lightgray;
+    }
+    span {
+      color: lightgray;
+      margin: 0 8px;
+    }
+  }
+  #toggle {
+    width: fit-content;
+    height: fit-content;
+    align-self: start;
+    justify-self: center;
+
+    padding: 4px 12px;
+
+    border: 1px solid rgb(152, 251, 152);
+    border-radius: 100px;
+
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+    outline: none;
+
+    font-size: 1.5rem;
+  }
+}
