@@ -13,7 +13,6 @@ class App extends Component {
       <div id="app">
         <div id="app_main">
           <Main />
-          <Header />
         </div>
       </div>
     );
