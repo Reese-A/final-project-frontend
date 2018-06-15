@@ -12,7 +12,7 @@ class Header extends Component {
   render() {
     return (
       <header id="header">
-        <NavLink exact to={`/camera`}>
+        <NavLink exact to={`add/camera`}>
           Camera
         </NavLink>
       </header>
