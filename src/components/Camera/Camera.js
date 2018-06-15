@@ -172,7 +172,12 @@ class Camera extends React.Component {
   }
 
   componentWillUnmount() {
+    const viewPort = document.getElementById('view_port');
     window.removeEventListener('resize', this.updateDimensions);
+    if (viewPort.srcObject) {
+      console.log('enter');
+      viewPort.srcObject.getVideoTracks().forEach(track => track.stop());
+    }
   }
 
   render() {
