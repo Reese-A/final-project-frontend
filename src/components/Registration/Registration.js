@@ -67,9 +67,11 @@ import ReviewForm from '../../containers/ReviewForm/ReviewForm';
           </div>
         )
       default:
-        return(
-          <div>hello world</div>
-        ) 
+      return(
+        <div id="registration">
+        <AccountForm nextPage={this.nextPage}/>
+        </div> 
+      )
     };
   };
  };
