@@ -13,8 +13,8 @@ class AccountForm extends React.Component {
       email: '',
       password: '',
       confirm: '',
-      firstName: '',
-      lastName: '',
+      first_name: '',
+      last_name: '',
       hideErr: true
     };
 
@@ -41,25 +41,7 @@ class AccountForm extends React.Component {
     this.props.loadActivityLevels();
     this.setState({ ...this.props.accountForm });
   }
-
-  static getDerivedStateFromProps(props, state) {
-    if(state) {
-      console.log(state);
-    }
-    if (props) {
-      console.log(props);
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if(prevProps){
-      console.log(prevProps);
-    }
-    if(prevState) {
-      console.log(prevState);
-    }
-  }
-
+  
   handleSubmit(event) {
     event.preventDefault();
     if (this.state.password !== this.state.confirm) {
@@ -105,7 +87,7 @@ class AccountForm extends React.Component {
             />
           </div>
           <br />
-          <div id="span_container">
+          <div id="confirm_container">
             <span>Confirm password:</span>
             <input
               type="password"
@@ -123,10 +105,10 @@ class AccountForm extends React.Component {
             <input
               type="text"
               id="account_first_name"
-              name="firstName"
+              name="first_name"
               placeholder="First name"
               required
-              value={this.state.firstName}
+              value={this.state.first_name}
               onChange={this.changeHandler}
             />
           </div>
@@ -137,10 +119,10 @@ class AccountForm extends React.Component {
             <input
               type="text"
               id="account_last_name"
-              name="lastName"
+              name="last_name"
               placeholder="Last name"
               required
-              value={this.state.lastName}
+              value={this.state.last_name}
               onChange={this.changeHandler}
             />
           </div>

@@ -38,10 +38,10 @@ class FitnessForm extends React.Component {
   }
 
   render() {
-    const activityOptions = this.props.activityLevels.map(activityLevel => {
+    const activityOptions = this.props.activityLevels.map(activity_level => {
       return (
-        <option key={activityLevel.id} value={activityLevel.id}>
-          {activityLevel.name}
+        <option key={activity_level.id} value={activity_level.id}>
+          {activity_level.name}
         </option>
       );
     });
@@ -55,17 +55,17 @@ class FitnessForm extends React.Component {
           <div id="activity_level_container" className="select_container">
             <label htmlFor="activity_level">Goal:</label>
             <select
-              name="activityLevel"
+              name="activity_level_id"
               id="activity_level"
-              value={this.state.activityLevel}
+              value={this.state.activity_level_id}
               onChange={this.changeHandler}
               required
             >
+              <option value="" selected disabled >Choose here</option>
               {activityOptions}
-              <option value="" selected disabled hidden>Choose here</option>
             </select>
           </div>
-          <br />
+          <br/>
           <button type="click" name="previous" onClick={this.previousPage}>Previous</button>
           <button type="submit" name="next" >Next</button>
         </form>
@@ -77,6 +77,7 @@ class FitnessForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    genders: state.gender,
     activityLevels: state.activityLevel,
     fitnessForm: state.registrationForm.fitnessForm
   };

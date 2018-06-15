@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'moment';
 import { connect } from 'react-redux';
 import { saveProfileForm } from '../../redux/actions/profile-form-actions';
 
@@ -7,8 +8,8 @@ class ProfileForm extends React.Component {
     super(props);
 
     this.state = {
-      genders: [],
-      goals: [],
+      gender_id: null,
+      goal_id: null,
       birthday: '',
       weight: null,
       heightFeet: null,
@@ -18,7 +19,7 @@ class ProfileForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
     this.previousPage = this.previousPage.bind(this);
-
+    this.useStandardValues = this.useStandardValues.bind(this);
   };
 
   changeHandler(event) {
@@ -30,7 +31,7 @@ class ProfileForm extends React.Component {
     event.preventDefault();
     this.props.saveProfileForm({ ...this.state });
     this.props.previousPage();
-  }
+  };
 
   handleSubmit(event) {
     event.preventDefault();
@@ -39,9 +40,39 @@ class ProfileForm extends React.Component {
   };
 
   componentDidMount() {
-    console.log('profile props', this.props);
     this.setState({ ...this.props.profileForm });
-  }
+  };
+
+  useStandardValues(event) {
+
+    event.preventDefault();
+    const birthDate = Moment().subtract(35, 'years').format('YYYY-MM-DD');
+
+    if (this.state.gender_id === "1") {
+      this.setState({
+        weight: 195,
+        heightFeet: 5,
+        heightInches: 10,
+        goal_id: 1,
+        birthday: birthDate
+      }, () => {
+        this.props.saveProfileForm({ ...this.state });
+        this.props.nextPage();
+      });
+    } else if (this.state.gender_id === "2") {
+      this.setState({
+        weight: 166,
+        heightFeet: 5,
+        heightInches: 4,
+        goal_id: 1,
+        birthday: birthDate
+      }, () => {
+        this.props.saveProfileForm({ ...this.state });
+        this.props.nextPage();
+      });
+    }
+  };
+
 
   render() {
     const genderOptions = this.props.genders.map(gender => {
@@ -63,8 +94,22 @@ class ProfileForm extends React.Component {
 
       <div id="profile_form">
         <div id="profile_form_title">Tell us about yourself</div>
-        <br/>  
+        <br />
         <form onSubmit={this.handleSubmit} >
+          <div id="profile_gender_container" className="select_container">
+            <label htmlFor="profile_gender">Biological Gender:</label>
+            <select
+              name="gender_id"
+              id="profile_gender"
+              value={this.state.gender_id}
+              onChange={this.changeHandler}
+              required
+            >
+              <option value="" selected disabled>Choose here</option>
+              {genderOptions}
+            </select>
+          </div>
+          <br />
           <div id="birthday_container">
             <span>Birthday:</span>
             <input
@@ -94,7 +139,7 @@ class ProfileForm extends React.Component {
           <br />
 
           <div id="profile_height_container">
-          <div>Height:</div>
+            <div>Height:</div>
             <span>Feet:</span>
             <input
               type="number"
@@ -106,7 +151,7 @@ class ProfileForm extends React.Component {
               onChange={this.changeHandler}
             />
             <br />
-          <span>Inches:</span>
+            <span>Inches:</span>
             <input
               type="number"
               id="profile_height_inches"
@@ -118,35 +163,23 @@ class ProfileForm extends React.Component {
             />
             <br />
           </div>
-          <br/>
-          <div id="profile_gender_container" className="select_container">
-            <label htmlFor="profile_gender">Biological Gender:</label>
-            <select
-              name="gender"
-              id="profile_gender"
-              value={this.state.gender}
-              onChange={this.changeHandler}
-              required
-            >
-              {genderOptions}
-              <option value="" selected disabled hidden>Choose here</option>
-            </select>
-          </div>
-          <br/>
+          <br />
           <div id="profile_goal_container" className="select_container">
             <label htmlFor="profile_goal">Goal:</label>
             <select
-              name="goal"
+              name="goal_id"
               id="profile_goal"
-              value={this.state.goal}
+              value={this.state.goal_id}
               onChange={this.changeHandler}
               required
             >
+              <option value="" selected disabled>Choose here</option>
               {goalOptions}
-              <option value="" selected disabled hidden>Choose here</option>
             </select>
           </div>
-          <br/>
+          <br />
+          <button type="click" name="standardValues" onClick={this.useStandardValues}>Use National Standard</button>
+          <br />
           <button type="click" name="previous" onClick={this.previousPage}>Previous</button>
           <button type="submit" name="next" >Next</button>
         </form>
