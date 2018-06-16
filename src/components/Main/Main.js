@@ -5,6 +5,7 @@ import Home from '../Home/Home';
 import Camera from '../Camera/Camera';
 import NoMatch from '../NoMatch/NoMatch';
 import Registration from '../Registration/Registration';
+import Dashboard from '../../containers/Dashboard/Dashboard';
 import SearchForm from '../SearchForm/SearchForm';
 import AddFood from '../AddFood/AddFood';
 
@@ -15,13 +16,15 @@ class Main extends React.Component {
     super(props);
     this.state = {};
   }
-  componentDidMount() {}
+  componentDidMount() { }
 
   render() {
     return (
       <main id="main">
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/camera" component={Camera} />
           <Route exact path="/add/camera" component={Camera} />
           <Route exact path="/add/search" component={SearchForm} />
           <Route exact path="/add" component={AddFood} />
