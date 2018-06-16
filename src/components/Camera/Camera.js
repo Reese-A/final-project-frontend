@@ -92,38 +92,37 @@ class Camera extends React.Component {
 
       // Attach the video stream to the video element and autoplay.
 
-      navigator.mediaDevices
-        .getUserMedia(constraints)
-        .then(stream => {
-          const mediaStreamTracks = stream.getVideoTracks();
-          const mediaStreamTrack = mediaStreamTracks[0];
+      navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+        const mediaStreamTracks = stream.getVideoTracks();
+        const mediaStreamTrack = mediaStreamTracks[0];
 
-          const capabilities = mediaStreamTrack.getCapabilities();
-          const { width, height } = capabilities;
-          // this.setState({ width, height });
-          // viewPort.srcObject = stream;
-
-          return { width, height };
-        })
-        .then(data => {
-          const { width, height } = data;
-          const max = width.max > height.max ? width.max : height.max;
-          const min = width.min < height.min ? width.min : height.min;
-          const constraints = {
-            video: {
-              facingMode: 'environment',
-              width: { max: window.screen.width },
-              height: { ideal: viewPortContainer.clientHeight }
-            }
-          };
-
-          navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-            viewPort.srcObject = stream;
-            this.setState({
-              video: stream.getVideoTracks()[0].getSettings()
-            });
-          });
+        const capabilities = mediaStreamTrack.getCapabilities();
+        const { width, height } = capabilities;
+        viewPort.srcObject = stream;
+        this.setState({
+          video: stream.getVideoTracks()[0].getSettings()
         });
+        // return { width, height };
+      });
+      // .then(data => {
+      //   const { width, height } = data;
+      //   const max = width.max > height.max ? width.max : height.max;
+      //   const min = width.min < height.min ? width.min : height.min;
+      //   const constraints = {
+      //     video: {
+      //       facingMode: 'environment',
+      //       width: { max: window.screen.width },
+      //       height: { ideal: viewPortContainer.clientHeight }
+      //     }
+      //   };
+
+      //   navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+      //     viewPort.srcObject = stream;
+      //     this.setState({
+      //       video: stream.getVideoTracks()[0].getSettings()
+      //     });
+      //   });
+      // });
     }
   }
 
