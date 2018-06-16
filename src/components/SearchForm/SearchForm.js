@@ -5,15 +5,36 @@ import './SearchForm.css';
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { width: 0 };
+    this.state = {
+      width: 0,
+      search: ''
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.changeHandler = this.changeHandler.bind(this);
   }
   componentDidMount() {}
 
   componentDidUpdate(prevProps, prevState) {}
 
+  changeHandler(event) {
+    const { value, name } = event.target;
+    this.setState({ [name]: value });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
+    console.log(this.state);
+    return fetch(`/api/foods/${this.state.search}`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'same-origin'
+    })
+      .then(res => res.json())
+      .then(food => {
+        console.log(food);
+      });
   }
 
   render() {
@@ -25,6 +46,7 @@ class SearchForm extends React.Component {
               type="search"
               name="search"
               placeholder="Search for something"
+              onChange={this.changeHandler}
             />
             <button>
               <i className="material-icons">search</i>
