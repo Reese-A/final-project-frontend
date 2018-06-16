@@ -27,25 +27,17 @@ class SearchForm extends React.Component {
         serving_grams: 0,
         serving_size: '',
         updated_at: ''
-      }
+      },
+      showFood: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
+    this.getFoodData = this.getFoodData.bind(this);
   }
   componentDidMount() {
     this.setState({ search: this.props.item }, () => {
       if (this.state.search) {
-        return fetch(`/api/foods/${this.state.search}`, {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-          },
-          credentials: 'same-origin'
-        })
-          .then(res => res.json())
-          .then(food => {
-            console.log(food);
-          });
+        this.getFoodData();
       }
     });
   }
@@ -59,7 +51,10 @@ class SearchForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
+    this.getFoodData();
+  }
+
+  getFoodData() {
     return fetch(`/api/foods/${this.state.search}`, {
       headers: {
         Accept: 'application/json',
@@ -69,15 +64,33 @@ class SearchForm extends React.Component {
     })
       .then(res => res.json())
       .then(food => {
-        console.log(food);
+        this.setState({ food, showFood: true }, () => {
+          console.log(this.state);
+          console.log(this.state.food);
+        });
       });
   }
 
   render() {
+    const { food } = this.state;
+    const foodData = (
+      <div id="add_food_nutrition_container">
+        <span id="food_name">{food.name}</span>
+        <div>
+          <span id="food_grams">{food.carb + food.protein + food.fat}</span>
+          <span id="food_calories">{food.calories}</span>
+        </div>
+        {/* <ul>
+          {Object.entries(this.state.food).map((tuple, index) => {
+            return <li key={index}>{tuple[0]}</li>;
+          })}
+        </ul> */}
+      </div>
+    );
     return (
       <div id="search_form">
         <form onSubmit={this.handleSubmit}>
-          <div className="add_food_search_container">
+          <div id="add_food_search_container">
             <input
               value={this.state.search}
               type="text"
@@ -90,6 +103,7 @@ class SearchForm extends React.Component {
               <i className="material-icons">search</i>
             </button>
           </div>
+          {this.state.showFood ? foodData : null}
         </form>
       </div>
     );
