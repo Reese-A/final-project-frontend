@@ -3,37 +3,94 @@ $header_height: 54px;
   // height: calc(100vh - 64px);
   height: 100vh;
   display: grid;
-  grid-template-rows: $header_height calc(80% - 54px) 1fr 1fr;
+  overflow: hidden;
+  // grid-template-rows: $header_height calc(80% - 54px) 1fr 1fr;
+  #slide_down {
+    display: none;
+    grid-area: 1/1/1/1;
 
-  .or_line_seperator {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .line_seperator {
-      width: 64px;
-      height: 1px;
-      background: lightgray;
+    width: 100%;
+    height: 100%;
+    background: red;
+    transition: all 0.5s ease-in-out;
+  }
+
+  #slide_down.show {
+    display: block;
+    transition: all 0.5s ease-in-out;
+  }
+
+  // #add_food_content.tint:after {
+  //   content: '';
+  //   display: block;
+  //   position: absolute;
+  //   top: 0;
+  //   bottom: 0;
+  //   left: 0;
+  //   right: 0;
+  //   background: rgba(0, 0, 0, 0.7);
+  //   transition: all 0.3s linear;
+  // }
+
+  #add_food_content {
+    grid-area: 1/1/1/1;
+
+    height: 100vh;
+
+    display: grid;
+    grid-template-rows: $header_height calc(80% - 54px) 1fr 1fr;
+
+    transform: translateY(0vh);
+    transition: all 0.3s ease-in-out;
+
+    #header {
+      grid-area: 1/1/1/1;
     }
-    span {
-      color: lightgray;
-      margin: 0 8px;
+    #camera,
+    #search_form {
+      grid-area: 2/1/2/1;
+    }
+    .or_line_seperator {
+      grid-area: 3/1/3/1;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .line_seperator {
+        width: 64px;
+        height: 1px;
+        background: lightgray;
+      }
+      span {
+        color: lightgray;
+        margin: 0 8px;
+      }
+    }
+    #toggle {
+      grid-area: 4/1/4/1;
+
+      width: fit-content;
+      height: fit-content;
+      align-self: start;
+      justify-self: center;
+
+      padding: 8px 24px;
+
+      border: 1px solid rgb(152, 251, 152);
+      border-radius: 100px;
+
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+      outline: none;
+
+      font-size: 1.25rem;
+      font-weight: 200;
+      // text-transform: uppercase;
     }
   }
-  #toggle {
-    width: fit-content;
-    height: fit-content;
-    align-self: start;
-    justify-self: center;
-
-    padding: 4px 12px;
-
-    border: 1px solid rgb(152, 251, 152);
-    border-radius: 100px;
-
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-
-    outline: none;
-
-    font-size: 1.5rem;
+  #add_food_content.slide_down {
+    box-shadow: 0 -3px 10px 0 rgba(0, 0, 0, 0.25);
+    transform: translateY(25vh);
+    transition: all 0.3s ease-in-out;
   }
 }

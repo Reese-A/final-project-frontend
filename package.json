@@ -1,9 +1,10 @@
 {
   "name": "final-project-frontend",
   "version": "0.1.0",
-  "proxy": "http://localhost:8008",
+  "proxy": "http://localhost:8008/",
   "private": true,
   "dependencies": {
+    "moment": "^2.22.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",

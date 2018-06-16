@@ -9,8 +9,18 @@ import './AddFood.css';
 class AddFood extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { showCamera: true };
+    this.state = {
+      showCamera: true,
+      showSlideDown: false,
+      slideDown: false,
+      options: [],
+      item: ''
+    };
+
+    this.setSlideDownOptions = this.setSlideDownOptions.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
+    this.toggleSlideDown = this.toggleSlideDown.bind(this);
+    this.searchFood = this.searchFood.bind(this);
   }
   componentDidMount() {}
 
@@ -21,19 +31,78 @@ class AddFood extends React.Component {
     this.setState({ showCamera: !this.state.showCamera });
   }
 
+  toggleSlideDown(event) {
+    this.setState({
+      slideDown: !this.state.slideDown,
+      showSlideDown: !this.state.showSlideDown
+    });
+  }
+
+  searchFood(event) {
+    const { value } = event.target.dataset;
+
+    this.setState({
+      showCamera: !this.state.showCamera,
+      slideDown: !this.state.slideDown,
+      showSlideDown: !this.state.showSlideDown,
+      item: value
+    });
+  }
+
+  setSlideDownOptions(array) {
+    this.setState({ options: array }, () => {
+      console.log(this.state);
+    });
+  }
+
   render() {
     return (
       <div id="add_food">
-        <Header />
-        {this.state.showCamera ? <Camera /> : <SearchForm />}
-        <div className="or_line_seperator">
-          <div className="line_seperator" />
-          <span>OR</span>
-          <div className="line_seperator" />
+        {/* Can be made into a Component */}
+        <div
+          id="slide_down"
+          className={`${this.state.showSlideDown ? 'show' : ''}`}
+        >
+          {/* <div /> */}
+
+          <ul>
+            {this.state.options.map((option, index) => {
+              return (
+                <li key={index} onClick={this.searchFood} data-value={option}>
+                  {option}
+                </li>
+              );
+            })}
+          </ul>
         </div>
-        <button id="toggle" onClick={this.toggleForm}>
-          {this.state.showCamera ? 'Search Food Instead' : 'Use Camera'}
-        </button>
+
+        <div
+          id="add_food_content"
+          className={`${this.state.slideDown ? 'slide_down tint' : ''}`}
+        >
+          <Header />
+
+          {this.state.showCamera ? (
+            <Camera
+              setSlideDownOptions={this.setSlideDownOptions}
+              toggleSlideDown={this.toggleSlideDown}
+            />
+          ) : (
+            <SearchForm item={this.state.item} />
+          )}
+
+          {/* Can be made into a Component */}
+          <div className="or_line_seperator">
+            <div className="line_seperator" />
+            <span>OR</span>
+            <div className="line_seperator" />
+          </div>
+
+          {/* Can be made into a Component */}
+          <button id="toggle" onClick={this.toggleForm}>
+            {this.state.showCamera ? 'Search Food Instead' : 'Use Camera'}
+          </button>
+        </div>
       </div>
     );
   }
