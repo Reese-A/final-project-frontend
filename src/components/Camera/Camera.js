@@ -17,6 +17,7 @@ class Camera extends React.Component {
       foods: []
     };
     this.updateDimensions = this.updateDimensions.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   updateDimensions() {
     this.setState({ window_width: window.innerWidth });
@@ -39,64 +40,64 @@ class Camera extends React.Component {
         }
       };
 
-      shutterBtn.onclick = () => {
-        const canvas = document.createElement('canvas');
+      // shutterBtn.onclick = () => {
+      //   const canvas = document.createElement('canvas');
 
-        const canvasWidth =
-          viewPort.clientWidth > viewPortContainer.clientWidth
-            ? viewPortContainer.clientWidth
-            : viewPort.clientWidth;
+      //   const canvasWidth =
+      //     viewPort.clientWidth > viewPortContainer.clientWidth
+      //       ? viewPortContainer.clientWidth
+      //       : viewPort.clientWidth;
 
-        canvas.width = canvasWidth;
-        canvas.height = viewPortContainer.clientHeight;
+      //   canvas.width = canvasWidth;
+      //   canvas.height = viewPortContainer.clientHeight;
 
-        const xOffset =
-          viewPort.clientWidth > viewPortContainer.clientWidth
-            ? -(viewPort.clientWidth - viewPortContainer.clientWidth) / 2
-            : 0;
+      //   const xOffset =
+      //     viewPort.clientWidth > viewPortContainer.clientWidth
+      //       ? -(viewPort.clientWidth - viewPortContainer.clientWidth) / 2
+      //       : 0;
 
-        const context = canvas.getContext('2d');
-        context.drawImage(
-          viewPort,
-          xOffset,
-          0,
-          viewPort.clientWidth,
-          viewPort.clientHeight
-        );
+      //   const context = canvas.getContext('2d');
+      //   context.drawImage(
+      //     viewPort,
+      //     xOffset,
+      //     0,
+      //     viewPort.clientWidth,
+      //     viewPort.clientHeight
+      //   );
 
-        // const container = document.getElementById('view_port_container');
+      //   // const container = document.getElementById('view_port_container');
 
-        // const img = new Image();
-        // img.src = canvas.toDataURL();
+      //   // const img = new Image();
+      //   // img.src = canvas.toDataURL();
 
-        // container.innerHTML = '';
+      //   // container.innerHTML = '';
 
-        // container.appendChild(img);
+      //   // container.appendChild(img);
 
-        const data = new FormData();
-        const uri = canvas.toDataURL().split('base64,')[1];
+      //   const data = new FormData();
+      //   const uri = canvas.toDataURL().split('base64,')[1];
 
-        data.append('img_url', uri);
+      //   data.append('img_url', uri);
 
-        fetch('/api/images', {
-          method: 'POST',
-          body: data,
-          credentials: 'same-origin'
-        })
-          .then(res => res.json())
-          .then(data => {
-            console.log(data);
-            console.log(this.props);
+      //   fetch('/api/images', {
+      //     method: 'POST',
+      //     body: data,
+      //     credentials: 'same-origin'
+      //   })
+      //     .then(res => res.json())
+      //     .then(data => {
+      //       console.log(data);
+      //       console.log(this.props);
 
-            this.props.setSlideDownOptions(data.foods);
+      //       this.props.setSlideDownOptions(data.foods);
 
-            this.setState({ foods: data.foods }, () => {
-              console.log(this.state);
-            });
-          });
+      //       this.setState({ foods: data.foods }, () => {
+      //         console.log(this.state);
+      //       });
+      //     });
 
-        // viewPort.srcObject.getVideoTracks().forEach(track => track.stop());
-      };
+      //   // viewPort.srcObject.getVideoTracks().forEach(track => track.stop());
+      // };
 
       // Attach the video stream to the video element and autoplay.
 
@@ -187,13 +188,68 @@ class Camera extends React.Component {
     }
   }
 
+  handleClick(event) {
+    event.preventDefault();
+
+    const viewPortContainer = document.getElementById('view_port_container');
+    const viewPort = document.getElementById('view_port');
+    const canvas = document.createElement('canvas');
+
+    const canvasWidth =
+      viewPort.clientWidth > viewPortContainer.clientWidth
+        ? viewPortContainer.clientWidth
+        : viewPort.clientWidth;
+
+    canvas.width = canvasWidth;
+    canvas.height = viewPortContainer.clientHeight;
+
+    const xOffset =
+      viewPort.clientWidth > viewPortContainer.clientWidth
+        ? -(viewPort.clientWidth - viewPortContainer.clientWidth) / 2
+        : 0;
+
+    const context = canvas.getContext('2d');
+    context.drawImage(
+      viewPort,
+      xOffset,
+      0,
+      viewPort.clientWidth,
+      viewPort.clientHeight
+    );
+
+    const data = new FormData();
+    const uri = canvas.toDataURL().split('base64,')[1];
+
+    data.append('img_url', uri);
+
+    fetch('/api/images', {
+      method: 'POST',
+      body: data,
+      credentials: 'same-origin'
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        console.log(this.props);
+
+        this.props.setSlideDownOptions(data.foods);
+        this.props.toggleSlideDown();
+
+        this.setState({ foods: data.foods }, () => {
+          console.log(this.state);
+        });
+      });
+
+    // viewPort.srcObject.getVideoTracks().forEach(track => track.stop());
+  }
+
   render() {
     return (
       <div id="camera">
         <div id="view_port_container" onClick={this.props.toggleSlideDown}>
           <video id="view_port" autoPlay muted />
         </div>
-        <button id="shutter_btn" />
+        <button id="shutter_btn" onClick={this.handleClick} />
         {/* <input
           id="file_input"
           type="file"
