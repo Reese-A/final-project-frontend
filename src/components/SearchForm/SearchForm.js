@@ -12,7 +12,9 @@ class SearchForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
   }
-  componentDidMount() {}
+  componentDidMount() {
+    this.setState({ search: this.props.item });
+  }
 
   componentDidUpdate(prevProps, prevState) {}
 
@@ -43,7 +45,7 @@ class SearchForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className="add_food_search_container">
             <input
-              value={this.props.item}
+              value={this.state.search}
               type="search"
               name="search"
               placeholder="Search for something"
