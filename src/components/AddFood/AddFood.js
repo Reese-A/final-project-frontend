@@ -40,8 +40,7 @@ class AddFood extends React.Component {
 
   searchFood(event) {
     const { value } = event.target.dataset;
-    console.log(value);
-    console.log(event.target);
+
     this.setState({
       showCamera: !this.state.showCamera,
       slideDown: !this.state.slideDown,
