@@ -1,6 +1,8 @@
 export const LOAD_USER = 'LOAD_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 
+
+
 export const loadUser = (id) => {
   return (dispatch) => {
     return fetch(`/api/users/${id}`)
@@ -9,7 +11,7 @@ export const loadUser = (id) => {
       })
       .then((user) => {
         //error handle here (backend --> frontend, display based on status)
-
+        console.log(user);
         dispatch({
           type: LOAD_USER,
           user
@@ -22,7 +24,7 @@ export const loadUser = (id) => {
   };
 };
 
-export const loginUser = (user) => {
+export const loginUser = (user, history) => {
   return (dispatch) => {
     return fetch('/api/users/login', {
       method: 'POST',
@@ -35,14 +37,20 @@ export const loginUser = (user) => {
         password: user.password
       })
     })
+      .then((data) => {
+        return data.json();
+      })
       .then((user) => {
-        console.log(user);
-        //error handle here
 
+        //error handle here
+        user.online = true;
+        console.log(user);
         dispatch({
           type: LOGIN_USER,
-          online: true,
+          user
         })
+
+        history.push('/dashboard');
       })
   }
 }
