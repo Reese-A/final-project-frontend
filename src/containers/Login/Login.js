@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import { loginUser } from '../../redux/actions/user-actions';
 
@@ -54,19 +54,20 @@ class Login extends React.Component {
   }
 
   submitHandler(event) {
-    console.log(this.state);
     event.preventDefault();
 
-    this.props.loginUser(this.state);
+    this.props.loginUser(this.state, this.props.history);
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginUser: (user) => {
-      dispatch(loginUser(user));
+    loginUser: (user, history) => {
+      dispatch(loginUser(user, history));
     }
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default withRouter(connect(
+  null, mapDispatchToProps
+)(Login));
