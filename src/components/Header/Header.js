@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import { loadUser } from '../../redux/actions/user-actions';
 
 import './Header.css';
 
@@ -11,19 +9,22 @@ class Header extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.loadUser(3);
+  componentDidUpdate() {
+    console.log(this.props.user);
   }
-
   render() {
     return (
       <header id="header">
         {
-          this.props.user.user
-            ? <div id="username">Welcome, {this.props.user.user.first_name}!</div>
+          this.props.user
+            ? <div id="username">Welcome, {this.props.user.first_name}!</div>
             : null
         }
-        <div id="allowance">{this.props.user.allowance}</div>
+        {
+          this.props.user
+            ? <div id="allowance">You have {this.props.user.allowance} calories left to consume!</div>
+            : null
+        }
       </header>
     );
   }
@@ -35,17 +36,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadUser: (id) => {
-      dispatch(loadUser(id));
-    }
-  };
-};
-
 export default withRouter(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    null
   )(Header)
 );
