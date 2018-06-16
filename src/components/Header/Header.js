@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { loadUser } from '../../redux/actions/user-actions';
+
 import './Header.css';
 
 class Header extends Component {
@@ -9,9 +11,12 @@ class Header extends Component {
     super(props);
   }
 
-  componentDidUpdate() {
-    console.log(this.props.user);
+  componentDidMount() {
+    if (this.props.user.id) {
+      this.props.loadUser(this.props.user.id);
+    }
   }
+
   render() {
     return (
       <header id="header">
@@ -36,9 +41,17 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    loadUser: (id) => {
+      dispatch(loadUser(id));
+    }
+  };
+};
+
 export default withRouter(
   connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
   )(Header)
 );
