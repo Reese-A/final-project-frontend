@@ -7,13 +7,14 @@ class Camera extends React.Component {
     super(props);
     this.state = {
       window_width: 0,
-      video: {
-        aspectRatio: 0,
-        deviceId: '',
-        frameRate: 0,
-        height: 0,
-        width: 0
-      }
+      // video: {
+      //   aspectRatio: 0,
+      //   deviceId: '',
+      //   frameRate: 0,
+      //   height: 0,
+      //   width: 0
+      // },
+      foods: []
     };
     this.updateDimensions = this.updateDimensions.bind(this);
   }
@@ -85,6 +86,13 @@ class Camera extends React.Component {
           .then(res => res.json())
           .then(data => {
             console.log(data);
+            console.log(this.props);
+
+            this.props.setSlideDownOptions(data.foods);
+
+            this.setState({ foods: data.foods }, () => {
+              console.log(this.state);
+            });
           });
 
         // viewPort.srcObject.getVideoTracks().forEach(track => track.stop());
@@ -182,7 +190,7 @@ class Camera extends React.Component {
   render() {
     return (
       <div id="camera">
-        <div id="view_port_container">
+        <div id="view_port_container" onClick={this.props.toggleSlideDown}>
           <video id="view_port" autoPlay muted />
         </div>
         <button id="shutter_btn" />

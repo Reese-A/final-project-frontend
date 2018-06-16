@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { loadUser } from '../../redux/actions/user-actions';
+
 import './Header.css';
 
 class Header extends Component {
@@ -9,23 +11,36 @@ class Header extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.loadUser(3);
+  }
+
   render() {
     return (
       <header id="header">
-        <NavLink exact to={`add/camera`}>
-          Camera
-        </NavLink>
+        {
+          this.props.user.user
+            ? <div id="username">Welcome, {this.props.user.user.first_name}!</div>
+            : null
+        }
+        <div id="allowance">{this.props.user.allowance}</div>
       </header>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    user: state.user,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    loadUser: (id) => {
+      dispatch(loadUser(id));
+    }
+  };
 };
 
 export default withRouter(

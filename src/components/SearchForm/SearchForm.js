@@ -43,10 +43,12 @@ class SearchForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className="add_food_search_container">
             <input
+              value={this.props.item}
               type="search"
               name="search"
               placeholder="Search for something"
               onChange={this.changeHandler}
+              autoFocus
             />
             <button>
               <i className="material-icons">search</i>
