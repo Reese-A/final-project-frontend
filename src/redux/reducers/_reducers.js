@@ -4,12 +4,14 @@ import user from './user-reducers';
 import gender from './gender-reducers';
 import goal from './goal-reducers';
 import activityLevel from './activity-level-reducers';
-import registrationForm from './reg-form-reducers'; 
+import registrationForm from './reg-form-reducers';
+import dishes from './dishes-reducers';
 
 export default combineReducers({
   user,
-  gender, 
+  gender,
   goal,
   activityLevel,
-  registrationForm
+  registrationForm,
+  dishes
 });
