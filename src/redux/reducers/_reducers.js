@@ -5,6 +5,7 @@ import gender from './gender-reducers';
 import goal from './goal-reducers';
 import activityLevel from './activity-level-reducers';
 import registrationForm from './reg-form-reducers';
+import dishes from './dishes-reducers';
 import food from './food-reducers';
 
 export default combineReducers({
@@ -13,5 +14,6 @@ export default combineReducers({
   goal,
   activityLevel,
   registrationForm,
+  dishes,
   food
 });

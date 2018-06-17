@@ -3,6 +3,7 @@ import React from 'react';
 import Header from '../../components/Header/Header';
 import Camera from '../Camera/Camera';
 import SearchForm from '../SearchForm/SearchForm';
+import { Link } from 'react-router-dom';
 
 import './AddFood.css';
 
@@ -103,6 +104,7 @@ class AddFood extends React.Component {
           <button id="toggle" onClick={this.toggleForm}>
             {this.state.showCamera ? 'Search Food Instead' : 'Use Camera'}
           </button>
+          <Link to="/dashboard"> Return to dashboard </Link>
         </div>
       </div>
     );
