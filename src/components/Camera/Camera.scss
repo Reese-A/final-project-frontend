@@ -4,12 +4,14 @@ $button_height: 64px;
   height: 100%;
   width: 100vw;
   display: grid;
-  // grid-template-rows: $camera_height 1fr;
-  overflow: hidden;
+  grid-template-rows: $camera_height 0px;
+  // overflow: hidden;
 
   #view_port_container {
-    grid-area: 1/1/1/1;
+    grid-area: 1/1/3/1;
     height: $camera_height;
+    height: unset;
+    width: 100vw;
     // width: 100%;
     // border-rdisplay: flex;
     // justify-content: center;
@@ -17,34 +19,36 @@ $button_height: 64px;
     // border-radius: 0 0 16px 16px;
 
     overflow: hidden;
-    video {
-      // width: 100%;
+    video,
+    img {
+      width: 100%;
       height: 100%;
-      object-fit: unset;
+      object-fit: cover;
       // object-position: center;
-      position: relative;
-      left: 50%;
-      /* top: 50%; */
-      transform: translateX(-50%);
+      // position: relative;
+      // left: 50%;
+      // transform: translateX(-50%);
     }
   }
 
   #shutter_btn {
-    grid-area: 1/1/1/1;
+    grid-area: 2/1/2/1;
     // z-index: 1;
     justify-self: center;
-    align-self: end;
+    // align-self: end;
 
     height: $button_height;
     width: $button_height;
 
     position: relative;
-    top: -16px;
+    top: calc(-64px - 16px);
 
     border-radius: 50%;
 
     background: rgb(220, 220, 220);
     border: 5px white solid;
+
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
 
     transition: all 0.3s ease-in-out;
   }

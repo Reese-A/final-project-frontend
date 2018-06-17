@@ -51,5 +51,5 @@
       font-weight: 200; }
   #add_food #add_food_content.slide_down {
     box-shadow: 0 -3px 10px 0 rgba(0, 0, 0, 0.25);
-    transform: translateY(25vh);
+    transform: translateY(20vh);
     transition: all 0.3s ease-in-out; }
