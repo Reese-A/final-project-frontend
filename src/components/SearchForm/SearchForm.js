@@ -35,7 +35,7 @@ class SearchForm extends React.Component {
       dish: {
         name: '',
         foods: []
-      },
+      }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
@@ -47,22 +47,12 @@ class SearchForm extends React.Component {
   componentDidMount() {
     this.setState({ search: this.props.item }, () => {
       if (this.state.search) {
-        return fetch(`/api/foods/${this.state.search}`, {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-          },
-          credentials: 'same-origin'
-        })
-          .then(res => res.json())
-          .then(food => {
-            console.log(food);
-          });
+        this.getFoodData();
       }
     });
   }
 
-  componentDidUpdate(prevProps, prevState) { }
+  componentDidUpdate(prevProps, prevState) {}
 
   changeHandler(event) {
     const { value, name } = event.target;
@@ -80,17 +70,20 @@ class SearchForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
+    this.getFoodData();
+  }
+
+  getFoodData() {
     return fetch(`/api/foods/${this.state.search}`, {
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       credentials: 'same-origin'
     })
       .then(res => res.json())
       .then(food => {
-        this.setState({ food: food })
+        this.setState({ food: food });
         console.log(this.state.food);
       });
   }
@@ -104,21 +97,36 @@ class SearchForm extends React.Component {
     const dish = { ...this.state.dish };
     dish.foods.push(this.state.food);
     this.setState({
-      dish: dish,
-    })
+      dish: dish
+    });
   }
 
   dishSubmitHandler(event) {
     event.preventDefault();
-    console.log('test')
+    console.log('test');
     this.props.createDish(this.state.dish);
   }
 
   render() {
+    const { food } = this.state;
+    const foodData = (
+      <div id="add_food_nutrition_container">
+        <span id="food_name">{food.name}</span>
+        <div>
+          <span id="food_grams">{food.carb + food.protein + food.fat}</span>
+          <span id="food_calories">{food.calories}</span>
+        </div>
+        {/* <ul>
+          {Object.entries(this.state.food).map((tuple, index) => {
+            return <li key={index}>{tuple[0]}</li>;
+          })}
+        </ul> */}
+      </div>
+    );
     return (
       <div id="search_form">
         <form onSubmit={this.handleSubmit}>
-          <div className="add_food_search_container">
+          <div id="add_food_search_container">
             <input
               value={this.state.search}
               type="text"
@@ -131,65 +139,77 @@ class SearchForm extends React.Component {
               <i className="material-icons">search</i>
             </button>
           </div>
+          {this.state.showFood ? foodData : null}
         </form>
 
-        {
-          this.state.food.id
-            // could be its own component
-            ?
-            <div id="nutrionFacts">
-              <div className="nutrionTitle">Nutrition Facts</div>
-              <div className="sectionWrap">
-                <div className="servingSize">Serving size {this.state.food.serving_size}</div>
-                <div className="servingGrams">Serving size in grams {this.state.food.serving_grams}g</div>
+        {this.state.food.id ? (
+          // could be its own component
+          <div id="nutrionFacts">
+            <div className="nutrionTitle">Nutrition Facts</div>
+            <div className="sectionWrap">
+              <div className="servingSize">
+                Serving size {this.state.food.serving_size}
               </div>
-              <div className="separatingLine"></div>
-              <div className="sectionWrap">
-                <div className="totalCalories">Calories {this.state.food.calories}</div>
-                <div className="fatCalor">Calories from fat {this.state.food.fat * 9}</div>
+              <div className="servingGrams">
+                Serving size in grams {this.state.food.serving_grams}g
               </div>
-              <div className="sectionWrap">
-                <div className="totalFat">Total Fat {this.state.food.fat}g</div>
-              </div>
-              <div className="sectionWrap">
-                <div className="totalCarb">Total Carbohydrate {this.state.food.carb}g</div>
-              </div>
-              <div className="sectionWrap">
-                <div className="totalProtein">Total Protein {this.state.food.protein}g</div>
-              </div>
-              <button>Add to list</button>
-              {
-                !this.state.dish.foods.length
-                  ? <button onClick={this.toggleDishForm}>Create a dish</button>
-                  : null
-              }
             </div>
-            : null
-        }
+            <div className="separatingLine" />
+            <div className="sectionWrap">
+              <div className="totalCalories">
+                Calories {this.state.food.calories}
+              </div>
+              <div className="fatCalor">
+                Calories from fat {this.state.food.fat * 9}
+              </div>
+            </div>
+            <div className="sectionWrap">
+              <div className="totalFat">Total Fat {this.state.food.fat}g</div>
+            </div>
+            <div className="sectionWrap">
+              <div className="totalCarb">
+                Total Carbohydrate {this.state.food.carb}g
+              </div>
+            </div>
+            <div className="sectionWrap">
+              <div className="totalProtein">
+                Total Protein {this.state.food.protein}g
+              </div>
+            </div>
+            <button>Add to list</button>
+            {!this.state.dish.foods.length ? (
+              <button onClick={this.toggleDishForm}>Create a dish</button>
+            ) : null}
+          </div>
+        ) : null}
 
         {/* could be its own component */}
-        {
-          this.state.showForm
-            ?
-            <div id="dishForm">
-              <label htmlFor="name">Dish name: </label>
-              <input type="text" name="name" id="name" value={this.state.dish.name} onChange={this.dishChangeHandler} />
-              <button onClick={this.addFoodToDish}>Add food to dish</button>
-              {
-                this.state.dish.foods.length
-                  ? <button onClick={this.dishSubmitHandler}>Create Dish</button>
-                  : null
-              }
-              <div id="foodList">
-                This dish consists of...
-              {this.state.dish.foods.map((food) => {
-                  return <div key={food.id} className="foodName">{food.name}</div>
-                })}
-              </div>
+        {this.state.showForm ? (
+          <div id="dishForm">
+            <label htmlFor="name">Dish name: </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={this.state.dish.name}
+              onChange={this.dishChangeHandler}
+            />
+            <button onClick={this.addFoodToDish}>Add food to dish</button>
+            {this.state.dish.foods.length ? (
+              <button onClick={this.dishSubmitHandler}>Create Dish</button>
+            ) : null}
+            <div id="foodList">
+              This dish consists of...
+              {this.state.dish.foods.map(food => {
+                return (
+                  <div key={food.id} className="foodName">
+                    {food.name}
+                  </div>
+                );
+              })}
             </div>
-            : null
-        }
-
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -197,7 +217,7 @@ class SearchForm extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createDish: (dish) => {
+    createDish: dish => {
       dispatch(createDish(dish));
     }
   };
@@ -209,4 +229,3 @@ export default withRouter(
     mapDispatchToProps
   )(SearchForm)
 );
-
