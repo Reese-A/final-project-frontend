@@ -34,6 +34,7 @@ class SearchForm extends React.Component {
         serving_size: '',
         updated_at: ''
       },
+      showFoodCard: false,
       showForm: false,
       dish: {
         name: '',
@@ -61,6 +62,7 @@ class SearchForm extends React.Component {
   changeHandler(event) {
     const { value, name } = event.target;
     this.setState({ [name]: value.toLowerCase() });
+    if (value === '') this.setState({ showFoodCard: false });
   }
 
   dishChangeHandler(event) {
@@ -87,11 +89,13 @@ class SearchForm extends React.Component {
     })
       .then(res => res.json())
       .then(food => {
-        this.setState({ food: food });
+        this.setState({ food: food, showFoodCard: true });
         console.log(this.state.food);
       });
   }
-
+  toggleFoodCard() {
+    this.setState({ showFoodCard: !this.state.showFoodCard });
+  }
   toggleDishForm() {
     this.setState({ showForm: !this.state.showForm });
   }
@@ -113,21 +117,6 @@ class SearchForm extends React.Component {
   }
 
   render() {
-    const { food } = this.state;
-    const foodData = (
-      <div id="add_food_nutrition_container">
-        <span id="food_name">{food.name}</span>
-        <div>
-          <span id="food_grams">{food.carb + food.protein + food.fat}</span>
-          <span id="food_calories">{food.calories}</span>
-        </div>
-        {/* <ul>
-          {Object.entries(this.state.food).map((tuple, index) => {
-            return <li key={index}>{tuple[0]}</li>;
-          })}
-        </ul> */}
-      </div>
-    );
     return (
       <div id="search_form">
         <form onSubmit={this.handleSubmit}>
@@ -140,62 +129,23 @@ class SearchForm extends React.Component {
               onChange={this.changeHandler}
               autoFocus
             />
-            <button>
-              <i className="material-icons">search</i>
-            </button>
           </div>
           {this.state.showFood ? foodData : null}
         </form>
-        <FoodCard
-          name={this.state.food.name}
-          calories={this.state.food.calories}
-          serving_grams={this.state.food.serving_grams}
-          serving_size={this.state.food.serving_size}
-          carb={this.state.food.carb}
-          fat={this.state.food.fat}
-          protein={this.state.food.protein}
-        />
-        {/* {this.state.food.id ? (
-          // could be its own component
-          <div id="nutrionFacts">
-            <div className="nutrionTitle">Nutrition Facts</div>
-            <div className="sectionWrap">
-              <div className="servingSize">
-                Serving size {this.state.food.serving_size}
-              </div>
-              <div className="servingGrams">
-                Serving size in grams {this.state.food.serving_grams}g
-              </div>
-            </div>
-            <div className="separatingLine" />
-            <div className="sectionWrap">
-              <div className="totalCalories">
-                Calories {this.state.food.calories}
-              </div>
-              <div className="fatCalor">
-                Calories from fat {this.state.food.fat * 9}
-              </div>
-            </div>
-            <div className="sectionWrap">
-              <div className="totalFat">Total Fat {this.state.food.fat}g</div>
-            </div>
-            <div className="sectionWrap">
-              <div className="totalCarb">
-                Total Carbohydrate {this.state.food.carb}g
-              </div>
-            </div>
-            <div className="sectionWrap">
-              <div className="totalProtein">
-                Total Protein {this.state.food.protein}g
-              </div>
-            </div>
-            <button>Add to list</button>
-            {!this.state.dish.foods.length ? (
-              <button onClick={this.toggleDishForm}>Create a dish</button>
-            ) : null}
-          </div>
-        ) : null} */}
-        {/* could be its own component */}
+        {this.state.showFoodCard ? (
+          <FoodCard
+            name={this.state.food.name}
+            calories={this.state.food.calories}
+            serving_grams={this.state.food.serving_grams}
+            serving_size={this.state.food.serving_size}
+            carb={this.state.food.carb}
+            fat={this.state.food.fat}
+            protein={this.state.food.protein}
+          />
+        ) : null}
+
+        <div />
+
         {this.state.showForm ? (
           <div id="dishForm">
             <label htmlFor="name">Dish name: </label>
