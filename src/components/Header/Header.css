@@ -1,2 +1,19 @@
 #header {
-  background: #f2f2f2; }
+  background: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; }
+  #header * {
+    align-self: center; }
+  #header #header_logo {
+    justify-self: start;
+    margin: 0 0 0 32px; }
+  #header #header_allowance {
+    justify-self: center; }
+    #header #header_allowance #header_allowance_units {
+      font-size: 10px;
+      text-transform: uppercase; }
+  #header a {
+    justify-self: end;
+    margin: 0 32px 0 0; }
+  #header a:visited {
+    color: inherit; }

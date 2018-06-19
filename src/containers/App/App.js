@@ -1,14 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 
 import './App.css';
 
 import Header from '../../components/Header/Header';
 import Main from '../../components/Main/Main';
 
+import { loadUser } from '../../redux/actions/user-actions';
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {
+        email: '',
+        first_name: '',
+        id: 0
+      }
+    };
+  }
+
+  componentDidMount() {
+    let user = localStorage.getItem('user');
+    user = JSON.parse(user);
+    if (user) {
+      this.setState({ user });
+      this.props.loadUser(user.id);
+    }
+
+    console.log(user);
+  }
   render() {
+    console.log(this.props);
+    if (!this.state.user && this.props.location.pathname !== '/') {
+      console.log('redirect');
+      // return <Redirect to="/" />;
+    }
     return (
       <div id="app">
         <div id="app_main">
@@ -28,9 +55,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // loadUser: () => {
-    //   dispatch(loadUser());
-    // }
+    loadUser: id => {
+      dispatch(loadUser(id));
+    }
   };
 };
 export default withRouter(

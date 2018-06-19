@@ -40,6 +40,7 @@ export const loginUser = (user, history) => {
       .then(user => {
         //error handle here
         user.online = true;
+        localStorage.setItem('user', JSON.stringify(user));
         console.log(user);
         dispatch({
           type: LOGIN_USER,
