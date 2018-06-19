@@ -11,7 +11,7 @@ class AddFood extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showCamera: false,
+      showCamera: true,
       showSlideDown: false,
       slideDown: false,
       options: [],
