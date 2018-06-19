@@ -108,7 +108,7 @@ class AddFood extends React.Component {
             {this.state.showCamera ? (
               'Search Food Instead'
             ) : (
-              <i class="material-icons">camera_alt</i>
+              <i className="material-icons">camera_alt</i>
             )}
           </button>
           <Link to="/dashboard"> Return to dashboard </Link>

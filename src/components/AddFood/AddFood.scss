@@ -40,6 +40,8 @@ $header_height: 54px;
     display: grid;
     grid-template-rows: $header_height calc(80% - 54px) 1fr 1fr;
 
+    background: linear-gradient(white, rgba(240, 240, 240, 0.5));
+
     transform: translateY(0vh);
     transition: all 0.3s ease-in-out;
 
