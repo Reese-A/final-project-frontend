@@ -55,9 +55,9 @@ class AddFood extends React.Component {
     });
   }
 
-  addFoodToDish(name, food) {
+  addFoodToDish(name, foods) {
     this.setState(
-      { dish: { name: name, foods: [...this.state.dish.foods, food] } },
+      { dish: { name: name, foods: [...this.state.dish.foods, ...foods] } },
       () => {
         console.log(this.state);
       }

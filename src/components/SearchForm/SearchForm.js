@@ -40,7 +40,7 @@ class SearchForm extends React.Component {
       buildDish: false,
       dish: {
         name: '',
-        foods: [{ servings: 0, food: {} }]
+        foods: []
       }
     };
 
@@ -110,10 +110,11 @@ class SearchForm extends React.Component {
   addFoodToDish(event) {
     event.preventDefault();
     const name = this.state.search;
-    const food = {
-      servings: this.state.servings,
-      food: this.state.food
-    };
+    const foods = [];
+
+    for (let i = 0; i < this.state.servings; i++) {
+      foods.push(this.state.food);
+    }
 
     // const dish = { ...this.state.dish };
     // dish.foods.push(this.state.food);
@@ -121,8 +122,9 @@ class SearchForm extends React.Component {
     //   dish: dish
     // });
 
-    this.props.addFoodToDish(name, food);
-    if (!this.state.buildDish) this.props.createDish({ name, foods: [food] });
+    this.props.addFoodToDish(name, foods);
+
+    if (!this.state.buildDish) this.props.createDish({ name, foods });
   }
 
   dishSubmitHandler(event) {
