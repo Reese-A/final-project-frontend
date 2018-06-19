@@ -6,6 +6,8 @@ import { loadUserDishes } from '../../redux/actions/dishes-actions';
 import Header from '../../components/Header/Header';
 import FoodList from '../../components/FoodList/FoodList';
 
+import './Dashboard.css';
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +38,7 @@ class Dashboard extends React.Component {
               <div>Protein: {this.props.consumption.protein}g</div>
             </div>
             <br />
-            {Object.keys(this.props.dishes).length > 0 ? <FoodList /> : null}
+            <FoodList />
           </div>
           <div>
             <Link to="/add">Add</Link>
