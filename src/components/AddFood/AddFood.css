@@ -17,6 +17,7 @@
     height: 100vh;
     display: grid;
     grid-template-rows: 54px calc(80% - 54px) 1fr 1fr;
+    background: linear-gradient(white, rgba(240, 240, 240, 0.5));
     transform: translateY(0vh);
     transition: all 0.3s ease-in-out; }
     #add_food #add_food_content #header {
