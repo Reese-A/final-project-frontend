@@ -15,13 +15,18 @@ class AddFood extends React.Component {
       showSlideDown: false,
       slideDown: false,
       options: [],
-      item: ''
+      item: '',
+      dish: {
+        name: '',
+        foods: []
+      }
     };
 
     this.setSlideDownOptions = this.setSlideDownOptions.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
     this.toggleSlideDown = this.toggleSlideDown.bind(this);
     this.searchFood = this.searchFood.bind(this);
+    this.addFoodToDish = this.addFoodToDish.bind(this);
   }
   componentDidMount() {}
 
@@ -48,6 +53,15 @@ class AddFood extends React.Component {
       showSlideDown: !this.state.showSlideDown,
       item: value
     });
+  }
+
+  addFoodToDish(name, food) {
+    this.setState(
+      { dish: { name: name, foods: [...this.state.dish.foods, food] } },
+      () => {
+        console.log(this.state);
+      }
+    );
   }
 
   setSlideDownOptions(array) {
@@ -89,7 +103,11 @@ class AddFood extends React.Component {
               toggleSlideDown={this.toggleSlideDown}
             />
           ) : (
-            <SearchForm item={this.state.item} />
+            <SearchForm
+              item={this.state.item}
+              dish={this.state.dish}
+              addFoodToDish={this.addFoodToDish}
+            />
           )}
 
           {/* Can be made into a Component */}
