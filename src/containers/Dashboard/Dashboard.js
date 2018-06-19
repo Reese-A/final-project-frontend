@@ -17,9 +17,9 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    if (!this.props.user.online) {
-      return <Redirect to="/" />;
-    }
+    // if (!this.props.user.online) {
+    //   return <Redirect to="/" />;
+    // }
     // const totalCal = this.props.consumption.calories ?
     return (
       <div id="dashboard">
