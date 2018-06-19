@@ -8,19 +8,19 @@ const initialState = {
   accountForm: {
     email: '',
     password: '',
-    firstName: '',
-    lastName: ''
+    first_name: '',
+    last_name: ''
   },
   profileForm: {
     birthday: '',
-    weight: null,
-    heightFeet: null,
-    heightInches: null,
-    gender: null,
-    goal: null
+    weight: '',
+    heightFeet: '',
+    heightInches: '',
+    gender_id: '',
+    goal_id: ''
   },
   fitnessForm: {
-    activityLevel: null
+    activity_level_id: ''
   },
 
 };
@@ -28,12 +28,12 @@ const initialState = {
 const registrationForm = (state = initialState, action) => {
   switch (action.type) {
     case SAVE_ACCOUNT_FORM:
-      return {...state, accountForm: action.accountForm }
-      // Object.assign({}, state, { accountForm: action.accountForm })
+      return { ...state, accountForm: action.accountForm }
+    // Object.assign({}, state, { accountForm: action.accountForm })
     case SAVE_PROFILE_FORM:
-      return {...state, profileForm: action.profileForm }
+      return { ...state, profileForm: action.profileForm }
     case SAVE_FITNESS_FORM:
-      return {...state, fitnessForm: action.fitnessForm }
+      return { ...state, fitnessForm: action.fitnessForm }
     default:
       return state;
   }
