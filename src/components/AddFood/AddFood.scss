@@ -85,7 +85,28 @@ $header_height: 54px;
 
       font-size: 1.25rem;
       font-weight: 200;
+
+      color: white;
+
       // text-transform: uppercase;
+    }
+    #toggle.camera {
+      width: 56px;
+      height: 56px;
+      padding: 8px;
+
+      background: #707070;
+      border: 1px solid white;
+
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      i {
+        font-size: 32px;
+        color: white;
+      }
     }
   }
   #add_food_content.slide_down {

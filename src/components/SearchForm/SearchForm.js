@@ -3,6 +3,9 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { createDish } from '../../redux/actions/food-actions';
+
+import FoodCard from '../FoodCard/FoodCard';
+
 import './SearchForm.css';
 
 class SearchForm extends React.Component {
@@ -37,6 +40,7 @@ class SearchForm extends React.Component {
         foods: []
       }
     };
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
     this.toggleDishForm = this.toggleDishForm.bind(this);
@@ -141,8 +145,16 @@ class SearchForm extends React.Component {
           </div>
           {this.state.showFood ? foodData : null}
         </form>
-
-        {this.state.food.id ? (
+        <FoodCard
+          name={this.state.food.name}
+          calories={this.state.food.calories}
+          serving_grams={this.state.food.serving_grams}
+          serving_size={this.state.food.serving_size}
+          carb={this.state.food.carb}
+          fat={this.state.food.fat}
+          protein={this.state.food.protein}
+        />
+        {/* {this.state.food.id ? (
           // could be its own component
           <div id="nutrionFacts">
             <div className="nutrionTitle">Nutrition Facts</div>
@@ -181,8 +193,7 @@ class SearchForm extends React.Component {
               <button onClick={this.toggleDishForm}>Create a dish</button>
             ) : null}
           </div>
-        ) : null}
-
+        ) : null} */}
         {/* could be its own component */}
         {this.state.showForm ? (
           <div id="dishForm">
