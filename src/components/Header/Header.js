@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { loadUser } from '../../redux/actions/user-actions';
+import { loadConsumption } from '../../redux/actions/dishes-actions';
 
 import './Header.css';
 
@@ -14,22 +15,35 @@ class Header extends Component {
   componentDidMount() {
     if (this.props.user.id) {
       this.props.loadUser(this.props.user.id);
+      this.props.loadConsumption();
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.consumption === this.props.consumption) {
+      this.props.loadConsumption();
     }
   }
 
   render() {
+    const consumption = this.props.consumption.calories
+      ? this.props.consumption.calories
+      : 0;
     return (
       <header id="header">
-        {
-          this.props.user
-            ? <div id="username">Welcome, {this.props.user.first_name}!</div>
-            : null
-        }
-        {
-          this.props.user
-            ? <div id="allowance">You have {this.props.user.allowance} calories left to consume!</div>
-            : null
-        }
+        <div id="header_logo">FitByte</div>
+        {this.props.user ? (
+          <div id="header_allowance">
+            <span id="header_allowance_value">
+              {this.props.user.allowance - consumption}
+            </span>
+            <span id="header_allowance_units"> cal</span>
+          </div>
+        ) : null}
+
+        <NavLink to="/dashboard">
+          <i className="material-icons">account_circle</i>
+        </NavLink>
       </header>
     );
   }
@@ -38,13 +52,17 @@ class Header extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
+    consumption: state.consumption
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadUser: (id) => {
+    loadUser: id => {
       dispatch(loadUser(id));
+    },
+    loadConsumption: () => {
+      dispatch(loadConsumption());
     }
   };
 };

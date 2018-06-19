@@ -4,6 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { loadUserDishes } from '../../redux/actions/dishes-actions';
 
 import Header from '../../components/Header/Header';
+import FoodList from '../../components/FoodList/FoodList';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -11,21 +12,31 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    console.log('mount');
     this.props.loadUserDishes();
+    console.log(this.props.dishes);
   }
 
   render() {
-    if (!this.props.user.online) {
-      return <Redirect to="/" />;
-    }
+    // if (!this.props.user.online) {
+    //   return <Redirect to="/" />;
+    // }
+    // const totalCal = this.props.consumption.calories ?
     return (
       <div id="dashboard">
         <Header />
         <div id="dashboardWrap">
           <div id="intake">
-            <div id="calories">Calories Consumed: </div>
-            <div id="chart">Macronutrients: </div>
+            <div id="calories">
+              Calories Consumed: {this.props.consumption.calories}
+            </div>
+            <div id="chart">
+              Macronutrients:
+              <div>Fat: {this.props.consumption.fat}g</div>
+              <div>Carbs: {this.props.consumption.carb}g</div>
+              <div>Protein: {this.props.consumption.protein}g</div>
+            </div>
+            <br />
+            {Object.keys(this.props.dishes).length > 0 ? <FoodList /> : null}
           </div>
           <div>
             <Link to="/add">Add</Link>
@@ -39,7 +50,8 @@ class Dashboard extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    dishes: state.dishes
+    dishes: state.dishes,
+    consumption: state.consumption
   };
 };
 
