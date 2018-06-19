@@ -11,7 +11,7 @@ class AddFood extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showCamera: true,
+      showCamera: false,
       showSlideDown: false,
       slideDown: false,
       options: [],
@@ -100,8 +100,16 @@ class AddFood extends React.Component {
           </div>
 
           {/* Can be made into a Component */}
-          <button id="toggle" onClick={this.toggleForm}>
-            {this.state.showCamera ? 'Search Food Instead' : 'Use Camera'}
+          <button
+            id="toggle"
+            className={`${this.state.showCamera ? 'search_form' : 'camera'}`}
+            onClick={this.toggleForm}
+          >
+            {this.state.showCamera ? (
+              'Search Food Instead'
+            ) : (
+              <i class="material-icons">camera_alt</i>
+            )}
           </button>
           <Link to="/dashboard"> Return to dashboard </Link>
         </div>
