@@ -8,12 +8,12 @@ class ProfileForm extends React.Component {
     super(props);
 
     this.state = {
-      gender_id: null,
-      goal_id: null,
+      gender_id: '',
+      goal_id: '',
       birthday: '',
-      weight: null,
-      heightFeet: null,
-      heightInches: null,
+      weight: '',
+      heightFeet: '',
+      heightInches: '',
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -75,6 +75,7 @@ class ProfileForm extends React.Component {
 
 
   render() {
+
     const genderOptions = this.props.genders.map(gender => {
       return (
         <option key={gender.id} value={gender.id}>
@@ -105,7 +106,7 @@ class ProfileForm extends React.Component {
               onChange={this.changeHandler}
               required
             >
-              <option value="" selected disabled>Choose here</option>
+              <option value="" disabled>Choose here</option>
               {genderOptions}
             </select>
           </div>
@@ -127,12 +128,12 @@ class ProfileForm extends React.Component {
           <div id="weight_container">
             <span>Weight in pounds:</span>
             <input
-              type="number"
+              type="text"
               id="profile_weight"
               name="weight"
               placeholder="Weight in pounds"
               required
-              value={this.state.weight}
+              value={this.props.weigth}
               onChange={this.changeHandler}
             />
           </div>
@@ -142,7 +143,7 @@ class ProfileForm extends React.Component {
             <div>Height:</div>
             <span>Feet:</span>
             <input
-              type="number"
+              type="text"
               id="profile_height_feet"
               name="heightFeet"
               placeholder="Feet"
@@ -153,7 +154,7 @@ class ProfileForm extends React.Component {
             <br />
             <span>Inches:</span>
             <input
-              type="number"
+              type="text"
               id="profile_height_inches"
               name="heightInches"
               placeholder="Inches"
@@ -173,7 +174,7 @@ class ProfileForm extends React.Component {
               onChange={this.changeHandler}
               required
             >
-              <option value="" selected disabled>Choose here</option>
+              <option value="" disabled>Choose here</option>
               {goalOptions}
             </select>
           </div>
