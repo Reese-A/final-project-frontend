@@ -2,29 +2,29 @@
   height: 100%;
   width: 100vw;
   display: grid;
-  overflow: hidden; }
+  grid-template-rows: 100% 0px; }
   #camera #view_port_container {
-    grid-area: 1/1/1/1;
+    grid-area: 1/1/3/1;
     height: 100%;
+    height: unset;
+    width: 100vw;
     overflow: hidden; }
-    #camera #view_port_container video {
+    #camera #view_port_container video,
+    #camera #view_port_container img {
+      width: 100%;
       height: 100%;
-      object-fit: unset;
-      position: relative;
-      left: 50%;
-      /* top: 50%; */
-      transform: translateX(-50%); }
+      object-fit: cover; }
   #camera #shutter_btn {
-    grid-area: 1/1/1/1;
+    grid-area: 2/1/2/1;
     justify-self: center;
-    align-self: end;
     height: 64px;
     width: 64px;
     position: relative;
-    top: -16px;
+    top: calc(-64px - 16px);
     border-radius: 50%;
     background: gainsboro;
     border: 5px white solid;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
     transition: all 0.3s ease-in-out; }
   #camera #shutter_btn:hover {
     background: #cbcbcb;
