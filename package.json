@@ -4,9 +4,12 @@
   "proxy": "http://localhost:8008/",
   "private": true,
   "dependencies": {
+    "dotenv": "^6.0.0",
     "moment": "^2.22.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-google-login": "^3.2.1",
+    "react-helmet": "^5.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",

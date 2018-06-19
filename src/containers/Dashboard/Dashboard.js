@@ -24,6 +24,7 @@ class Dashboard extends React.Component {
             <div id="chart">Macronutrients: </div>
           </div>
           <div><Link to="/add">Add</Link></div>
+          <div><Link to="/settings">Settings</Link></div>
         </div>
       </div>
     )
