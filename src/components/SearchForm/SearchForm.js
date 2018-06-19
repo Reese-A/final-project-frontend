@@ -109,6 +109,7 @@ class SearchForm extends React.Component {
     event.preventDefault();
     console.log('test');
     this.props.createDish(this.state.dish);
+    this.props.history.push('/dashboard');
   }
 
   render() {
