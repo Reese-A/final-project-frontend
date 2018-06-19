@@ -130,7 +130,6 @@ class SearchForm extends React.Component {
               autoFocus
             />
           </div>
-          {this.state.showFood ? foodData : null}
         </form>
         {this.state.showFoodCard ? (
           <FoodCard
