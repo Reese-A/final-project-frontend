@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { loadUser } from '../../redux/actions/user-actions';
@@ -31,15 +31,19 @@ class Header extends Component {
       : 0;
     return (
       <header id="header">
+        <div id="header_logo">FitByte</div>
         {this.props.user ? (
-          <div id="username">Welcome, {this.props.user.first_name}!</div>
-        ) : null}
-        {this.props.user ? (
-          <div id="allowance">
-            You have {this.props.user.allowance - consumption} calories left to
-            consume!
+          <div id="header_allowance">
+            <span id="header_allowance_value">
+              {this.props.user.allowance - consumption}
+            </span>
+            <span id="header_allowance_units"> cal</span>
           </div>
         ) : null}
+
+        <NavLink to="/dashboard">
+          <i className="material-icons">account_circle</i>
+        </NavLink>
       </header>
     );
   }
