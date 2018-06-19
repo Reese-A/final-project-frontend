@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { createDish } from '../../redux/actions/food-actions';
-import { loadConsumption } from '../../redux/actions/dishes-actions';
 import './SearchForm.css';
 
 class SearchForm extends React.Component {
@@ -212,9 +211,6 @@ const mapDispatchToProps = dispatch => {
   return {
     createDish: dish => {
       dispatch(createDish(dish));
-    },
-    loadConsumption: () => {
-      dispatch(loadConsumption());
     }
   };
 };
