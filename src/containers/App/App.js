@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
-
+import { getCaloriesExpended, getTotalSteps } from '../../redux/actions/fitness-actions';
 import './App.css';
 
 import Header from '../../components/Header/Header';
 import Main from '../../components/Main/Main';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getCaloriesExpended();
+    this.props.getTotalSteps();
+  }
   render() {
     return (
       <div id="app">
@@ -20,6 +24,7 @@ class App extends Component {
   }
 }
 
+
 const mapStateToProps = state => {
   return {
     // user: state.user,
@@ -28,10 +33,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // loadUser: () => {
-    //   dispatch(loadUser());
-    // }
-  };
+    getCaloriesExpended: () => {
+      dispatch(getCaloriesExpended());
+    },
+    getTotalSteps: () => {
+      dispatch(getTotalSteps());
+    }
+  }
 };
 export default withRouter(
   connect(

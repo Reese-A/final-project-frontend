@@ -8,6 +8,7 @@ import registrationForm from './reg-form-reducers';
 import dishes from './dishes-reducers';
 import food from './food-reducers';
 import consumption from './consumption_reducers';
+import fitness from './fitness-reducers';
 
 export default combineReducers({
   user,
@@ -17,5 +18,6 @@ export default combineReducers({
   registrationForm,
   dishes,
   food,
-  consumption
+  consumption,
+  fitness
 });

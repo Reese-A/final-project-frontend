@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getCaloriesExpended, getTotalSteps } from '../../redux/actions/fitness-actions';
 
 class GoogleFit extends React.Component {
   constructor(props) {
@@ -12,34 +11,35 @@ class GoogleFit extends React.Component {
     };
   }
 
-
   componentDidMount() {
     this.setState({ 
-      caloriesExpended: this.props.getCaloriesExpended(),
-      totalSteps: this.props.getTotalSteps()
+      caloriesExpended: this.props.caloriesExpended,
+      totalSteps: this.props.totalSteps
     })
   }
 
-
   render() {
+    const stepsTaken = this.state.totalSteps ? this.state.totalSteps : null
+
+    const caloriesExpended = 
+    this.state.caloriesExpended ?
+    this.state.caloriesExpended : null
+
     return (
       <div id="googleFitWrap">
-        <div id="caloriesExpended">Calories expended:{this.state.caloriesExpended}</div>
-        <div id="stepsTaken">Steps taken:{this.state.totalSteps}</div>
+        <div id="caloriesExpended">Calories expended:{caloriesExpended}</div>
+        <div id="stepsTaken">Steps taken:{stepsTaken}</div>
       </div>
     )
   }
 }
 
-const matchDispatchToProps = dispatch => {
+const matchStateToProps = state => {
   return {
-    getCaloriesExpended: () => {
-      dispatch(getCaloriesExpended());
-    },
-    getTotalSteps: () => {
-      dispatch(getTotalSteps());
-    }
+    totalSteps: state.fitness.totalSteps,
+    caloriesExpended: state.fitness.caloriesExpended
   }
-};
+}
 
-export default connect(null, matchDispatchToProps)(GoogleFit);
+
+export default connect(matchStateToProps, null)(GoogleFit);

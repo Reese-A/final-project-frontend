@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { loadUserDishes } from '../../redux/actions/dishes-actions';
+import { getCaloriesExpended, getTotalSteps } from '../../redux/actions/fitness-actions';
+import GoogleFit from '../GoogleFit/GoogleFit';
 
 import Header from '../../components/Header/Header';
 import FoodList from '../../components/FoodList/FoodList';
@@ -13,7 +15,6 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.props.loadUserDishes();
-    console.log(this.props.dishes);
   }
 
   render() {
@@ -37,6 +38,9 @@ class Dashboard extends React.Component {
             </div>
             <br />
             {Object.keys(this.props.dishes).length > 0 ? <FoodList /> : null}
+          </div>
+          <div>
+            <GoogleFit />
           </div>
           <div>
             <Link to="/add">Add</Link>
