@@ -1,6 +1,8 @@
-#search_form {
+#search_form form {
+  width: 100%;
+  height: 100%;
   display: grid;
-  grid-template-rows: 42px calc(85% - 42px) 1fr; }
+  grid-template-rows: 42px 1fr 1fr; }
   #search_form form #add_food_search_container {
     width: 100%;
     height: 100%;
@@ -22,7 +24,15 @@
       background: linear-gradient(to right, orange, salmon);
       transition: all 0.3s ease-in-out; }
     #search_form form #add_food_search_container button {
-      display: none; }
+      display: none;
+      height: 100%;
+      grid-area: 1/1/1/1;
+      justify-self: end;
+      padding: 0;
+      background: none;
+      outline: none;
+      color: black;
+      box-shadow: none; }
   #search_form form #add_food_nutrition_data #add_food_servings_container {
     height: 36px;
     display: flex;
@@ -44,7 +54,8 @@
         border: none;
         border-radius: 0 8px 8px 0;
         outline: none;
-        text-align: center; }
+        text-align: center;
+        appearance: unset; }
     #search_form form #add_food_nutrition_data #add_food_servings_container button {
       width: auto;
       height: auto;
@@ -53,5 +64,6 @@
       background: rgba(0, 0, 0, 0.5);
       border: none;
       border-radius: 8px;
+      outline: none;
       font-size: 14px;
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15); }
