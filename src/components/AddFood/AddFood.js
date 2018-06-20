@@ -25,6 +25,7 @@ class AddFood extends React.Component {
     this.setSlideDownOptions = this.setSlideDownOptions.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
     this.toggleSlideDown = this.toggleSlideDown.bind(this);
+    this.showSlideDown = this.showSlideDown.bind(this);
     this.searchFood = this.searchFood.bind(this);
     this.addFoodToDish = this.addFoodToDish.bind(this);
   }
@@ -44,13 +45,20 @@ class AddFood extends React.Component {
     });
   }
 
+  showSlideDown(event) {
+    this.setState({
+      slideDown: true,
+      showSlideDown: true
+    });
+  }
+
   searchFood(event) {
     const { value } = event.target.dataset;
 
     this.setState({
-      showCamera: !this.state.showCamera,
-      slideDown: !this.state.slideDown,
-      showSlideDown: !this.state.showSlideDown,
+      showCamera: false,
+      slideDown: false,
+      showSlideDown: false,
       item: value
     });
   }
@@ -101,6 +109,7 @@ class AddFood extends React.Component {
             <Camera
               setSlideDownOptions={this.setSlideDownOptions}
               toggleSlideDown={this.toggleSlideDown}
+              showSlideDown={this.showSlideDown}
             />
           ) : (
             <SearchForm

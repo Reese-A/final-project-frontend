@@ -189,7 +189,9 @@ class Camera extends React.Component {
         console.log(this.props);
 
         this.props.setSlideDownOptions(data.foods);
-        this.props.toggleSlideDown();
+        this.props.showSlideDown();
+
+        // this.props.toggleSlideDown();
 
         this.setState({ foods: data.foods }, () => {
           console.log(this.state);
