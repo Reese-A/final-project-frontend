@@ -11,7 +11,7 @@ export const createDish = dish => {
       credentials: 'same-origin',
       body: JSON.stringify({
         name: dish.name,
-        foods: dish.foods
+        foods: JSON.stringify(dish.foods)
       })
     })
       .then(data => {

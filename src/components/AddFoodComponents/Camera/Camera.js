@@ -216,13 +216,13 @@ class Camera extends React.Component {
           <button id="shutter_btn" onClick={this.handleClick} />
         ) : null}
 
-        <div>
+        {/* <div>
           <span>{this.state.video.width}</span>x
           <span>{this.state.video.height}</span>::
           <span>{this.state.capabilities.width.max}</span>x
           <span>{this.state.capabilities.height.max}</span>::
           <span>{this.state.updated}</span>
-        </div>
+        </div> */}
         {/* <input
           id="file_input"
           type="file"

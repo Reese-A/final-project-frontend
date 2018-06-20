@@ -31,7 +31,9 @@ class Header extends Component {
       : 0;
     return (
       <header id="header">
-        <div id="header_logo">FitByte</div>
+        <div id="header_logo">
+          <NavLink to="/">FitByte</NavLink>
+        </div>
         {this.props.user ? (
           <div id="header_allowance">
             <span id="header_allowance_value">

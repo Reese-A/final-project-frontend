@@ -2,9 +2,10 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { createDish } from '../../redux/actions/food-actions';
+import { createDish } from '../../../redux/actions/food-actions';
 
 import FoodCard from '../FoodCard/FoodCard';
+import BuildDishCard from '../BuildDishCard/BuildDishCard';
 
 import './SearchForm.css';
 
@@ -45,11 +46,12 @@ class SearchForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.changeHandler = this.changeHandler.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.toggleDishForm = this.toggleDishForm.bind(this);
     this.addFoodToDish = this.addFoodToDish.bind(this);
     this.dishChangeHandler = this.dishChangeHandler.bind(this);
     this.dishSubmitHandler = this.dishSubmitHandler.bind(this);
+    this.getFoodData = this.getFoodData.bind(this);
   }
   componentDidMount() {
     this.setState({ search: this.props.item }, () => {
@@ -61,12 +63,10 @@ class SearchForm extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {}
 
-  changeHandler(event) {
+  handleChange(event) {
     let { value, name } = event.target;
-    if (typeof value === 'string') value = value.toLowerCase();
-    // if (name === 'servings') value = Number(value);
+
     this.setState({ [name]: value }, () => {
-      console.log(this.state);
       if (name === 'search' && value === '')
         this.setState({ showFoodCard: false });
     });
@@ -83,11 +83,17 @@ class SearchForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.getFoodData();
+    console.log('get');
+    // this.getFoodData();
+    // this.addFoodToDish(event);
   }
 
   getFoodData() {
-    return fetch(`/api/foods/${this.state.search}`, {
+    console.log(this.state);
+    console.log(this.state.search);
+    const search = this.state.search.toLowerCase();
+
+    return fetch(`/api/foods/${search}`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
@@ -96,8 +102,8 @@ class SearchForm extends React.Component {
     })
       .then(res => res.json())
       .then(food => {
+        console.log(food);
         this.setState({ food: food, showFoodCard: true });
-        console.log(this.state.food);
       });
   }
   toggleFoodCard() {
@@ -110,11 +116,7 @@ class SearchForm extends React.Component {
   addFoodToDish(event) {
     event.preventDefault();
     const name = this.state.search;
-    const foods = [];
-
-    for (let i = 0; i < this.state.servings; i++) {
-      foods.push(this.state.food);
-    }
+    const foods = { servings: this.state.servings, food: this.state.food };
 
     // const dish = { ...this.state.dish };
     // dish.foods.push(this.state.food);
@@ -124,12 +126,11 @@ class SearchForm extends React.Component {
 
     this.props.addFoodToDish(name, foods);
 
-    if (!this.state.buildDish) this.props.createDish({ name, foods });
+    if (!this.state.buildDish) this.props.createDish({ name, foods: [foods] });
   }
 
   dishSubmitHandler(event) {
     event.preventDefault();
-    console.log('test');
     this.props.createDish(this.state.dish);
     this.props.history.push('/dashboard');
   }
@@ -144,9 +145,12 @@ class SearchForm extends React.Component {
               type="text"
               name="search"
               placeholder="Search for something"
-              onChange={this.changeHandler}
+              onChange={this.handleChange}
               autoFocus
             />
+            <button id="add_food_search_button" onClick={this.getFoodData}>
+              <i class="material-icons">search</i>
+            </button>
           </div>
           {this.state.showFoodCard ? (
             <div id="add_food_nutrition_data">
@@ -166,18 +170,20 @@ class SearchForm extends React.Component {
                     id="add_food_servings_input"
                     name="servings"
                     type="number"
+                    max="50"
                     min="1"
                     value={this.state.servings}
-                    onChange={this.changeHandler}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <button onClick={this.addFoodToDish}>Add</button>
               </div>
             </div>
           ) : null}
+          <BuildDishCard />
         </form>
 
-        {this.state.showForm ? (
+        {/* {this.state.showForm ? (
           <div id="dishForm">
             <label htmlFor="name">Dish name: </label>
             <input
@@ -202,7 +208,7 @@ class SearchForm extends React.Component {
               })}
             </div>
           </div>
-        ) : null}
+        ) : null} */}
       </div>
     );
   }
