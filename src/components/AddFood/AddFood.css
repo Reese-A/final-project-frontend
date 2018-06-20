@@ -43,10 +43,11 @@
       align-self: start;
       justify-self: center;
       padding: 8px 24px;
-      border: 1px solid palegreen;
-      border-radius: 100px;
-      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+      border: none;
+      border-radius: 16px;
       outline: none;
+      background: #707070;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
       font-size: 1.25rem;
       font-weight: 200;
       color: white; }
@@ -56,6 +57,7 @@
       padding: 8px;
       background: #707070;
       border: 1px solid white;
+      border-radius: 100%;
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
       display: flex;
       justify-content: center;

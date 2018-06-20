@@ -138,7 +138,6 @@ class AddFood extends React.Component {
               <i className="material-icons">camera_alt</i>
             )}
           </button>
-          <Link to="/dashboard"> Return to dashboard </Link>
         </div>
       </div>
     );
