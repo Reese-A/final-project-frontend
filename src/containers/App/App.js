@@ -22,8 +22,8 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    this.props.getCaloriesExpended();
-    this.props.getTotalSteps();
+    // this.props.getCaloriesExpended();
+    // this.props.getTotalSteps();
     let user = localStorage.getItem('user');
     user = JSON.parse(user);
     if (user) {
