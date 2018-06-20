@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getCaloriesExpended, getTotalSteps } from '../../redux/actions/fitness-actions';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 
 import './App.css';
@@ -9,9 +10,10 @@ import Main from '../../components/Main/Main';
 
 import { loadUser } from '../../redux/actions/user-actions';
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+    constructor(props) {
+      super(props);
+
+      this.state = {
       user: {
         email: '',
         first_name: '',
@@ -19,16 +21,15 @@ class App extends Component {
       }
     };
   }
-
   componentDidMount() {
+    this.props.getCaloriesExpended();
+    this.props.getTotalSteps();
     let user = localStorage.getItem('user');
     user = JSON.parse(user);
     if (user) {
       this.setState({ user });
       this.props.loadUser(user.id);
     }
-
-    console.log(user);
   }
   render() {
     console.log(this.props);
@@ -47,6 +48,7 @@ class App extends Component {
   }
 }
 
+
 const mapStateToProps = state => {
   return {
     // user: state.user,
@@ -55,14 +57,15 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    getCaloriesExpended: () => {
+      dispatch(getCaloriesExpended());
+    },
+    getTotalSteps: () => {
+      dispatch(getTotalSteps());
+    },
     loadUser: id => {
       dispatch(loadUser(id));
     }
   };
 };
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(App)
-);
+export default withRouter(connect (mapStateToProps, mapDispatchToProps)(App));

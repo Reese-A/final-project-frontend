@@ -16,7 +16,7 @@ export const postRegistration = (form) => {
       console.log(res.body);
       return res.json(); 
     })
-    .then((registration) => {
+    .then(registration => {
       dispatch({
         type: POST_REGISTRATION,
         registration
