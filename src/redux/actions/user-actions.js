@@ -35,6 +35,7 @@ export const loginUser = (user, history) => {
       })
     })
       .then(data => {
+
         return data.json();
       })
       .then(user => {
@@ -48,6 +49,10 @@ export const loginUser = (user, history) => {
         });
 
         history.push('/dashboard');
-      });
+      })
+      .catch((err) => {
+        err.message = 'Please check your email and password';
+        throw err;
+      })
   };
 };
