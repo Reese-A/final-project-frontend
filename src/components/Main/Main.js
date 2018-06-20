@@ -17,7 +17,7 @@ class Main extends React.Component {
     super(props);
     this.state = {};
   }
-  componentDidMount() { }
+  componentDidMount() {}
 
   render() {
     return (

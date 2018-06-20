@@ -4,12 +4,15 @@ import { withRouter } from 'react-router-dom';
 
 import { loginUser } from '../../redux/actions/user-actions';
 
+import './Login.css';
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
       password: '',
+      loginError: ''
     };
 
     this.submitHandler = this.submitHandler.bind(this);
@@ -22,27 +25,30 @@ class Login extends React.Component {
         <form onSubmit={this.submitHandler}>
 
           <div className="formGroup">
-            <label htmlFor="email">Email: </label>
+            <label htmlFor="email">Email:</label>
             <input
               type="text"
               name="email"
               id="email"
+              required
               onChange={this.changeHandler}
             />
           </div>
 
           <div className="formGroup">
-            <label htmlFor="password">Password: </label>
+            <label htmlFor="password">Password:</label>
             <input
-              type="text"
+              type="password"
               name="password"
               id="password"
+              required
               onChange={this.changeHandler}
             />
           </div>
 
           <button type="submit">Login</button>
         </form>
+        <div id="loginError">{this.state.loginError}</div>
       </div>
     )
   }

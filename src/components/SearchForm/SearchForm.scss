@@ -1,11 +1,8 @@
 #search_form {
-  border: 1px solid black;
-
   display: grid;
-  grid-template-rows: 64px calc(85% - 64px) 1fr;
+  grid-template-rows: 42px calc(85% - 42px) 1fr;
 
   form {
-    margin: 16px;
     #add_food_search_container {
       width: 100%;
       height: 100%;
@@ -14,54 +11,70 @@
       input {
         grid-area: 1/1/1/1;
 
-        // width: 100%;
-        // height: 100%;
-        padding: 12px 8px;
-        padding-right: 52px;
-
         outline: none;
-        border-radius: 12px;
-        border: 1px solid lightblue;
+        border: none;
 
         font-size: 1rem;
+        text-align: center;
+
+        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+
         transition: all 0.3s ease-in-out;
       }
       input::placeholder {
         color: rgba(0, 0, 0, 0.3);
       }
+      input:focus::placeholder {
+        color: white;
+      }
       input:focus {
-        box-shadow: inset 0 0 4px 0 rgba(0, 0, 0, 0.2);
+        color: white;
+
+        background: linear-gradient(to right, orange, salmon);
+
         transition: all 0.3s ease-in-out;
       }
-      button {
-        grid-area: 1/1/1/1;
+    }
 
-        justify-self: end;
+    #add_food_nutrition_data {
+      #add_food_nutrition_data {
+      }
+      #add_food_servings_container {
+        height: 36px;
+        display: flex;
+        justify-content: center;
+        #add_food_servings_input_container {
+          height: 100%;
+          margin: 0px 32px 0 0;
+          border-radius: 8px;
+          background: white;
 
-        padding: 0 8px;
-
-        background: none;
-        border: none;
-        border-left: 1px solid lightblue;
-
-        border-radius: 0 12px 12px 0;
-
-        transition: all 0.5s ease-in-out;
-
-        i {
-          color: #4c86ed;
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+          label {
+            padding: 8px 0 8px 8px;
+            color: rgba(112, 112, 112, 1);
+            font-size: 14px;
+          }
+          input {
+            height: 100%;
+            width: 32px;
+            padding: 0;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            outline: none;
+            text-align: center;
+          }
         }
-      }
-
-      button:focus,
-      button:hover {
-        outline: none;
-        background: lightgreen;
-        border: none;
-        transition: all 0.3s ease-in-out;
-        i {
+        button {
+          padding: 8px;
           color: white;
-          transition: all 0.3s ease-in-out;
+          background: rgba(0, 0, 0, 0.5);
+          border: none;
+          border-radius: 8px;
+
+          font-size: 14px;
+
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
         }
       }
     }

@@ -8,6 +8,8 @@ import GoogleFit from '../GoogleFit/GoogleFit';
 import Header from '../../components/Header/Header';
 import FoodList from '../../components/FoodList/FoodList';
 
+import './Dashboard.css';
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -18,9 +20,9 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    if (!this.props.user.online) {
-      return <Redirect to="/" />;
-    }
+    // if (!this.props.user.online) {
+    //   return <Redirect to="/" />;
+    // }
     // const totalCal = this.props.consumption.calories ?
     return (
       <div id="dashboard">
@@ -37,7 +39,7 @@ class Dashboard extends React.Component {
               <div>Protein: {this.props.consumption.protein}g</div>
             </div>
             <br />
-            {Object.keys(this.props.dishes).length > 0 ? <FoodList /> : null}
+            <FoodList />
           </div>
           <div>
             <GoogleFit />

@@ -10,30 +10,49 @@ class FoodList extends React.Component {
   render() {
     console.log(this.props.dishes);
     return (
-      <div>
-        Food you ate today:
-        {this.props.dishes.map(dish => {
-          return (
-            <div>
-              {' '}
-              {dish.name}
-              <div>
-                {dish.ingredients.map(ingredient => {
-                  return (
-                    <ul>
-                      {ingredient.name}
-                      <li>Calories: {ingredient.calories}</li>
-                      <li>Fat: {ingredient.fat}g</li>
-                      <li>Carbs: {ingredient.carb}g</li>
-                      <li>Protein: {ingredient.protein}g</li>
-                      <br />
-                    </ul>
-                  );
-                })}
+      <div id="foods_list">
+        <div id="list_title">Today's dishes</div>
+        {this.props.dishes.length > 0 ? (
+          this.props.dishes.map(dish => {
+            return (
+              <div className="dish_wrap" key={dish.id}>
+                <div className="dish_name" key={dish.name}>
+                  {dish.name}
+                </div>
+                <div className="food_wrap" key={dish.id}>
+                  {dish.ingredients.map(ingredient => {
+                    return (
+                      <div className="ingredients_wrap" key={ingredient.id}>
+                        <div className="ingredient_name" key={ingredient.name}>
+                          {ingredient.name}
+                        </div>
+                        <li
+                          className="nutrients_item"
+                          key={ingredient.calories}
+                        >
+                          Calories: {ingredient.calories}
+                        </li>
+                        <li className="nutrients_item" key={ingredient.fat}>
+                          Fat: {ingredient.fat}g
+                        </li>
+                        <li className="nutrients_item" key={ingredient.carb}>
+                          Carbs: {ingredient.carb}g
+                        </li>
+                        <li className="nutrients_item" key={ingredient.protein}>
+                          Protein: {ingredient.protein}g
+                        </li>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        ) : (
+          <div id="no_dishes">
+            No dishes yet! Add some food to see your tracked dishes.
+          </div>
+        )}
       </div>
     );
   }

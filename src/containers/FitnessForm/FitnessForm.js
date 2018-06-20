@@ -7,6 +7,7 @@ class FitnessForm extends React.Component {
     super(props);
 
     this.state = {
+      activity_level_id: '',
       activityLevels: []
     };
 
@@ -61,11 +62,11 @@ class FitnessForm extends React.Component {
               onChange={this.changeHandler}
               required
             >
-              <option value="" selected disabled >Choose here</option>
+              <option value="" disabled >Choose here</option>
               {activityOptions}
             </select>
           </div>
-          <br/>
+          <br />
           <button type="click" name="previous" onClick={this.previousPage}>Previous</button>
           <button type="submit" name="next" >Next</button>
         </form>

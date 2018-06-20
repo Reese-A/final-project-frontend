@@ -35,11 +35,13 @@ export const loginUser = (user, history) => {
       })
     })
       .then(data => {
+
         return data.json();
       })
       .then(user => {
         //error handle here
         user.online = true;
+        localStorage.setItem('user', JSON.stringify(user));
         console.log(user);
         dispatch({
           type: LOGIN_USER,
@@ -47,6 +49,10 @@ export const loginUser = (user, history) => {
         });
 
         history.push('/dashboard');
-      });
+      })
+      .catch((err) => {
+        err.message = 'Please check your email and password';
+        throw err;
+      })
   };
 };

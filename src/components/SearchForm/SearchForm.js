@@ -3,13 +3,16 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { createDish } from '../../redux/actions/food-actions';
+
+import FoodCard from '../FoodCard/FoodCard';
+
 import './SearchForm.css';
 
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: 0,
+      // width: 0,
       search: '',
       food: {
         calories: 0,
@@ -31,12 +34,16 @@ class SearchForm extends React.Component {
         serving_size: '',
         updated_at: ''
       },
+      servings: 1,
+      showFoodCard: false,
       showForm: false,
+      buildDish: false,
       dish: {
         name: '',
         foods: []
       }
     };
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
     this.toggleDishForm = this.toggleDishForm.bind(this);
@@ -55,8 +62,14 @@ class SearchForm extends React.Component {
   componentDidUpdate(prevProps, prevState) {}
 
   changeHandler(event) {
-    const { value, name } = event.target;
-    this.setState({ [name]: value.toLowerCase() });
+    let { value, name } = event.target;
+    if (typeof value === 'string') value = value.toLowerCase();
+    // if (name === 'servings') value = Number(value);
+    this.setState({ [name]: value }, () => {
+      console.log(this.state);
+      if (name === 'search' && value === '')
+        this.setState({ showFoodCard: false });
+    });
   }
 
   dishChangeHandler(event) {
@@ -83,22 +96,35 @@ class SearchForm extends React.Component {
     })
       .then(res => res.json())
       .then(food => {
-        this.setState({ food: food });
+        this.setState({ food: food, showFoodCard: true });
         console.log(this.state.food);
       });
   }
-
+  toggleFoodCard() {
+    this.setState({ showFoodCard: !this.state.showFoodCard });
+  }
   toggleDishForm() {
     this.setState({ showForm: !this.state.showForm });
   }
 
   addFoodToDish(event) {
     event.preventDefault();
-    const dish = { ...this.state.dish };
-    dish.foods.push(this.state.food);
-    this.setState({
-      dish: dish
-    });
+    const name = this.state.search;
+    const foods = [];
+
+    for (let i = 0; i < this.state.servings; i++) {
+      foods.push(this.state.food);
+    }
+
+    // const dish = { ...this.state.dish };
+    // dish.foods.push(this.state.food);
+    // this.setState({
+    //   dish: dish
+    // });
+
+    this.props.addFoodToDish(name, foods);
+
+    if (!this.state.buildDish) this.props.createDish({ name, foods });
   }
 
   dishSubmitHandler(event) {
@@ -109,24 +135,9 @@ class SearchForm extends React.Component {
   }
 
   render() {
-    const { food } = this.state;
-    const foodData = (
-      <div id="add_food_nutrition_container">
-        <span id="food_name">{food.name}</span>
-        <div>
-          <span id="food_grams">{food.carb + food.protein + food.fat}</span>
-          <span id="food_calories">{food.calories}</span>
-        </div>
-        {/* <ul>
-          {Object.entries(this.state.food).map((tuple, index) => {
-            return <li key={index}>{tuple[0]}</li>;
-          })}
-        </ul> */}
-      </div>
-    );
     return (
       <div id="search_form">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} autoComplete="off">
           <div id="add_food_search_container">
             <input
               value={this.state.search}
@@ -136,55 +147,36 @@ class SearchForm extends React.Component {
               onChange={this.changeHandler}
               autoFocus
             />
-            <button>
-              <i className="material-icons">search</i>
-            </button>
           </div>
-          {this.state.showFood ? foodData : null}
+          {this.state.showFoodCard ? (
+            <div id="add_food_nutrition_data">
+              <FoodCard
+                name={this.state.food.name}
+                calories={this.state.food.calories}
+                serving_grams={this.state.food.serving_grams}
+                serving_size={this.state.food.serving_size}
+                carb={this.state.food.carb}
+                fat={this.state.food.fat}
+                protein={this.state.food.protein}
+              />
+              <div id="add_food_servings_container">
+                <div id="add_food_servings_input_container">
+                  <label htmlFor="add_food_servings_input">Servings: </label>
+                  <input
+                    id="add_food_servings_input"
+                    name="servings"
+                    type="number"
+                    min="1"
+                    value={this.state.servings}
+                    onChange={this.changeHandler}
+                  />
+                </div>
+                <button onClick={this.addFoodToDish}>Add</button>
+              </div>
+            </div>
+          ) : null}
         </form>
 
-        {this.state.food.id ? (
-          // could be its own component
-          <div id="nutrionFacts">
-            <div className="nutrionTitle">Nutrition Facts</div>
-            <div className="sectionWrap">
-              <div className="servingSize">
-                Serving size {this.state.food.serving_size}
-              </div>
-              <div className="servingGrams">
-                Serving size in grams {this.state.food.serving_grams}g
-              </div>
-            </div>
-            <div className="separatingLine" />
-            <div className="sectionWrap">
-              <div className="totalCalories">
-                Calories {this.state.food.calories}
-              </div>
-              <div className="fatCalor">
-                Calories from fat {this.state.food.fat * 9}
-              </div>
-            </div>
-            <div className="sectionWrap">
-              <div className="totalFat">Total Fat {this.state.food.fat}g</div>
-            </div>
-            <div className="sectionWrap">
-              <div className="totalCarb">
-                Total Carbohydrate {this.state.food.carb}g
-              </div>
-            </div>
-            <div className="sectionWrap">
-              <div className="totalProtein">
-                Total Protein {this.state.food.protein}g
-              </div>
-            </div>
-            <button>Add to list</button>
-            {!this.state.dish.foods.length ? (
-              <button onClick={this.toggleDishForm}>Create a dish</button>
-            ) : null}
-          </div>
-        ) : null}
-
-        {/* could be its own component */}
         {this.state.showForm ? (
           <div id="dishForm">
             <label htmlFor="name">Dish name: </label>

@@ -7,7 +7,6 @@
     grid-area: 1/1/1/1;
     width: 100%;
     height: 100%;
-    background: red;
     transition: all 0.5s ease-in-out; }
   #add_food #slide_down.show {
     display: block;
@@ -17,6 +16,7 @@
     height: 100vh;
     display: grid;
     grid-template-rows: 54px calc(80% - 54px) 1fr 1fr;
+    background: linear-gradient(white, rgba(240, 240, 240, 0.5));
     transform: translateY(0vh);
     transition: all 0.3s ease-in-out; }
     #add_food #add_food_content #header {
@@ -48,7 +48,21 @@
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
       outline: none;
       font-size: 1.25rem;
-      font-weight: 200; }
+      font-weight: 200;
+      color: white; }
+    #add_food #add_food_content #toggle.camera {
+      width: 56px;
+      height: 56px;
+      padding: 8px;
+      background: #707070;
+      border: 1px solid white;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      #add_food #add_food_content #toggle.camera i {
+        font-size: 32px;
+        color: white; }
   #add_food #add_food_content.slide_down {
     box-shadow: 0 -3px 10px 0 rgba(0, 0, 0, 0.25);
     transform: translateY(20vh);

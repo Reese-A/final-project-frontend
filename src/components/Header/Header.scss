@@ -1,3 +1,29 @@
 #header {
-  background: rgb(242, 242, 242);
+  background: rgb(255, 255, 255);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  * {
+    align-self: center;
+  }
+  #header_logo {
+    justify-self: start;
+    margin: 0 0 0 32px;
+  }
+  #header_allowance {
+    justify-self: center;
+    #header_allowance_value {
+    }
+    #header_allowance_units {
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+  }
+  a {
+    justify-self: end;
+    margin: 0 32px 0 0;
+  }
+  a:visited {
+    color: inherit;
+  }
 }
