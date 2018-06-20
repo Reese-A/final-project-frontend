@@ -6,8 +6,6 @@ import { Redirect, Link } from 'react-router-dom';
 import { loginGoogle } from '../../redux/actions/settings-actions';
 import { GoogleLogout, GoogleLogin } from 'react-google-login'
 
-
-
 class Settings extends React.Component {
   constructor(props) {
     super(props);
@@ -59,13 +57,10 @@ class Settings extends React.Component {
     </GoogleLogin>
 
     <GoogleLogout buttonText="Disconnect Google Fit" onLogoutSuccess={this.logout} />
-
   </div>
     )
   }
 }
-
-
 
 const mapDispatchToProps = dispatch => {
   return {

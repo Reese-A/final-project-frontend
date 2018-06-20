@@ -15,7 +15,6 @@ export const loginGoogle = (auth) => {
     return res.json();
   })
   .then(auth => {
-    console.log('success auth', auth);
     dispatch({
       type: LOGIN_GOOGLE,
       auth
