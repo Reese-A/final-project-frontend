@@ -50,6 +50,7 @@ class SearchForm extends React.Component {
     this.addFoodToDish = this.addFoodToDish.bind(this);
     this.dishChangeHandler = this.dishChangeHandler.bind(this);
     this.dishSubmitHandler = this.dishSubmitHandler.bind(this);
+    this.getFoodData = this.getFoodData.bind(this);
   }
   componentDidMount() {
     this.setState({ search: this.props.item }, () => {
@@ -83,10 +84,12 @@ class SearchForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    console.log('get');
     this.getFoodData();
   }
 
   getFoodData() {
+    console.log(this.state.search);
     return fetch(`/api/foods/${this.state.search}`, {
       headers: {
         Accept: 'application/json',
@@ -96,6 +99,7 @@ class SearchForm extends React.Component {
     })
       .then(res => res.json())
       .then(food => {
+        console.log(food);
         this.setState({ food: food, showFoodCard: true });
         console.log(this.state.food);
       });
@@ -108,6 +112,7 @@ class SearchForm extends React.Component {
   }
 
   addFoodToDish(event) {
+    console.log('wrong');
     event.preventDefault();
     const name = this.state.search;
     const foods = [];
@@ -147,6 +152,9 @@ class SearchForm extends React.Component {
               onChange={this.changeHandler}
               autoFocus
             />
+            <button id="add_food_search_button" onClick={this.getFoodData}>
+              Search
+            </button>
           </div>
           {this.state.showFoodCard ? (
             <div id="add_food_nutrition_data">
@@ -177,7 +185,7 @@ class SearchForm extends React.Component {
           ) : null}
         </form>
 
-        {this.state.showForm ? (
+        {/* {this.state.showForm ? (
           <div id="dishForm">
             <label htmlFor="name">Dish name: </label>
             <input
@@ -202,7 +210,7 @@ class SearchForm extends React.Component {
               })}
             </div>
           </div>
-        ) : null}
+        ) : null} */}
       </div>
     );
   }

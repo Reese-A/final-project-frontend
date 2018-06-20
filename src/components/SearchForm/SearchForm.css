@@ -21,6 +21,8 @@
       color: white;
       background: linear-gradient(to right, orange, salmon);
       transition: all 0.3s ease-in-out; }
+    #search_form form #add_food_search_container button {
+      display: none; }
   #search_form form #add_food_nutrition_data #add_food_servings_container {
     height: 36px;
     display: flex;
@@ -44,6 +46,8 @@
         outline: none;
         text-align: center; }
     #search_form form #add_food_nutrition_data #add_food_servings_container button {
+      width: auto;
+      height: auto;
       padding: 8px;
       color: white;
       background: rgba(0, 0, 0, 0.5);

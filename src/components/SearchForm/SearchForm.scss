@@ -34,6 +34,9 @@
 
         transition: all 0.3s ease-in-out;
       }
+      button {
+        display: none;
+      }
     }
 
     #add_food_nutrition_data {
@@ -66,6 +69,8 @@
           }
         }
         button {
+          width: auto;
+          height: auto;
           padding: 8px;
           color: white;
           background: rgba(0, 0, 0, 0.5);
