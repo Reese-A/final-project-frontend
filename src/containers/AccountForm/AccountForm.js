@@ -58,14 +58,14 @@ class AccountForm extends React.Component {
   render() {
     return (
       <div id="accountForm">
-      
+
         <div id="accountFormImage">
           <div className="homeTitle">fitbyte</div>
         </div>
 
-        <div id="account_form">
+        <div className="formModal">
 
-          <form onSubmit={this.handleSubmit}>
+          <form className="registrationForm" onSubmit={this.handleSubmit}>
 
             <div className="formGroup">
               <label htmlFor="email">Email:</label>

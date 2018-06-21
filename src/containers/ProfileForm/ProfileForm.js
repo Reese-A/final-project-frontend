@@ -16,6 +16,7 @@ class ProfileForm extends React.Component {
       weight: '',
       heightFeet: '',
       heightInches: '',
+      message: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,6 +39,7 @@ class ProfileForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.saveProfileForm({ ...this.state });
+    this.setState({ message: '' });
     this.props.nextPage();
   };
 
@@ -50,28 +52,34 @@ class ProfileForm extends React.Component {
     event.preventDefault();
     const birthDate = Moment().subtract(35, 'years').format('YYYY-MM-DD');
 
-    if (this.state.gender_id === "1") {
-      this.setState({
-        weight: 195,
-        heightFeet: 5,
-        heightInches: 10,
-        goal_id: 1,
-        birthday: birthDate
-      }, () => {
-        this.props.saveProfileForm({ ...this.state });
-        this.props.nextPage();
-      });
-    } else if (this.state.gender_id === "2") {
-      this.setState({
-        weight: 166,
-        heightFeet: 5,
-        heightInches: 4,
-        goal_id: 1,
-        birthday: birthDate
-      }, () => {
-        this.props.saveProfileForm({ ...this.state });
-        this.props.nextPage();
-      });
+    if (this.state.gender_id.length) {
+      if (this.state.gender_id === "1") {
+        this.setState({
+          weight: 195,
+          heightFeet: 5,
+          heightInches: 10,
+          goal_id: 1,
+          birthday: birthDate
+        }, () => {
+          this.setState({ message: '' });
+          this.props.saveProfileForm({ ...this.state });
+          this.props.nextPage();
+        });
+      } else if (this.state.gender_id === "2") {
+        this.setState({
+          weight: 166,
+          heightFeet: 5,
+          heightInches: 4,
+          goal_id: 1,
+          birthday: birthDate
+        }, () => {
+          this.setState({ message: '' });
+          this.props.saveProfileForm({ ...this.state });
+          this.props.nextPage();
+        });
+      }
+    } else {
+      this.setState({ message: 'Please specify your gender first' })
     }
   };
 
@@ -101,9 +109,9 @@ class ProfileForm extends React.Component {
           <div className="homeTitle">fitbyte</div>
         </div>
 
-        <div id="profile_form">
+        <div className="formModal">
 
-          <form onSubmit={this.handleSubmit} >
+          <form onSubmit={this.handleSubmit} className="registrationForm">
 
             <div className="formGroup">
               <label htmlFor="gender_id">Biological Gender:</label>
@@ -117,6 +125,9 @@ class ProfileForm extends React.Component {
                 <option value="" disabled>Choose here</option>
                 {genderOptions}
               </select>
+              <div id="genderRequiredMessage">
+                {this.state.message}
+              </div>
             </div>
 
             <div className="formGroup">
@@ -139,7 +150,7 @@ class ProfileForm extends React.Component {
                 id="weight"
                 name="weight"
                 required
-                value={this.props.weigth}
+                value={this.state.weight}
                 onChange={this.changeHandler}
               />
             </div>
