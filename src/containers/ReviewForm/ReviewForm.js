@@ -98,8 +98,8 @@ class ReviewForm extends React.Component {
           <div className="homeTitle">fitbyte</div>
         </div>
 
-        <div id="review_form">
-          <form>
+        <div className="formModal">
+          <form className="registrationForm">
             <div className="reviewContainer">
               <div className="reviewTitle">Account information:</div>
 
@@ -114,7 +114,6 @@ class ReviewForm extends React.Component {
                   disabled
                 />
               </div>
-              <br />
 
               <div className="formGroup">
                 <label htmlFor="password">Password:</label>
@@ -127,7 +126,6 @@ class ReviewForm extends React.Component {
                   disabled
                 />
               </div>
-              <br />
 
               <div className="formGroup">
                 <label htmlFor="first_name">First Name:</label>
@@ -140,7 +138,6 @@ class ReviewForm extends React.Component {
                   disabled
                 />
               </div>
-              <br />
 
               <div className="formGroup">
                 <label htmlFor="last_name">Last Name:</label>
@@ -153,9 +150,9 @@ class ReviewForm extends React.Component {
                   disabled
                 />
               </div>
-              <br />
 
               <button type="click" onClick={this.editAccountPage}>Edit account information</button>
+
             </div>
 
             <div className="reviewContainer">
@@ -256,10 +253,9 @@ class ReviewForm extends React.Component {
               </div>
 
               <button type="click" onClick={this.editFitnessPage}>Edit fitness information</button>
+              <button id="submitButton" name="next" onClick={this.handleSubmit}>Submit</button>
             </div>
 
-            <button name="next" onClick={this.handleSubmit}>Submit</button>
-            <br />
           </form>
         </div>
       </div>

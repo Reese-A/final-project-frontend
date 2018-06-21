@@ -56,9 +56,9 @@ class FitnessForm extends React.Component {
           <div className="homeTitle">fitbyte</div>
         </div>
 
-        <div id="fitness_form">
+        <div className="formModal">
 
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} className="registrationForm">
 
             <div className="formGroup">
               <label htmlFor="activity_level_id">Activity Level:</label>
@@ -82,7 +82,8 @@ class FitnessForm extends React.Component {
                 Active: some effort is made (30~60 minutes of activity per day)
               </div>
               <div id="veryActive">
-                Very Active: no pain no gain! (60+ minutes of activity per day)
+                Very Active:
+                no pain no gain! (60+ minutes of activity per day)
               </div>
             </div>
 
