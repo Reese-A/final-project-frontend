@@ -33,10 +33,9 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover; }
-    #home #homeImage #homeTitle {
-      font-size: 100px;
-      color: white; }
   #home #homeMenu {
     display: flex;
     flex-direction: row;
     justify-content: center; }
+    #home #homeMenu button {
+      margin: 50px; }
