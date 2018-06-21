@@ -41,7 +41,7 @@ class Home extends React.Component {
             : null
         }
         <div id="homeImage">
-          <div id="homeTitle">fitbyte</div>
+          <div className="homeTitle">fitbyte</div>
         </div>
         <div id="homeMenu">
           <button onClick={this.toggleLoginModal} id="loginButton">Login</button>

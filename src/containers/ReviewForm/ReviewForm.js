@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { postRegistration } from '../../redux/actions/review-form-actions';
 
+import './ReviewForm.css';
+
 class ReviewForm extends React.Component {
   constructor(props) {
     super(props);
@@ -39,10 +41,7 @@ class ReviewForm extends React.Component {
       reviewFormData[key] = this.props.fitnessForm[key];
     }
     reviewFormData['height'] = (Number(reviewFormData.heightFeet) * 12) + Number(reviewFormData.heightInches);
-    this.setState({ ...reviewFormData }, () => {
-
-      console.log(this.state)
-    });
+    this.setState({ ...reviewFormData });
 
   }
 
@@ -93,162 +92,176 @@ class ReviewForm extends React.Component {
     });
 
     return (
-      <div id="review_form">
-        <div id="acount_review_container">
-          <div id="account_review_title">Account information:</div>
+      <div id="reviewForm">
 
-          <div id="review_email_container">
-            <span>Email address:</span>
-            <input
-              type="text"
-              id="email"
-              name="email"
-              required
-              value={this.state.email}
-              disabled
-              hidden
-            />
-          </div>
-          <br />
-          <input
-            type="password"
-            id="account_password"
-            name="password"
-            required
-            value={this.state.password}
-            disabled
-            hidden
-          />
-          <div id="review_first_name_container">
-            <span>First name: </span>
-            <input
-              type="text"
-              id="account_first_name"
-              name="first_name"
-              required
-              value={this.state.first_name}
-              disabled
-            />
-          </div>
-          <br />
-          <div id="review_last_name_container">
-            <span>Last name:</span>
-            <input
-              type="text"
-              id="account_last_name"
-              name="last_name"
-              required
-              value={this.state.last_name}
-              disabled
-            />
-          </div>
-          <br />
-          <button type="click" onClick={this.editAccountPage}>Edit account information</button>
+        <div id="reviewFormImage">
+          <div className="homeTitle">fitbyte</div>
         </div>
-        <br />
-        <div id="profile_review_container">
-          <div id="profile_review_title">Profile information:</div>
-          <br />
-          <div id="review_birthday_container">
-            <span>Birthday:</span>
-            <input
-              type="date"
-              id="profile_birthday"
-              name="birthday"
-              required
-              value={this.state.birthday}
-              disabled
-            />
-          </div>
-          <br />
-          <div id="review_weight_container">
-            <span>Weight in pounds: </span>
-            <input
-              type="text"
-              id="profile_weight"
-              name="weight"
-              required
-              value={this.state.weight}
-              disabled
-            />
-          </div>
-          <br />
-          <div id="review_height_container">
-            <div>Height:</div>
-            <span>Feet:</span>
-            <input
-              type="text"
-              id="profile_height_feet"
-              name="heightFeet"
-              required
-              value={this.state.heightFeet}
-              disabled
-            />
+
+        <div id="review_form">
+          <form>
+            <div className="reviewContainer">
+              <div className="reviewTitle">Account information:</div>
+
+              <div className="formGroup">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  required
+                  value={this.state.email}
+                  disabled
+                />
+              </div>
+              <br />
+
+              <div className="formGroup">
+                <label htmlFor="password">Password:</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                  value={this.state.password}
+                  disabled
+                />
+              </div>
+              <br />
+
+              <div className="formGroup">
+                <label htmlFor="first_name">First Name:</label>
+                <input
+                  type="text"
+                  id="first_name"
+                  name="first_name"
+                  required
+                  value={this.state.first_name}
+                  disabled
+                />
+              </div>
+              <br />
+
+              <div className="formGroup">
+                <label htmlFor="last_name">Last Name:</label>
+                <input
+                  type="text"
+                  id="last_name"
+                  name="last_name"
+                  required
+                  value={this.state.last_name}
+                  disabled
+                />
+              </div>
+              <br />
+
+              <button type="click" onClick={this.editAccountPage}>Edit account information</button>
+            </div>
+
+            <div className="reviewContainer">
+              <div className="reviewTitle">Profile information:</div>
+
+              <div className="formGroup">
+                <label htmlFor="birthday">Birthday:</label>
+                <input
+                  type="date"
+                  id="birthday"
+                  name="birthday"
+                  required
+                  value={this.state.birthday}
+                  disabled
+                />
+              </div>
+
+              <div className="formGroup">
+                <label htmlFor="weight">Weight(lbs):</label>
+                <input
+                  type="text"
+                  id="weight"
+                  name="weight"
+                  required
+                  value={this.state.weight}
+                  disabled
+                />
+              </div>
+
+              <div className="formGroup">
+                <label htmlFor="heightFeet">Height(feet):</label>
+                <input
+                  type="text"
+                  id="heightFeet"
+                  name="heightFeet"
+                  required
+                  value={this.state.heightFeet}
+                  disabled
+                />
+              </div>
+
+              <div className="formGroup">
+                <label htmlFor="heightInches">Height(inches):</label>
+                <input
+                  type="text"
+                  id="heightInches"
+                  name="heightInches"
+                  required
+                  value={this.state.heightInches}
+                  disabled
+                />
+              </div>
+
+              <div className="formGroup">
+                <label htmlFor="gender_id">Biological Gender:</label>
+                <select
+                  name="gender_id"
+                  id="gender_id"
+                  value={this.state.gender_id}
+                  required
+                  disabled
+                >
+                  {genderOptions}
+                </select>
+              </div>
+
+              <div className="formGroup">
+                <label htmlFor="goal_id">Goal:</label>
+                <select
+                  name="goal_id"
+                  id="goal_id"
+                  value={this.state.goal_id}
+                  required
+                  disabled
+                >
+                  {goalOptions}
+                </select>
+              </div>
+
+              <button type="click" onClick={this.editProfilePage}>Edit profile information</button>
+
+            </div>
+
+            <div className="reviewContainer">
+              <div className="reviewTitle">Fitness information:</div>
+
+              <div className="formGroup">
+                <label htmlFor="activity_level_id">Activity Level:</label>
+                <select
+                  name="activity_level_id"
+                  id="activity_level_id"
+                  value={this.state.activity_level_id}
+                  required
+                  disabled
+                >
+                  {activityOptions}
+                </select>
+              </div>
+
+              <button type="click" onClick={this.editFitnessPage}>Edit fitness information</button>
+            </div>
+
+            <button name="next" onClick={this.handleSubmit}>Submit</button>
             <br />
-            <span>Inches: </span>
-            <input
-              type="text"
-              id="profile_height_inches"
-              name="heightInches"
-              required
-              value={this.state.heightInches}
-              disabled
-            />
-            <br />
-          </div>
-          <br />
-          <div id="profile_gender_container" className="select_container">
-            <label htmlFor="profile_gender">Biological Gender:</label>
-            <select
-              name="gender_id"
-              id="profile_gender"
-              value={this.state.gender_id}
-              required
-              disabled
-            >
-              {genderOptions}
-
-            </select>
-          </div>
-          <br />
-          <div id="profile_goal_container" className="select_container">
-            <label htmlFor="profile_goal">Goal:</label>
-            <select
-              name="goal_id"
-              id="profile_goal"
-              value={this.state.goal_id}
-              required
-              disabled
-            >
-              {goalOptions}
-
-            </select>
-          </div>
-          <br />
-          <button type="click" onClick={this.editProfilePage}>Edit profile information</button>
+          </form>
         </div>
-        <br />
-        <div id="fitness_review_container">
-          <div id="fitness_review_title">Fitness information:</div>
-          <br />
-          <div id="activity_level_container" className="select_container">
-            <label htmlFor="activity_level">Activity Level:</label>
-            <select
-              name="activity_level_id"
-              id="activity_level"
-              value={this.state.activity_level_id}
-              required
-              disabled
-            >
-              {activityOptions}
-
-            </select>
-          </div>
-          <br />
-          <button type="click" onClick={this.editFitnessPage}>Edit account information</button>
-        </div>
-        <br />
-        <button name="next" onClick={this.handleSubmit}>Submit</button>
       </div>
     )
   }
