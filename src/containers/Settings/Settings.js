@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 
 import { loginGoogle } from '../../redux/actions/settings-actions';
-import { GoogleLogout, GoogleLogin } from 'react-google-login'
+import { GoogleLogin, GoogleLogout } from 'react-google-login'
 
 class Settings extends React.Component {
   constructor(props) {
@@ -13,12 +13,9 @@ class Settings extends React.Component {
     this.success = this.success.bind(this);
     this.error = this.error.bind(this);
     this.loading = this.loading.bind(this);
-    this.logout = this.logout.bind(this);
   }
 
   success(res) {
-    console.log('success test');
-    console.log(res);
     this.props.loginGoogle(res);
   }
 
@@ -29,12 +26,8 @@ class Settings extends React.Component {
   loading = () => {
     console.log('loading')
   }
-  
-  logout = (data) => {
-    console.log(data);
-    console.log('logout')
-  }
 
+  
   render() {
     return (
     <div id="settingsWrap">
@@ -55,8 +48,6 @@ class Settings extends React.Component {
     >
       <span>Connect Google Fit account</span>
     </GoogleLogin>
-
-    <GoogleLogout buttonText="Disconnect Google Fit" onLogoutSuccess={this.logout} />
   </div>
     )
   }

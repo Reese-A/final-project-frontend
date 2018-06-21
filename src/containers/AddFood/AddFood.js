@@ -1,8 +1,8 @@
 import React from 'react';
 
 import Header from '../../components/Header/Header';
-import Camera from '../Camera/Camera';
-import SearchForm from '../SearchForm/SearchForm';
+import Camera from '../../components/AddFoodComponents/Camera/Camera';
+import SearchForm from '../../components/AddFoodComponents/SearchForm/SearchForm';
 import { Link } from 'react-router-dom';
 
 import './AddFood.css';
@@ -11,7 +11,7 @@ class AddFood extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showCamera: true,
+      showCamera: false,
       showSlideDown: false,
       slideDown: false,
       options: [],
