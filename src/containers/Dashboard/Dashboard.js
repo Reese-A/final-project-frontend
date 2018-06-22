@@ -11,6 +11,7 @@ import GoogleFit from '../GoogleFit/GoogleFit';
 
 import Header from '../../components/Header/Header';
 import FoodList from '../../components/FoodList/FoodList';
+import CalorieChart from '../../components/CalorieChart/CalorieChart';
 
 import './Dashboard.css';
 
@@ -38,6 +39,7 @@ class Dashboard extends React.Component {
           <div id="intake">
             <div id="calories">
               Calories Consumed: {this.props.consumption.calories}
+              <CalorieChart />
             </div>
             <div id="chart">
               Macronutrients:
