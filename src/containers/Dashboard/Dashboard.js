@@ -20,6 +20,8 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.props.loadUserDishes();
+    this.props.getCaloriesExpended();
+    this.props.getTotalSteps();
   }
 
   render() {
@@ -68,7 +70,9 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     dishes: state.dishes,
-    consumption: state.consumption
+    consumption: state.consumption,
+    totalSteps: state.fitness.totalSteps,
+    caloriesExpended: state.fitness.caloriesExpended
   };
 };
 
@@ -76,7 +80,13 @@ const mapDispatchToProps = dispatch => {
   return {
     loadUserDishes: () => {
       dispatch(loadUserDishes());
-    }
+    },
+    getCaloriesExpended: () => {
+      dispatch(getCaloriesExpended());
+    },
+    getTotalSteps: () => {
+      dispatch(getTotalSteps());
+    },
   };
 };
 

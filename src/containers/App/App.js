@@ -25,8 +25,6 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    // this.props.getCaloriesExpended();
-    // this.props.getTotalSteps();
     let user = localStorage.getItem('user');
     user = JSON.parse(user);
     if (user) {
@@ -57,12 +55,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCaloriesExpended: () => {
-      dispatch(getCaloriesExpended());
-    },
-    getTotalSteps: () => {
-      dispatch(getTotalSteps());
-    },
     loadUser: id => {
       dispatch(loadUser(id));
     }

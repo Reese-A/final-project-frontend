@@ -1,0 +1,15 @@
+#accountForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  #accountForm #accountFormImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    width: 100vw;
+    height: 75vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; }

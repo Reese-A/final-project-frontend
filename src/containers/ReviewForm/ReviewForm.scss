@@ -1,0 +1,46 @@
+#reviewForm{
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  #reviewFormImage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url("https://images.pexels.com/photos/221057/pexels-photo-221057.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    
+    width: 100vw;
+    height: 75vh;
+    
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  form{
+    display: block;
+    
+    button{
+      text-align: center;
+    }
+  }
+
+  .reviewTitle{
+    margin: 10px;
+    font-size: 24px;
+  }
+
+  .reviewContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  } 
+}
+
+
+
+  

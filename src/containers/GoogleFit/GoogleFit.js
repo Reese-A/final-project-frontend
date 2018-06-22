@@ -11,11 +11,17 @@ class GoogleFit extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.setState({ 
-      caloriesExpended: this.props.caloriesExpended,
-      totalSteps: this.props.totalSteps
-    })
+  static getDerivedStateFromProps(props, state) {
+    if (state.caloriesExpended && state.totalSteps) return state;
+    const stateChanges = {};
+
+    if (props.totalSteps) {
+      stateChanges.totalSteps = props.totalSteps;
+    }
+    if (props.caloriesExpended) {
+      stateChanges.caloriesExpended = props.caloriesExpended;
+    }
+    return stateChanges;
   }
 
   render() {
@@ -34,7 +40,7 @@ class GoogleFit extends React.Component {
   }
 }
 
-const matchStateToProps = state => {
+const mapStateToProps = state => {
   return {
     totalSteps: state.fitness.totalSteps,
     caloriesExpended: state.fitness.caloriesExpended
@@ -42,4 +48,4 @@ const matchStateToProps = state => {
 }
 
 
-export default connect(matchStateToProps, null)(GoogleFit);
+export default connect(mapStateToProps, null)(GoogleFit);
