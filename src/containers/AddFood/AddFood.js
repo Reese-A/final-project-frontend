@@ -11,9 +11,10 @@ class AddFood extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showCamera: false,
+      showCamera: true,
       showSlideDown: false,
       slideDown: false,
+      loading: false,
       options: [],
       item: '',
       dish: {
@@ -26,6 +27,8 @@ class AddFood extends React.Component {
     this.toggleForm = this.toggleForm.bind(this);
     this.toggleSlideDown = this.toggleSlideDown.bind(this);
     this.showSlideDown = this.showSlideDown.bind(this);
+    this.toggleLoading = this.toggleLoading.bind(this);
+    this.showLoading = this.showLoading.bind(this);
     this.searchFood = this.searchFood.bind(this);
     this.addFoodToDish = this.addFoodToDish.bind(this);
   }
@@ -52,9 +55,22 @@ class AddFood extends React.Component {
     });
   }
 
-  searchFood(event) {
-    const { value } = event.target.dataset;
+  toggleLoading(event) {
+    this.setState({
+      loading: !this.state.loading
+    });
+  }
 
+  showLoading(event) {
+    this.setState({
+      loading: true
+    });
+  }
+
+  searchFood(event) {
+    event.preventDefault();
+    const { value } = event.target.dataset;
+    console.log('search');
     this.setState({
       showCamera: false,
       slideDown: false,
@@ -86,17 +102,42 @@ class AddFood extends React.Component {
           id="slide_down"
           className={`${this.state.showSlideDown ? 'show' : ''}`}
         >
-          {/* <div /> */}
-
-          <ul>
+          <div id="slide_down_text">
+            {this.state.options.length ? 'This is what we found' : 'No results'}
+          </div>
+          <div id="slide_down_scan_results">
             {this.state.options.map((option, index) => {
               return (
-                <li key={index} onClick={this.searchFood} data-value={option}>
-                  {option}
-                </li>
+                <div
+                  className="slide_down_items"
+                  key={index}
+                  data-value={option}
+                  onClick={this.searchFood}
+                >
+                  <span className="slide_down_text">{option}</span>
+                </div>
               );
             })}
-          </ul>
+          </div>
+        </div>
+        <div id="loading" className={`${this.state.loading ? 'show' : ''}`}>
+          <h1>Cooking in progress..</h1>
+          <div id="cooking">
+            <div class="bubble" />
+            <div class="bubble" />
+            <div class="bubble" />
+            <div class="bubble" />
+            <div class="bubble" />
+            <div id="area">
+              <div id="sides">
+                <div id="pan" />
+                <div id="handle" />
+              </div>
+              <div id="pancake">
+                <div id="pastry" />
+              </div>
+            </div>
+          </div>
         </div>
 
         <div
@@ -104,12 +145,13 @@ class AddFood extends React.Component {
           className={`${this.state.slideDown ? 'slide_down tint' : ''}`}
         >
           <Header />
-
           {this.state.showCamera ? (
             <Camera
               setSlideDownOptions={this.setSlideDownOptions}
               toggleSlideDown={this.toggleSlideDown}
               showSlideDown={this.showSlideDown}
+              toggleLoading={this.toggleLoading}
+              showLoading={this.showLoading}
             />
           ) : (
             <SearchForm
@@ -130,17 +172,19 @@ class AddFood extends React.Component {
           ) : null}
 
           {/* Can be made into a Component */}
-          <button
-            id="toggle"
-            className={`${this.state.showCamera ? 'search_form' : 'camera'}`}
-            onClick={this.toggleForm}
-          >
-            {this.state.showCamera ? (
-              'Search Food Instead'
-            ) : (
-              <i className="material-icons">camera_alt</i>
-            )}
-          </button>
+          <div id="toggle_container">
+            <button
+              id="toggle"
+              className={`${this.state.showCamera ? 'search_form' : 'camera'}`}
+              onClick={this.toggleForm}
+            >
+              {this.state.showCamera ? (
+                'Search Food'
+              ) : (
+                <i className="material-icons">camera_alt</i>
+              )}
+            </button>
+          </div>
         </div>
       </div>
     );

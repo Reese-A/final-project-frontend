@@ -4,6 +4,7 @@
   height: 100%;
   // display: grid;
   // grid-template-rows: 42px 1fr 1fr;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
   display: flex;
   flex-direction: column;
   form {
@@ -28,9 +29,11 @@
       input::placeholder {
         color: rgba(0, 0, 0, 0.3);
       }
-      input:focus::placeholder {
+      input:focus::placeholder,
+      input:hover::placeholder {
         color: white;
       }
+      input:hover,
       input:focus {
         color: white;
 
@@ -108,9 +111,11 @@
 
   .horizontal_seperator {
     width: 100%;
-    height: 6px;
+    height: 4px;
     background: white;
-    margin: 24px 0px;
-    box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    /* margin: 24px 0px; */
+    margin: 24px 0 0 0;
+    padding: 2px 0;
+    box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.15);
   }
 }
