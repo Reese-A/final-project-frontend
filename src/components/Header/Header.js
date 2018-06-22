@@ -9,10 +9,6 @@ import { updateDaily } from '../../redux/actions/daily-actions';
 import './Header.css';
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     if (this.props.user.id) {
       this.props.loadUser(this.props.user.id);

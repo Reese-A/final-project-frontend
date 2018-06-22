@@ -43,7 +43,7 @@ class BuildDishCard extends React.Component {
 
   handleDishName(event) {
     event.preventDefault();
-    const { name, value } = event.target;
+    const { value } = event.target;
     this.props.setDishName(value);
   }
 
@@ -168,18 +168,18 @@ class BuildDishCard extends React.Component {
         </form>
       </div>
     ) : (
-      <div className="prompt" id="build_dish_card">
-        <div id="build_dish_card_header">Build a dish instead</div>
-        <div id="build_dish_card_body">
-          Sometimes you can’t find exactly what you’re looking for, but that’s
-          okay! You can just build it yourself. Just search the foods that make
-          up your dish and add them. Click the button below to get started.
+        <div className="prompt" id="build_dish_card">
+          <div id="build_dish_card_header">Build a dish instead</div>
+          <div id="build_dish_card_body">
+            Sometimes you can’t find exactly what you’re looking for, but that’s
+            okay! You can just build it yourself. Just search the foods that make
+            up your dish and add them. Click the button below to get started.
         </div>
-        <div onClick={this.props.toggleDishForm} id="build_dish_card_button">
-          <span id="build_dish_card_button_text">Build a Dish </span>
+          <div onClick={this.props.toggleDishForm} id="build_dish_card_button">
+            <span id="build_dish_card_button_text">Build a Dish </span>
+          </div>
         </div>
-      </div>
-    );
+      );
   }
 }
 
