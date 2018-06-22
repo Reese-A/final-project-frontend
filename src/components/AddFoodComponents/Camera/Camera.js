@@ -177,7 +177,7 @@ class Camera extends React.Component {
     const uri = canvas.toDataURL().split('base64,')[1];
 
     data.append('img_url', uri);
-
+    this.props.toggleLoading();
     fetch('/api/images', {
       method: 'POST',
       body: data,
@@ -190,6 +190,7 @@ class Camera extends React.Component {
 
         this.props.setSlideDownOptions(data.foods);
         this.props.showSlideDown();
+        this.props.toggleLoading();
 
         // this.props.toggleSlideDown();
 
@@ -209,7 +210,13 @@ class Camera extends React.Component {
     return (
       <div id="camera">
         <div id="view_port_container" onClick={this.props.toggleSlideDown}>
-          <video id="view_port" autoPlay playsInline muted />
+          <video
+            id="view_port"
+            autoPlay
+            playsInline
+            muted
+            poster="https://images.pexels.com/photos/243757/pexels-photo-243757.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+          />
         </div>
 
         {this.state.showShutterBtn ? (
