@@ -16,7 +16,7 @@ $header_height: 54px;
   }
 
   // height: calc(100vh - 64px);
-  height: 100vh;
+  // height: 100vh;
   display: grid;
   overflow: hidden;
   // grid-template-rows: $header_height calc(80% - 54px) 1fr 1fr;
@@ -68,9 +68,10 @@ $header_height: 54px;
   }
 
   #loading {
+    display: none;
     grid-area: 1/1/1/1;
 
-    z-index: -2;
+    z-index: 1;
     width: 100%;
     height: 100vh;
 
@@ -80,8 +81,6 @@ $header_height: 54px;
   }
 
   #loading.show {
-    z-index: 1;
-
     background: lightgoldenrodyellow;
     // transition: all 0.5s ease-in-out;
 
@@ -349,18 +348,6 @@ $header_height: 54px;
     }
   }
 
-  // #add_food_content.tint:after {
-  //   content: '';
-  //   display: block;
-  //   position: absolute;
-  //   top: 0;
-  //   bottom: 0;
-  //   left: 0;
-  //   right: 0;
-  //   background: rgba(0, 0, 0, 0.7);
-  //   transition: all 0.3s linear;
-  // }
-
   #add_food_content {
     grid-area: 1/1/1/1;
 
@@ -402,10 +389,10 @@ $header_height: 54px;
     #toggle_container {
       align-self: end;
       width: 100%;
-      height: 64px;
+      height: 100%;
 
-      background: #fbfbfb;
-      box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.1);
+      background: #fbfbfb78;
+      box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.05);
 
       display: flex;
       justify-content: center;
@@ -453,6 +440,7 @@ $header_height: 54px;
         border-radius: 100%;
 
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
 
         display: flex;
         justify-content: center;
@@ -462,11 +450,15 @@ $header_height: 54px;
           color: white;
         }
       }
+      #toggle.camera:hover {
+        background: salmon;
+        transition: all 0.3s ease-in-out;
+      }
     }
   }
   #add_food_content.slide_down {
     box-shadow: 0 -3px 10px 0 rgba(0, 0, 0, 0.25);
-    transform: translateY(50vh);
+    transform: translateY(320px);
     transition: all 0.3s ease-in-out;
   }
 }

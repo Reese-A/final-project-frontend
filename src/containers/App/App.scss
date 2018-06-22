@@ -1,5 +1,6 @@
 #app {
-  height: 50vh;
+  height: calc(100vh - 55px);
+  // background: #000;
 }
 button {
   padding: 8px;
