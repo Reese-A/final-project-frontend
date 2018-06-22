@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 
 import { loginGoogle } from '../../redux/actions/settings-actions';
 import { loadGenders } from '../../redux/actions/gender-actions';
 import { loadGoals } from '../../redux/actions/goal-actions';
 import { loadActivityLevels } from '../../redux/actions/activity-level-actions';
-import { GoogleLogin, GoogleLogout } from 'react-google-login'
+import { GoogleLogin } from 'react-google-login'
 import UpdateProfileForm from '../UpdateProfileForm/UpdateProfileForm';
 
 class Settings extends React.Component {
@@ -19,6 +19,8 @@ class Settings extends React.Component {
   }
 
   success(res) {
+    console.log('auto connecting');
+    console.log('auto connect res', res);
     this.props.loadGenders();
     this.props.loadGoals();
     this.props.loadActivityLevels();
@@ -26,6 +28,7 @@ class Settings extends React.Component {
   }
 
   error = res => {
+    console.log('login error');
     console.error(res)
   }
   
@@ -37,6 +40,7 @@ class Settings extends React.Component {
   render() {
     return (
     <div id="settingsWrap">
+    <div id="settingsTitle">Settings</div>
       <GoogleLogin
       clientId="754246514774-ei1kjc8cujnegap63tdedbg4qa6l48el.apps.googleusercontent.com"
       scope="https://www.googleapis.com/auth/fitness.activity.read"
@@ -55,6 +59,7 @@ class Settings extends React.Component {
       <span>Connect Google Fit account</span>
     </GoogleLogin>
     <UpdateProfileForm />
+    <NavLink to="/dashboard">Back to Dashboard</NavLink>
   </div>
     )
   }
@@ -77,4 +82,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Settings);
+export default withRouter(connect(null, mapDispatchToProps)(Settings));

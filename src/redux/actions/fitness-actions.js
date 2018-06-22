@@ -22,6 +22,7 @@ export const getCaloriesExpended = () => {
     return fetch('/api/oauth/google/token', {
       credentials: 'same-origin' })
       .then(res => {
+        console.log('calories res from back', res);
        return res.json()
       })
       .then(token => {
@@ -30,7 +31,7 @@ export const getCaloriesExpended = () => {
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token.access_token}`
+            'Authorization': `Bearer ${token}`
           },
           body: JSON.stringify(calBody)
         })
@@ -66,6 +67,7 @@ export const getTotalSteps = () => {
     return fetch('/api/oauth/google/token', {
       credentials: 'same-origin' })
       .then(res => {
+        console.log('steps res from back', res);
        return res.json()
       })
       .then(token => {
