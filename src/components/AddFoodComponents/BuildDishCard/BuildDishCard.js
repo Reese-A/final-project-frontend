@@ -34,6 +34,7 @@ class BuildDishCard extends React.Component {
 
   handleDishSubmit(event) {
     event.preventDefault();
+    if (!Object.values(this.props.dish.foods).length) return;
     this.props.createDish(this.props.dish);
     this.props.toggleDishForm();
     this.props.clearDish();
@@ -94,6 +95,11 @@ class BuildDishCard extends React.Component {
               </div>
             </div>
             <div id="build_dish_card_body">
+              {Object.values(this.props.dish.foods).length ? null : (
+                <span id="build_dish_card_body_empty">
+                  Search an item and add it
+                </span>
+              )}
               {Object.entries(this.props.dish.foods).map(item => {
                 return (
                   <div className="build_dish_card_item" key={item[0]}>
@@ -167,7 +173,7 @@ class BuildDishCard extends React.Component {
         <div id="build_dish_card_body">
           Sometimes you can’t find exactly what you’re looking for, but that’s
           okay! You can just build it yourself. Just search the foods that make
-          up your dish and add them.
+          up your dish and add them. Click the button below to get started.
         </div>
         <div onClick={this.props.toggleDishForm} id="build_dish_card_button">
           <span id="build_dish_card_button_text">Build a Dish </span>

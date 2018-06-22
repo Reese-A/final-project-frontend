@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Amatic+SC");
 #add_food {
-  height: 100vh;
   display: grid;
   overflow: hidden; }
   #add_food input {
@@ -45,14 +44,14 @@
     background: #3d404c;
     transition: all 0.5s ease-in-out; }
   #add_food #loading {
+    display: none;
     grid-area: 1/1/1/1;
-    z-index: -2;
+    z-index: 1;
     width: 100%;
     height: 100vh;
     background: black;
     transition: all 0.5s ease-in-out; }
   #add_food #loading.show {
-    z-index: 1;
     background: lightgoldenrodyellow;
     display: flex;
     flex-direction: column;
@@ -271,9 +270,9 @@
     #add_food #add_food_content #toggle_container {
       align-self: end;
       width: 100%;
-      height: 64px;
-      background: #fbfbfb;
-      box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.1);
+      height: 100%;
+      background: #fbfbfb78;
+      box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.05);
       display: flex;
       justify-content: center;
       align-items: center; }
@@ -291,7 +290,8 @@
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
         font-size: 1.25rem;
         font-weight: 200;
-        color: white; }
+        color: white;
+        transition: all 0.3s ease-in-out; }
       #add_food #add_food_content #toggle_container #toggle.camera {
         width: 72px;
         height: 72px;
@@ -302,13 +302,17 @@
         border: none;
         border-radius: 100%;
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        transition: all 0.5s ease-in-out;
         display: flex;
         justify-content: center;
         align-items: center; }
         #add_food #add_food_content #toggle_container #toggle.camera i {
           font-size: 42px;
           color: white; }
+      #add_food #add_food_content #toggle_container #toggle.camera:hover {
+        background: salmon;
+        transition: all 0.3s ease-in-out; }
   #add_food #add_food_content.slide_down {
     box-shadow: 0 -3px 10px 0 rgba(0, 0, 0, 0.25);
-    transform: translateY(50vh);
+    transform: translateY(320px);
     transition: all 0.3s ease-in-out; }

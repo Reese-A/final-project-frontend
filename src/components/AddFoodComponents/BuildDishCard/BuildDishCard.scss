@@ -1,6 +1,6 @@
 #build_dish_card_container {
   #build_dish_header {
-    margin: 12px 32px 24px 32px;
+    margin: 12px 32px 12px 32px;
 
     font-size: 20px;
     font-weight: 300;
@@ -14,7 +14,7 @@
   min-height: 180px;
   height: fit-content;
 
-  margin: 24px 16px 64px 16px;
+  margin: 12px 16px 64px 16px;
   border-radius: 8px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
   background: white;
@@ -108,7 +108,10 @@
 
       display: flex;
       flex-direction: column;
-
+      #build_dish_card_body_empty {
+        margin: 16px;
+        font-size: 16px;
+      }
       .build_dish_card_item {
         height: 68px;
 
