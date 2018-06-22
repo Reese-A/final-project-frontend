@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { loadUserDishes } from '../../redux/actions/dishes-actions';
 import {
   getCaloriesExpended,
@@ -12,6 +12,7 @@ import GoogleFit from '../GoogleFit/GoogleFit';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import FoodList from '../../components/FoodList/FoodList';
+import CalorieChart from '../../components/CalorieChart/CalorieChart';
 
 import './Dashboard.css';
 import PieChartComponent from '../../components/PieChart/PieChart';
@@ -29,11 +30,9 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    // if (!this.props.user.online) {
-    //   return <Redirect to="/" />;
-    // }
-    // const totalCal = this.props.consumption.calories ?
-
+    if (!this.props.user.id) {
+      return <Redirect to="/" />;
+    }
 
     return (
       <div id="dashboard">
@@ -42,12 +41,13 @@ class Dashboard extends React.Component {
           <div id="intake">
             <div id="calories">
               Calories Consumed: {this.props.consumption.calories}
+              <CalorieChart />
             </div>
             <div id="chart">
-              Macronutrients:
-              <div>Fat: {this.props.consumption.fat}g</div>
+              {/* Macronutrients: */}
+              {/* <div>Fat: {this.props.consumption.fat}g</div>
               <div>Carbs: {this.props.consumption.carb}g</div>
-              <div>Protein: {this.props.consumption.protein}g</div>
+              <div>Protein: {this.props.consumption.protein}g</div> */}
               <PieChartComponent consumption={this.props.consumption} />
             </div>
             <br />
