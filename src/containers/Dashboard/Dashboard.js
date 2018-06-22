@@ -44,10 +44,10 @@ class Dashboard extends React.Component {
               <CalorieChart />
             </div>
             <div id="chart">
-              Macronutrients:
-              <div>Fat: {this.props.consumption.fat}g</div>
+              {/* Macronutrients: */}
+              {/* <div>Fat: {this.props.consumption.fat}g</div>
               <div>Carbs: {this.props.consumption.carb}g</div>
-              <div>Protein: {this.props.consumption.protein}g</div>
+              <div>Protein: {this.props.consumption.protein}g</div> */}
               <PieChartComponent consumption={this.props.consumption} />
             </div>
             <br />
