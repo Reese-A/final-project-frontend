@@ -1,5 +1,6 @@
 export const LOAD_USER = 'LOAD_USER';
 export const LOGIN_USER = 'LOGIN_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
 export const LOAD_USER_DISHES = 'LOAD_USER_DISHES';
 
 export const loadUser = id => {
@@ -56,3 +57,23 @@ export const loginUser = (user, history) => {
       })
   };
 };
+
+export const logoutUser = () => {
+  return dispatch => {
+    return fetch('/api/users/logout', { credentials: 'same-origin' })
+      .then(res => res.json())
+      .then(user => {
+        //error handle here
+        localStorage.removeItem('user');
+        dispatch({
+          type: LOGOUT_USER,
+          user
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        return err;
+      })
+  };
+};
+

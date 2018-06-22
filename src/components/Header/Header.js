@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { loadUser } from '../../redux/actions/user-actions';
+import { loadUser, logoutUser } from '../../redux/actions/user-actions';
 import { loadConsumption } from '../../redux/actions/dishes-actions';
 import { updateDaily } from '../../redux/actions/daily-actions';
 
@@ -11,6 +11,7 @@ import './Header.css';
 class Header extends Component {
   constructor(props) {
     super(props);
+    this.logoutHandler = this.logoutHandler.bind(this);
   }
 
   componentDidMount() {
@@ -18,6 +19,12 @@ class Header extends Component {
       this.props.loadUser(this.props.user.id);
       this.props.loadConsumption();
     }
+  }
+
+  logoutHandler(event) {
+   event.preventDefault();
+   this.props.logoutUser();
+   this.props.history.push('/');
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -28,9 +35,11 @@ class Header extends Component {
   }
 
   render() {
+    console.log('header match', this.props.match);
     const consumption = this.props.consumption.calories
       ? this.props.consumption.calories
       : 0;
+
     return (
       <header id="header">
         <div id="header_logo">
@@ -44,10 +53,16 @@ class Header extends Component {
             <span id="header_allowance_units"> cal</span>
           </div>
         ) : null}
+        {this.props.match.path === '/dashboard' ? (
+          <div id="logoutWrap">
+            <button id="logout" onClick={this.logoutHandler}> Logout </button>
+          </div>
+        ) : (
+            <NavLink to="/dashboard">
+              <i className="material-icons">account_circle</i>
+            </NavLink>
+          )}
 
-        <NavLink to="/dashboard">
-          <i className="material-icons">account_circle</i>
-        </NavLink>
       </header>
     );
   }
@@ -64,6 +79,9 @@ const mapDispatchToProps = dispatch => {
   return {
     loadUser: id => {
       dispatch(loadUser(id));
+    },
+    logoutUser: () => {
+      dispatch(logoutUser());
     },
     loadConsumption: () => {
       dispatch(loadConsumption());
