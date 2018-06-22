@@ -4,7 +4,7 @@
   height: 100%;
   // display: grid;
   // grid-template-rows: 42px 1fr 1fr;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.075);
+  box-shadow: 0 -6px 10px 0 rgba(0, 0, 0, 0.025);
   display: flex;
   flex-direction: column;
   form {
@@ -22,12 +22,12 @@
         font-size: 1rem;
         text-align: center;
 
-        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
-
-        transition: all 0.3s ease-in-out;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+        opacity: 0.5;
+        transition: all 0.35s ease-in-out;
       }
       input::placeholder {
-        color: rgba(0, 0, 0, 0.3);
+        color: rgba(0, 0, 0, 0.6);
       }
       input:focus::placeholder,
       input:hover::placeholder {
@@ -38,8 +38,9 @@
         color: white;
 
         background: linear-gradient(to right, orange, salmon);
+        opacity: 1;
 
-        transition: all 0.3s ease-in-out;
+        transition: all 0.35s ease-in-out;
       }
       button {
         // display: none;
