@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { createDish } from '../../../redux/actions/food-actions';
+import { createDish } from '../../../redux/actions/dishes-actions';
 
 import FoodCard from '../FoodCard/FoodCard';
 import BuildDishCard from '../BuildDishCard/BuildDishCard';
@@ -39,14 +39,15 @@ class SearchForm extends React.Component {
       showFoodCard: false,
       showForm: false,
       buildDish: false,
-      dish: {
-        name: '',
-        foods: []
-      }
+      name: '',
+      calories: 0
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    this.handleServingsSubmit = this.handleServingsSubmit.bind(this);
+    this.handleDishSubmit = this.handleDishSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleDishName = this.handleDishName.bind(this);
     this.toggleDishForm = this.toggleDishForm.bind(this);
     this.addFoodToDish = this.addFoodToDish.bind(this);
     this.dishChangeHandler = this.dishChangeHandler.bind(this);
@@ -66,10 +67,19 @@ class SearchForm extends React.Component {
   handleChange(event) {
     let { value, name } = event.target;
 
+    // if (name === 'servings') value = Number(value);
+
     this.setState({ [name]: value }, () => {
+      console.log(this.state);
       if (name === 'search' && value === '')
         this.setState({ showFoodCard: false });
     });
+  }
+
+  handleDishName(event) {
+    let { value } = event.target;
+
+    this.props.setDishName(value);
   }
 
   dishChangeHandler(event) {
@@ -81,16 +91,24 @@ class SearchForm extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  handleSearchSubmit(event) {
     event.preventDefault();
-    console.log('get');
-    // this.getFoodData();
+    this.getFoodData();
+    document.getElementById('add_food_search_input').blur();
     // this.addFoodToDish(event);
   }
 
+  handleServingsSubmit(event) {
+    event.preventDefault();
+    this.addFoodToDish(event);
+  }
+
+  handleDishSubmit(event) {
+    event.preventDefault();
+    console.log('dish submit');
+  }
+
   getFoodData() {
-    console.log(this.state);
-    console.log(this.state.search);
     const search = this.state.search.toLowerCase();
 
     return fetch(`/api/foods/${search}`, {
@@ -110,23 +128,20 @@ class SearchForm extends React.Component {
     this.setState({ showFoodCard: !this.state.showFoodCard });
   }
   toggleDishForm() {
-    this.setState({ showForm: !this.state.showForm });
+    this.setState({ buildDish: !this.state.buildDish });
   }
 
   addFoodToDish(event) {
     event.preventDefault();
-    const name = this.state.search;
-    const foods = { servings: this.state.servings, food: this.state.food };
-
-    // const dish = { ...this.state.dish };
-    // dish.foods.push(this.state.food);
-    // this.setState({
-    //   dish: dish
-    // });
-
-    this.props.addFoodToDish(name, foods);
-
-    if (!this.state.buildDish) this.props.createDish({ name, foods: [foods] });
+    const { servings, food } = this.state;
+    if (this.state.buildDish) {
+      this.props.addDishFood(Number(servings), food);
+      document.getElementById('add_food_servings_input').blur();
+    } else {
+      const dish = { ...this.props.dish };
+      dish.name = food.name;
+      this.props.createDish(dish);
+    }
   }
 
   dishSubmitHandler(event) {
@@ -138,9 +153,14 @@ class SearchForm extends React.Component {
   render() {
     return (
       <div id="search_form">
-        <form onSubmit={this.handleSubmit} autoComplete="off">
+        <form
+          onSubmit={this.handleSearchSubmit}
+          autoComplete="off"
+          autoCorrect="off"
+        >
           <div id="add_food_search_container">
             <input
+              id="add_food_search_input"
               value={this.state.search}
               type="text"
               name="search"
@@ -149,20 +169,23 @@ class SearchForm extends React.Component {
               autoFocus
             />
             <button id="add_food_search_button" onClick={this.getFoodData}>
-              <i class="material-icons">search</i>
+              <i className="material-icons">search</i>
             </button>
           </div>
-          {this.state.showFoodCard ? (
-            <div id="add_food_nutrition_data">
-              <FoodCard
-                name={this.state.food.name}
-                calories={this.state.food.calories}
-                serving_grams={this.state.food.serving_grams}
-                serving_size={this.state.food.serving_size}
-                carb={this.state.food.carb}
-                fat={this.state.food.fat}
-                protein={this.state.food.protein}
-              />
+        </form>
+
+        {this.state.showFoodCard ? (
+          <div id="add_food_nutrition_data">
+            <FoodCard
+              name={this.state.food.name}
+              calories={this.state.food.calories}
+              serving_grams={this.state.food.serving_grams}
+              serving_size={this.state.food.serving_size}
+              carb={this.state.food.carb}
+              fat={this.state.food.fat}
+              protein={this.state.food.protein}
+            />
+            <form onSubmit={this.handleServingsSubmit}>
               <div id="add_food_servings_container">
                 <div id="add_food_servings_input_container">
                   <label htmlFor="add_food_servings_input">Servings: </label>
@@ -170,49 +193,41 @@ class SearchForm extends React.Component {
                     id="add_food_servings_input"
                     name="servings"
                     type="number"
-                    max="50"
-                    min="1"
+                    max="99"
+                    min="0.5"
+                    step="0.5"
                     value={this.state.servings}
                     onChange={this.handleChange}
                   />
                 </div>
-                <button onClick={this.addFoodToDish}>Add</button>
+                <button>Add</button>
               </div>
-            </div>
-          ) : null}
-          <BuildDishCard />
-        </form>
-
-        {/* {this.state.showForm ? (
-          <div id="dishForm">
-            <label htmlFor="name">Dish name: </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              value={this.state.dish.name}
-              onChange={this.dishChangeHandler}
-            />
-            <button onClick={this.addFoodToDish}>Add food to dish</button>
-            {this.state.dish.foods.length ? (
-              <button onClick={this.dishSubmitHandler}>Create Dish</button>
-            ) : null}
-            <div id="foodList">
-              This dish consists of...
-              {this.state.dish.foods.map(food => {
-                return (
-                  <div key={food.id} className="foodName">
-                    {food.name}
-                  </div>
-                );
-              })}
-            </div>
+            </form>
           </div>
-        ) : null} */}
+        ) : null}
+
+        {this.state.buildDish && this.state.showFoodCard ? (
+          <div className="horizontal_seperator" />
+        ) : null}
+
+        <BuildDishCard
+          handleDishSubmit={this.handleDishSubmit}
+          handleDishName={this.handleDishName}
+          toggleDishForm={this.toggleDishForm}
+          dish={this.props.dish}
+          calories={this.state.calories}
+          buildDish={this.state.buildDish}
+        />
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    dish: state.newDish
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -224,7 +239,7 @@ const mapDispatchToProps = dispatch => {
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(SearchForm)
 );
