@@ -38,7 +38,7 @@ class BuildDishCard extends React.Component {
     if (!Object.values(this.props.dish.foods).length) return;
     this.props.createDish(this.props.dish);
     this.props.toggleDishForm();
-    this.props.clearDish();
+    // this.props.clearDish();
     this.props.history.push('/dashboard');
   }
 
@@ -51,7 +51,7 @@ class BuildDishCard extends React.Component {
   handleDishClear(event) {
     event.preventDefault();
     this.props.toggleDishForm();
-    this.props.clearDish();
+    // this.props.clearDish();
   }
 
   handleServing(event, id, servings) {
