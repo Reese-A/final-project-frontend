@@ -290,7 +290,8 @@
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
         font-size: 1.25rem;
         font-weight: 200;
-        color: white; }
+        color: white;
+        transition: all 0.3s ease-in-out; }
       #add_food #add_food_content #toggle_container #toggle.camera {
         width: 72px;
         height: 72px;
@@ -301,7 +302,7 @@
         border: none;
         border-radius: 100%;
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease-in-out;
+        transition: all 0.5s ease-in-out;
         display: flex;
         justify-content: center;
         align-items: center; }
