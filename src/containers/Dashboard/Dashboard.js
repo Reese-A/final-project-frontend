@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { loadUserDishes } from '../../redux/actions/dishes-actions';
 import {
   getCaloriesExpended,
@@ -14,6 +14,7 @@ import Footer from '../../components/Footer/Footer';
 import FoodList from '../../components/FoodList/FoodList';
 
 import './Dashboard.css';
+import PieChartComponent from '../../components/PieChart/PieChart';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class Dashboard extends React.Component {
               <div>Fat: {this.props.consumption.fat}g</div>
               <div>Carbs: {this.props.consumption.carb}g</div>
               <div>Protein: {this.props.consumption.protein}g</div>
+              <PieChartComponent consumption={this.props.consumption} />
             </div>
             <br />
             <FoodList />

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import {
   setDishName,
   setDishFoodServings,
-  addDishFood,
   removeDishFood,
   clearDish,
   createDish

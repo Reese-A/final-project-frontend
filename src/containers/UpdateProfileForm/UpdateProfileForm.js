@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import { withRouter, NavLink } from 'react-router-dom';
+import React from 'react';
 import { connect } from 'react-redux';
-import { loadUser } from '../../redux/actions/user-actions';
 import { updateProfile } from '../../redux/actions/settings-actions';
 class UpdateProfileForm extends React.Component {
   constructor(props) {
@@ -135,7 +133,7 @@ class UpdateProfileForm extends React.Component {
           <div id="update_weight_container">
             <span>Weight in pounds:</span>
             <input
-              type="text"
+              type="number"
               id="profile_weight"
               name="weight"
               placeholder="Weight in pounds"
@@ -149,7 +147,7 @@ class UpdateProfileForm extends React.Component {
             <div>Height:</div>
             <span>Feet:</span>
             <input
-              type="text"
+              type="number"
               id="profile_height_feet"
               name="heightFeet"
               placeholder="Feet"
@@ -160,10 +158,12 @@ class UpdateProfileForm extends React.Component {
             <br />
             <span>Inches:</span>
             <input
-              type="text"
+              type="number"
               id="profile_height_inches"
               name="heightInches"
               placeholder="Inches"
+              min="0"
+              max="11"
               required
               value={this.state.heightInches}
               onChange={this.changeHandler}
