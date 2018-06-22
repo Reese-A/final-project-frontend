@@ -83,7 +83,7 @@ class SearchForm extends React.Component {
   }
 
   dishChangeHandler(event) {
-    const { value, name } = event.target;
+    const { value } = event.target;
     const dish = { ...this.state.dish };
     dish.name = value;
     this.setState({ dish }, () => {});

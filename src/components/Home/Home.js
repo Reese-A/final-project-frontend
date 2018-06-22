@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { history } from 'react-router-dom';
 import './Home.css';
 
 import Login from '../../containers/Login/Login';

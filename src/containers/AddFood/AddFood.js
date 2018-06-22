@@ -3,7 +3,6 @@ import React from 'react';
 import Header from '../../components/Header/Header';
 import Camera from '../../components/AddFoodComponents/Camera/Camera';
 import SearchForm from '../../components/AddFoodComponents/SearchForm/SearchForm';
-import { Link } from 'react-router-dom';
 
 import './AddFood.css';
 
