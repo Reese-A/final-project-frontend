@@ -1,2 +1,169 @@
+#build_dish_card_container #build_dish_header {
+  margin: 24px 32px 24px 32px;
+  font-size: 20px;
+  font-weight: 300;
+  color: #d4d4d4; }
+
 #build_dish_card {
-  margin: 32px; }
+  min-width: 250px;
+  min-height: 180px;
+  height: fit-content;
+  margin: 24px 16px 24px 16px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+  background: white;
+  display: grid; }
+
+#build_dish_card.prompt #build_dish_card_header {
+  padding: 16px 16px 0 16px;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 22px; }
+
+#build_dish_card.prompt #build_dish_card_body {
+  padding: 0 16px;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 12px; }
+
+#build_dish_card.prompt #build_dish_card_button {
+  width: 100%;
+  height: 100%;
+  border-radius: 0 0 8px 8px;
+  color: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
+  display: grid; }
+  #build_dish_card.prompt #build_dish_card_button #build_dish_card_button_text {
+    justify-self: center;
+    align-self: center;
+    font-size: 22px; }
+
+#build_dish_card.prompt #build_dish_card_button:hover {
+  color: white;
+  background: linear-gradient(to right, orange, salmon);
+  transition: all 0.3s ease-in-out; }
+
+#build_dish_form {
+  justify-content: center; }
+  #build_dish_form #build_dish_card.build {
+    grid-template-rows: 64px 1fr; }
+    #build_dish_form #build_dish_card.build #build_dish_card_header {
+      padding: 16px;
+      color: #969696;
+      display: grid; }
+      #build_dish_form #build_dish_card.build #build_dish_card_header #build_dish_card_header_input {
+        grid-area: 1/1/1/1;
+        color: #969696;
+        font-size: 20px;
+        font-weight: 400;
+        outline: none;
+        border: none;
+        text-transform: capitalize; }
+      #build_dish_form #build_dish_card.build #build_dish_card_header #build_dish_card_header_input::placeholder {
+        color: #969696;
+        text-transform: unset; }
+      #build_dish_form #build_dish_card.build #build_dish_card_header #build_dish_card_header_calories_container {
+        grid-area: 1/1/1/1;
+        justify-self: end;
+        align-self: center;
+        color: #46a588; }
+        #build_dish_form #build_dish_card.build #build_dish_card_header #build_dish_card_header_calories_container #build_dish_card_header_calories {
+          font-size: 20px;
+          font-weight: 400; }
+        #build_dish_form #build_dish_card.build #build_dish_card_header #build_dish_card_header_calories_container #build_dish_card_header_calories_text {
+          font-size: 16px; }
+    #build_dish_form #build_dish_card.build #build_dish_card_body {
+      padding: 0 0 16px 0;
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 12px;
+      display: flex;
+      flex-direction: column; }
+      #build_dish_form #build_dish_card.build #build_dish_card_body .build_dish_card_item {
+        height: 68px;
+        display: grid;
+        grid-template-columns: 64px 1fr 64px;
+        margin: 0 0 4px 0;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08); }
+        #build_dish_form #build_dish_card.build #build_dish_card_body .build_dish_card_item .build_dish_card_item_serving_container {
+          height: 100%;
+          width: 100%;
+          background: #fcfcfc;
+          display: grid; }
+          #build_dish_form #build_dish_card.build #build_dish_card_body .build_dish_card_item .build_dish_card_item_serving_container button {
+            height: fit-content;
+            width: fit-content;
+            padding: 0;
+            color: #707070;
+            border: none;
+            outline: none;
+            background: none;
+            box-shadow: none;
+            align-self: center;
+            justify-self: center; }
+            #build_dish_form #build_dish_card.build #build_dish_card_body .build_dish_card_item .build_dish_card_item_serving_container button i {
+              font-size: 24px; }
+          #build_dish_form #build_dish_card.build #build_dish_card_body .build_dish_card_item .build_dish_card_item_serving_container .build_dish_card_item_serving {
+            text-align: center;
+            align-self: center;
+            justify-self: center;
+            color: #707070; }
+        #build_dish_form #build_dish_card.build #build_dish_card_body .build_dish_card_item .build_dish_card_item_info {
+          padding: 8px;
+          z-index: 1;
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
+          display: grid; }
+          #build_dish_form #build_dish_card.build #build_dish_card_body .build_dish_card_item .build_dish_card_item_info .build_dish_card_item_name {
+            grid-area: 1/1/1/1;
+            align-self: center;
+            font-size: 20px;
+            text-transform: capitalize; }
+          #build_dish_form #build_dish_card.build #build_dish_card_body .build_dish_card_item .build_dish_card_item_info .build_dish_card_item_calories_container {
+            grid-area: 1/1/1/1;
+            justify-self: end;
+            align-self: center;
+            margin-right: 8px; }
+            #build_dish_form #build_dish_card.build #build_dish_card_body .build_dish_card_item .build_dish_card_item_info .build_dish_card_item_calories_container .build_dish_card_item_calories {
+              font-size: 16px; }
+            #build_dish_form #build_dish_card.build #build_dish_card_body .build_dish_card_item .build_dish_card_item_info .build_dish_card_item_calories_container .build_dish_card_item_text {
+              font-size: 12px; }
+        #build_dish_form #build_dish_card.build #build_dish_card_body .build_dish_card_item .build_dish_card_delete_button {
+          height: 100%;
+          width: 100%;
+          background: #fcfcfc;
+          display: grid; }
+          #build_dish_form #build_dish_card.build #build_dish_card_body .build_dish_card_item .build_dish_card_delete_button button {
+            height: fit-content;
+            width: fit-content;
+            padding: 0;
+            color: #707070;
+            border: none;
+            outline: none;
+            background: none;
+            box-shadow: none;
+            align-self: center;
+            justify-self: center; }
+            #build_dish_form #build_dish_card.build #build_dish_card_body .build_dish_card_item .build_dish_card_delete_button button i {
+              font-size: 24px; }
+    #build_dish_form #build_dish_card.build #build_dish_card_submit {
+      width: 100%;
+      height: 100%;
+      display: grid; }
+      #build_dish_form #build_dish_card.build #build_dish_card_submit button {
+        justify-self: end;
+        align-self: center;
+        height: fit-content;
+        width: fit-content;
+        margin: 12px;
+        padding: 4px;
+        border: none;
+        border-radius: 4px;
+        outline: none;
+        color: #707070;
+        background: none;
+        box-shadow: none; }
+      #build_dish_form #build_dish_card.build #build_dish_card_submit button:hover {
+        color: white;
+        background: linear-gradient(to right, orange, salmon);
+        transition: all 0.3s ease-in-out; }
+      #build_dish_form #build_dish_card.build #build_dish_card_submit button:focus {
+        color: white;
+        background: linear-gradient(to right, orange, salmon);
+        transition: all 0.3s ease-in-out; }
