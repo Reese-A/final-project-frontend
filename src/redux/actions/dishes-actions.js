@@ -109,7 +109,6 @@ export const removeDishFood = id => {
 };
 
 export const clearDish = () => {
-  console.log('clearDish');
   return {
     type: CLEAR_DISH
   };
