@@ -1,10 +1,13 @@
-
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 
 import { loginGoogle } from '../../redux/actions/settings-actions';
+import { loadGenders } from '../../redux/actions/gender-actions';
+import { loadGoals } from '../../redux/actions/goal-actions';
+import { loadActivityLevels } from '../../redux/actions/activity-level-actions';
 import { GoogleLogin, GoogleLogout } from 'react-google-login'
+import UpdateProfileForm from '../UpdateProfileForm/UpdateProfileForm';
 
 class Settings extends React.Component {
   constructor(props) {
@@ -16,6 +19,9 @@ class Settings extends React.Component {
   }
 
   success(res) {
+    this.props.loadGenders();
+    this.props.loadGoals();
+    this.props.loadActivityLevels();
     this.props.loginGoogle(res);
   }
 
@@ -48,6 +54,7 @@ class Settings extends React.Component {
     >
       <span>Connect Google Fit account</span>
     </GoogleLogin>
+    <UpdateProfileForm />
   </div>
     )
   }
@@ -57,6 +64,15 @@ const mapDispatchToProps = dispatch => {
   return {
     loginGoogle: (auth) => {
       dispatch(loginGoogle(auth));
+    },
+    loadGenders: () => {
+      dispatch(loadGenders());
+    },
+    loadGoals: () => {
+      dispatch(loadGoals());
+    },
+    loadActivityLevels: () => {
+      dispatch(loadActivityLevels());
     }
   }
 }
