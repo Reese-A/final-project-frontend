@@ -21,6 +21,7 @@ class ReviewForm extends React.Component {
       gender_id: '',
       goal_id: '',
       activity_level_id: '',
+      default_profile: null
 
     };
     this.editAccountPage = this.editAccountPage.bind(this);

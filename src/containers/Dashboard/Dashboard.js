@@ -10,6 +10,7 @@ import { loadDaily } from '../../redux/actions/daily-actions';
 import GoogleFit from '../GoogleFit/GoogleFit';
 
 import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 import FoodList from '../../components/FoodList/FoodList';
 
 import './Dashboard.css';
@@ -31,6 +32,8 @@ class Dashboard extends React.Component {
     //   return <Redirect to="/" />;
     // }
     // const totalCal = this.props.consumption.calories ?
+
+
     return (
       <div id="dashboard">
         <Header />
@@ -56,6 +59,9 @@ class Dashboard extends React.Component {
           </div>
           <div>
             <Link to="/settings">Settings</Link>
+          </div>
+          <div>
+            <Footer />
           </div>
         </div>
       </div>
