@@ -133,7 +133,7 @@ class ProfileForm extends React.Component {
               name="weight"
               placeholder="Weight in pounds"
               required
-              value={this.props.weigth}
+              value={this.props.weight}
               onChange={this.changeHandler}
             />
           </div>
