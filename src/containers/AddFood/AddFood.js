@@ -120,11 +120,14 @@ class AddFood extends React.Component {
           )}
 
           {/* Can be made into a Component */}
-          <div className="or_line_seperator">
-            <div className="line_seperator" />
-            <span>OR</span>
-            <div className="line_seperator" />
-          </div>
+
+          {this.state.showCamera ? (
+            <div className="or_line_seperator">
+              <div className="line_seperator" />
+              <span>OR</span>
+              <div className="line_seperator" />
+            </div>
+          ) : null}
 
           {/* Can be made into a Component */}
           <button
