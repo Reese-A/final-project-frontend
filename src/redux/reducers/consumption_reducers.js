@@ -11,10 +11,7 @@ const initialState = {
 const consumption = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_CONSUMPTION:
-      if (!state.calTracker.includes(action.totals.calories)) {
-        state.calTracker.push(action.totals.calories);
-      }
-      return { ...action.totals, calTracker: [...state.calTracker] };
+      return action.totals;
     default:
       return state;
   }
