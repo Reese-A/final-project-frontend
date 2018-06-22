@@ -1,12 +1,10 @@
-html * {
-  font-weight: 300; }
-
 html body {
   margin: 0;
   padding: 0; }
 
 * {
-  font-family: sans-serif; }
+  font-family: sans-serif;
+  font-weight: 300; }
 
 a {
   text-decoration: none; }
