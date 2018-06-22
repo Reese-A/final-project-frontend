@@ -20,6 +20,7 @@ class BuildDishCard extends React.Component {
 
     this.handleDishSubmit = this.handleDishSubmit.bind(this);
     // this.handleChange = this.handleChange.bind(this);
+    this.handleDishClear = this.handleDishClear.bind(this);
     this.handleServing = this.handleServing.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleDishName = this.handleDishName.bind(this);
@@ -34,6 +35,10 @@ class BuildDishCard extends React.Component {
 
   handleDishSubmit(event) {
     event.preventDefault();
+    this.props.createDish(this.props.dish);
+    this.props.toggleDishForm();
+    this.props.clearDish();
+    this.props.history.push('/dashboard');
   }
 
   handleDishName(event) {
@@ -42,11 +47,16 @@ class BuildDishCard extends React.Component {
     this.props.setDishName(value);
   }
 
+  handleDishClear(event) {
+    event.preventDefault();
+    this.props.toggleDishForm();
+    this.props.clearDish();
+  }
+
   handleServing(event, id, servings) {
     event.preventDefault();
     if (servings < 0.5) return;
     if (servings > 99) return;
-    console.log('servings', id);
     this.props.setDishFoodServings(id, servings);
   }
 
@@ -56,21 +66,14 @@ class BuildDishCard extends React.Component {
     this.props.removeDishFood(id);
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-
-    this.props.createDish(this.props.dish);
-  }
-
   render() {
     console.log(this.props.dish);
-
     return this.props.buildDish ? (
       <div id="build_dish_card_container">
         <div id="build_dish_header">Build a Dish</div>
         <form
           id="build_dish_form"
-          onSubmit={this.props.handleDishSubmit}
+          onSubmit={this.handleDishSubmit}
           autoComplete="off"
           autoCorrect="off"
         >
@@ -97,6 +100,7 @@ class BuildDishCard extends React.Component {
                   <div className="build_dish_card_item" key={item[0]}>
                     <div className="build_dish_card_item_serving_container">
                       <button
+                        type="button"
                         className="serving_add"
                         onClick={event =>
                           this.handleServing(
@@ -106,12 +110,13 @@ class BuildDishCard extends React.Component {
                           )
                         }
                       >
-                        <i class="material-icons">expand_less</i>
+                        <i className="material-icons">expand_less</i>
                       </button>
                       <span className="build_dish_card_item_serving">
                         {item[1].servings}
                       </span>
                       <button
+                        type="button"
                         className="serving_subtract"
                         onClick={event =>
                           this.handleServing(
@@ -121,7 +126,7 @@ class BuildDishCard extends React.Component {
                           )
                         }
                       >
-                        <i class="material-icons">expand_more</i>
+                        <i className="material-icons">expand_more</i>
                       </button>
                     </div>
                     <div className="build_dish_card_item_info">
@@ -138,9 +143,10 @@ class BuildDishCard extends React.Component {
 
                     <div className="build_dish_card_delete_button">
                       <button
+                        type="button"
                         onClick={event => this.handleDelete(event, item[0])}
                       >
-                        <i class="material-icons">delete_outline</i>
+                        <i className="material-icons">delete_outline</i>
                       </button>
                     </div>
                   </div>
@@ -148,6 +154,9 @@ class BuildDishCard extends React.Component {
               })}
             </div>
             <div id="build_dish_card_submit">
+              <button type="button" onClick={this.handleDishClear}>
+                Cancel
+              </button>
               <button type="submit">Build Dish</button>
             </div>
           </div>
@@ -192,7 +201,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(removeDishFood(id));
     },
     clearDish: () => {
-      dispatch(clearDish);
+      dispatch(clearDish());
     }
   };
 };
