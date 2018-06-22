@@ -76,6 +76,9 @@
       font-size: 12px;
       display: flex;
       flex-direction: column; }
+      #build_dish_form #build_dish_card.build #build_dish_card_body #build_dish_card_body_empty {
+        margin: 16px;
+        font-size: 16px; }
       #build_dish_form #build_dish_card.build #build_dish_card_body .build_dish_card_item {
         height: 68px;
         display: grid;
