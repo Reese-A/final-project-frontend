@@ -13,6 +13,12 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover; }
+  #profileForm #gender_id {
+    min-height: fit-content; }
+  #profileForm #goal_id {
+    min-height: fit-content; }
+  #profileForm #birthday {
+    min-height: fit-content; }
   #profileForm #genderRequiredMessage {
     margin-top: 10px;
     color: red; }
