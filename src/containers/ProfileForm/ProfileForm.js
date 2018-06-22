@@ -24,71 +24,77 @@ class ProfileForm extends React.Component {
     this.changeHandler = this.changeHandler.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.useStandardValues = this.useStandardValues.bind(this);
-  };
+  }
 
   changeHandler(event) {
     const { value, name } = event.target;
     this.setState({ [name]: value });
-  };
+  }
 
   previousPage(event) {
     event.preventDefault();
+    console.log(this.state.birthday);
     this.props.saveProfileForm({ ...this.state });
     this.props.previousPage();
-  };
+  }
 
   handleSubmit(event) {
     event.preventDefault();
     this.props.saveProfileForm({ ...this.state });
     this.setState({ message: '' });
     this.props.nextPage();
-  };
+  }
 
   componentDidMount() {
     this.setState({ ...this.props.profileForm });
-  };
+  }
 
   useStandardValues(event) {
-
     event.preventDefault();
-    const birthDate = Moment().subtract(35, 'years').format('YYYY-MM-DD');
+    const birthDate = Moment()
+      .subtract(35, 'years')
+      .format('YYYY-MM-DD');
 
     if (this.state.gender_id.length) {
-      if (this.state.gender_id === "1") {
-        this.setState({
-          weight: 195,
-          heightFeet: 5,
-          heightInches: 10,
-          goal_id: 1,
-          birthday: birthDate,
-          default_profile: true
-        }, () => {
-          this.setState({ message: '' });
-          this.props.saveProfileForm({ ...this.state });
-          this.props.nextPage();
-        });
-      } else if (this.state.gender_id === "2") {
-        this.setState({
-          weight: 166,
-          heightFeet: 5,
-          heightInches: 4,
-          goal_id: 1,
-          birthday: birthDate,
-          default_profile: true
-        }, () => {
-          this.setState({ message: '' });
-          this.props.saveProfileForm({ ...this.state });
-          this.props.nextPage();
-        });
+      if (this.state.gender_id === '1') {
+        this.setState(
+          {
+            weight: 195,
+            heightFeet: 5,
+            heightInches: 10,
+            goal_id: 1,
+            birthday: birthDate,
+            default_profile: true
+          },
+          () => {
+            this.setState({ message: '' });
+            this.props.saveProfileForm({ ...this.state });
+            this.props.nextPage();
+          }
+        );
+      } else if (this.state.gender_id === '2') {
+        this.setState(
+          {
+            weight: 166,
+            heightFeet: 5,
+            heightInches: 4,
+            goal_id: 1,
+            birthday: birthDate,
+            default_profile: true
+          },
+          () => {
+            this.setState({ message: '' });
+            this.props.saveProfileForm({ ...this.state });
+            this.props.nextPage();
+          }
+        );
       }
     } else {
-      this.setState({ message: 'Please specify your gender first' })
+      this.setState({ message: 'Please specify your gender first' });
     }
-  };
-
+  }
 
   render() {
-
     const genderOptions = this.props.genders.map(gender => {
       return (
         <option key={gender.id} value={gender.id}>
@@ -107,15 +113,12 @@ class ProfileForm extends React.Component {
 
     return (
       <div id="profileForm">
-
         <div id="profileFormImage">
           <div className="homeTitle">fitbyte</div>
         </div>
 
         <div className="formModal">
-
           <form onSubmit={this.handleSubmit} className="registrationForm">
-
             <div className="formGroup">
               <label htmlFor="gender_id">Biological Gender:</label>
               <select
@@ -125,12 +128,12 @@ class ProfileForm extends React.Component {
                 onChange={this.changeHandler}
                 required
               >
-                <option value="" disabled>Choose here</option>
+                <option value="" disabled>
+                  Choose here
+                </option>
                 {genderOptions}
               </select>
-              <div id="genderRequiredMessage">
-                {this.state.message}
-              </div>
+              <div id="genderRequiredMessage">{this.state.message}</div>
             </div>
 
             <div className="formGroup">
@@ -191,20 +194,32 @@ class ProfileForm extends React.Component {
                 onChange={this.changeHandler}
                 required
               >
-                <option value="" disabled>Choose here</option>
+                <option value="" disabled>
+                  Choose here
+                </option>
                 {goalOptions}
               </select>
             </div>
 
-            <button type="click" name="standardValues" onClick={this.useStandardValues}>Use National Standard</button>
+            <button
+              type="click"
+              name="standardValues"
+              onClick={this.useStandardValues}
+            >
+              Use National Standard
+            </button>
             <div id="pageControl">
-              <button type="click" name="previous" onClick={this.previousPage}>Previous</button>
-              <button type="submit" name="next" >Next</button>
+              <button type="click" name="previous" onClick={this.previousPage}>
+                Previous
+              </button>
+              <button type="submit" name="next">
+                Next
+              </button>
             </div>
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -218,12 +233,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveProfileForm: (form) => {
+    saveProfileForm: form => {
       dispatch(saveProfileForm(form));
     }
-  }
+  };
 };
 
 export default connect(
-  mapStateToProps, mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(ProfileForm);

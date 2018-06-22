@@ -1,26 +1,29 @@
-#fitnessForm{
+#fitnessForm {
   display: flex;
   flex-direction: column;
 
   align-items: center;
 
-  #fitnessFormImage{
+  #fitnessFormImage {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-image: url("https://images.pexels.com/photos/864091/pexels-photo-864091.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-    
+    background-image: url('https://images.pexels.com/photos/864091/pexels-photo-864091.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+
     width: 100vw;
     height: 75vh;
-    
+
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
+  #activity_level_id {
+    min-height: fit-content;
+  }
 
-  #levelDescription{
+  #levelDescription {
     width: 85%;
     border: 1px solid black;
     border-radius: 8px;
