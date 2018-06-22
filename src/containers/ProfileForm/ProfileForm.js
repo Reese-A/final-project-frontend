@@ -16,7 +16,8 @@ class ProfileForm extends React.Component {
       weight: '',
       heightFeet: '',
       heightInches: '',
-      message: ''
+      message: '',
+      default_profile: null
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -59,7 +60,8 @@ class ProfileForm extends React.Component {
           heightFeet: 5,
           heightInches: 10,
           goal_id: 1,
-          birthday: birthDate
+          birthday: birthDate,
+          default_profile: true
         }, () => {
           this.setState({ message: '' });
           this.props.saveProfileForm({ ...this.state });
@@ -71,7 +73,8 @@ class ProfileForm extends React.Component {
           heightFeet: 5,
           heightInches: 4,
           goal_id: 1,
-          birthday: birthDate
+          birthday: birthDate,
+          default_profile: true
         }, () => {
           this.setState({ message: '' });
           this.props.saveProfileForm({ ...this.state });

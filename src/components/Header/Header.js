@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { loadUser } from '../../redux/actions/user-actions';
 import { loadConsumption } from '../../redux/actions/dishes-actions';
+import { updateDaily } from '../../redux/actions/daily-actions';
 
 import './Header.css';
 
@@ -23,6 +24,7 @@ class Header extends Component {
     if (prevProps.consumption === this.props.consumption) {
       this.props.loadConsumption();
     }
+    this.props.updateDaily(this.props.consumption.calories);
   }
 
   render() {
@@ -37,7 +39,7 @@ class Header extends Component {
         {this.props.user ? (
           <div id="header_allowance">
             <span id="header_allowance_value">
-              {this.props.user.allowance - consumption}
+              {`${this.props.user.allowance - consumption}`}
             </span>
             <span id="header_allowance_units"> cal</span>
           </div>
@@ -65,6 +67,9 @@ const mapDispatchToProps = dispatch => {
     },
     loadConsumption: () => {
       dispatch(loadConsumption());
+    },
+    updateDaily: calories => {
+      dispatch(updateDaily(calories));
     }
   };
 };

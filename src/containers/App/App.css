@@ -1,3 +1,6 @@
+#app {
+  height: calc(100vh - 55px); }
+
 button {
   padding: 8px;
   color: white;
@@ -66,7 +69,8 @@ input:valid {
 input:invalid {
   border: 1px solid red; }
 
-select, option {
+select,
+option {
   font-size: 18px;
   min-width: 200px;
   text-align-last: center;

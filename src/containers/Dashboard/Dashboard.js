@@ -2,10 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { loadUserDishes } from '../../redux/actions/dishes-actions';
-import { getCaloriesExpended, getTotalSteps } from '../../redux/actions/fitness-actions';
+import {
+  getCaloriesExpended,
+  getTotalSteps
+} from '../../redux/actions/fitness-actions';
+import { loadDaily } from '../../redux/actions/daily-actions';
 import GoogleFit from '../GoogleFit/GoogleFit';
 
 import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 import FoodList from '../../components/FoodList/FoodList';
 
 import './Dashboard.css';
@@ -20,6 +25,7 @@ class Dashboard extends React.Component {
     this.props.loadUserDishes();
     this.props.getCaloriesExpended();
     this.props.getTotalSteps();
+    this.props.loadDaily();
   }
 
   render() {
@@ -27,6 +33,8 @@ class Dashboard extends React.Component {
     //   return <Redirect to="/" />;
     // }
     // const totalCal = this.props.consumption.calories ?
+
+
     return (
       <div id="dashboard">
         <Header />
@@ -53,6 +61,9 @@ class Dashboard extends React.Component {
           </div>
           <div>
             <Link to="/settings">Settings</Link>
+          </div>
+          <div>
+            <Footer />
           </div>
         </div>
       </div>
@@ -81,6 +92,9 @@ const mapDispatchToProps = dispatch => {
     getTotalSteps: () => {
       dispatch(getTotalSteps());
     },
+    loadDaily: () => {
+      dispatch(loadDaily());
+    }
   };
 };
 

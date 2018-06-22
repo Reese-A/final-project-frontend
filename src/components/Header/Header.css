@@ -1,19 +1,24 @@
 #header {
-  background: white;
+  color: white;
+  background: linear-gradient(to right, orange, salmon);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; }
   #header * {
     align-self: center; }
   #header #header_logo {
     justify-self: start;
-    margin: 0 0 0 32px; }
+    margin: 0 0 0 32px;
+    font-size: 18px; }
   #header #header_allowance {
     justify-self: center; }
+    #header #header_allowance #header_allowance_value {
+      font-size: 24px; }
     #header #header_allowance #header_allowance_units {
       font-size: 10px;
       text-transform: uppercase; }
   #header a {
     justify-self: end;
-    margin: 0 32px 0 0; }
+    margin: 0 32px 0 0;
+    line-height: 0px; }
   #header a:visited {
     color: inherit; }
