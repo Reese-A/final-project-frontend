@@ -131,6 +131,7 @@ class SearchForm extends React.Component {
       dish.calories = food.calories * servings;
       dish.foods[food.id] = { servings: Number(servings), food };
       this.props.createDish(dish);
+      this.props.history.push('/');
     }
     document.getElementById('add_food_servings_input').blur();
   }
