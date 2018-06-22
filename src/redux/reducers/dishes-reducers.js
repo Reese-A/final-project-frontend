@@ -78,7 +78,7 @@ export const newDish = (state = initialDish, action) => {
       return newDish;
     }
     case CLEAR_DISH: {
-      return initialDish;
+      return { name: '', calories: 0, foods: {} };
     }
     default:
       return state;
