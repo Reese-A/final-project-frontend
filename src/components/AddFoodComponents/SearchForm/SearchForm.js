@@ -157,6 +157,7 @@ class SearchForm extends React.Component {
               type="text"
               name="search"
               placeholder="Search for something"
+              required
               onChange={this.handleChange}
               autoFocus
             />
