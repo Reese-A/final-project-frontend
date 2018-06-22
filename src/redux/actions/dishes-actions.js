@@ -20,7 +20,7 @@ export const loadUserDishes = () => {
   };
 };
 
-export const loadConsumption = () => {
+export const loadConsumption = dishes => {
   return dispatch => {
     return fetch('/api/users/dishes', { credentials: 'same-origin' })
       .then(res => res.json())
@@ -31,10 +31,10 @@ export const loadConsumption = () => {
         const proArr = [];
         dishes.forEach(dish => {
           dish.ingredients.forEach(food => {
-            calArr.push(food.calories);
-            carbArr.push(food.carb);
-            fatArr.push(food.fat);
-            proArr.push(food.protein);
+            calArr.push(food.calories * food._pivot_servings);
+            carbArr.push(food.carb * food._pivot_servings);
+            fatArr.push(food.fat * food._pivot_servings);
+            proArr.push(food.protein * food._pivot_servings);
           });
         });
         const totals = {};

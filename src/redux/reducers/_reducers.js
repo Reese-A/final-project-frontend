@@ -9,6 +9,7 @@ import { dishes, newDish } from './dishes-reducers';
 import food from './food-reducers';
 import consumption from './consumption_reducers';
 import fitness from './fitness-reducers';
+import daily from './daily-reducers';
 
 export default combineReducers({
   user,
@@ -20,5 +21,6 @@ export default combineReducers({
   newDish,
   food,
   consumption,
-  fitness
+  fitness,
+  daily
 });

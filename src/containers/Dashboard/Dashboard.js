@@ -6,6 +6,7 @@ import {
   getCaloriesExpended,
   getTotalSteps
 } from '../../redux/actions/fitness-actions';
+import { loadDaily } from '../../redux/actions/daily-actions';
 import GoogleFit from '../GoogleFit/GoogleFit';
 
 import Header from '../../components/Header/Header';
@@ -22,6 +23,7 @@ class Dashboard extends React.Component {
     this.props.loadUserDishes();
     this.props.getCaloriesExpended();
     this.props.getTotalSteps();
+    this.props.loadDaily();
   }
 
   render() {
@@ -87,6 +89,9 @@ const mapDispatchToProps = dispatch => {
     getTotalSteps: () => {
       dispatch(getTotalSteps());
     },
+    loadDaily: () => {
+      dispatch(loadDaily());
+    }
   };
 };
 
