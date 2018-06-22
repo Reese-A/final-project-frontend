@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  getCaloriesExpended,
-  getTotalSteps
-} from '../../redux/actions/fitness-actions';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+
+import { withRouter } from 'react-router-dom';
 
 import './App.css';
 
-import Header from '../../components/Header/Header';
 import Main from '../../components/Main/Main';
 
 import { loadUser } from '../../redux/actions/user-actions';
