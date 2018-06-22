@@ -31,19 +31,24 @@ class Dashboard extends React.Component {
     //   return <Redirect to="/" />;
     // }
     // const totalCal = this.props.consumption.calories ?
+    let servings = 1;
+    if (this.props.dishes[0]) {
+      console.log(this.props.dishes[0].ingredients[0]['_pivot_servings']);
+      servings = Number(this.props.dishes[0].ingredients[0]['_pivot_servings']);
+    }
     return (
       <div id="dashboard">
         <Header />
         <div id="dashboardWrap">
           <div id="intake">
             <div id="calories">
-              Calories Consumed: {this.props.consumption.calories}
+              Calories Consumed: {this.props.consumption.calories * servings}
             </div>
             <div id="chart">
               Macronutrients:
-              <div>Fat: {this.props.consumption.fat}g</div>
-              <div>Carbs: {this.props.consumption.carb}g</div>
-              <div>Protein: {this.props.consumption.protein}g</div>
+              <div>Fat: {this.props.consumption.fat * servings}g</div>
+              <div>Carbs: {this.props.consumption.carb * servings}g</div>
+              <div>Protein: {this.props.consumption.protein * servings}g</div>
             </div>
             <br />
             <FoodList />
