@@ -24,7 +24,7 @@ const initialDish = { name: '', calories: 0, foods: {} };
 export const newDish = (state = initialDish, action) => {
   switch (action.type) {
     case CREATE_DISH: {
-      return initialDish;
+      return { name: '', calories: 0, foods: Object.create(null) };
     }
     case SET_DISH_NAME: {
       const newDish = { ...state };
@@ -78,7 +78,7 @@ export const newDish = (state = initialDish, action) => {
       return newDish;
     }
     case CLEAR_DISH: {
-      return { name: '', calories: 0, foods: {} };
+      return { name: '', calories: 0, foods: Object.create(null) };
     }
     default:
       return state;

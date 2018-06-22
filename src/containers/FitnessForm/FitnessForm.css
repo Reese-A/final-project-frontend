@@ -13,6 +13,8 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover; }
+  #fitnessForm #activity_level_id {
+    min-height: fit-content; }
   #fitnessForm #levelDescription {
     width: 85%;
     border: 1px solid black;
