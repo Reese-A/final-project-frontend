@@ -2,7 +2,11 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { createDish, addDishFood } from '../../../redux/actions/dishes-actions';
+import {
+  createDish,
+  addDishFood,
+  clearDish
+} from '../../../redux/actions/dishes-actions';
 
 import FoodCard from '../FoodCard/FoodCard';
 import BuildDishCard from '../BuildDishCard/BuildDishCard';
@@ -124,6 +128,7 @@ class SearchForm extends React.Component {
     const { servings, food } = this.state;
     if (this.state.buildDish) {
       this.props.addDishFood(Number(servings), food);
+      this.setState({ search: '', showFoodCard: false });
     } else {
       console.log();
       const dish = { ...this.props.dish };
@@ -131,7 +136,8 @@ class SearchForm extends React.Component {
       dish.calories = food.calories * servings;
       dish.foods[food.id] = { servings: Number(servings), food };
       this.props.createDish(dish);
-      this.props.history.push('/');
+      this.props.clearDish();
+      this.props.history.push('/dashboard');
     }
     document.getElementById('add_food_servings_input').blur();
   }
@@ -227,6 +233,9 @@ const mapDispatchToProps = dispatch => {
     },
     addDishFood: (servings, food) => {
       dispatch(addDishFood(servings, food));
+    },
+    clearDish: () => {
+      dispatch(clearDish());
     }
   };
 };
