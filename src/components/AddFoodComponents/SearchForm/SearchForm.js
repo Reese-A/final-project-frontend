@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { createDish } from '../../../redux/actions/dishes-actions';
+import { createDish, addDishFood } from '../../../redux/actions/dishes-actions';
 
 import FoodCard from '../FoodCard/FoodCard';
 import BuildDishCard from '../BuildDishCard/BuildDishCard';
@@ -13,7 +13,6 @@ class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // width: 0,
       search: '',
       food: {
         calories: 0,
@@ -39,13 +38,11 @@ class SearchForm extends React.Component {
       showFoodCard: false,
       showForm: false,
       buildDish: false,
-      name: '',
-      calories: 0
+      name: ''
     };
 
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleServingsSubmit = this.handleServingsSubmit.bind(this);
-    this.handleDishSubmit = this.handleDishSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleDishName = this.handleDishName.bind(this);
     this.toggleDishForm = this.toggleDishForm.bind(this);
@@ -70,7 +67,6 @@ class SearchForm extends React.Component {
     // if (name === 'servings') value = Number(value);
 
     this.setState({ [name]: value }, () => {
-      console.log(this.state);
       if (name === 'search' && value === '')
         this.setState({ showFoodCard: false });
     });
@@ -86,9 +82,7 @@ class SearchForm extends React.Component {
     const { value, name } = event.target;
     const dish = { ...this.state.dish };
     dish.name = value;
-    this.setState({ dish }, () => {
-      console.log(this.state);
-    });
+    this.setState({ dish }, () => {});
   }
 
   handleSearchSubmit(event) {
@@ -103,11 +97,6 @@ class SearchForm extends React.Component {
     this.addFoodToDish(event);
   }
 
-  handleDishSubmit(event) {
-    event.preventDefault();
-    console.log('dish submit');
-  }
-
   getFoodData() {
     const search = this.state.search.toLowerCase();
 
@@ -120,7 +109,6 @@ class SearchForm extends React.Component {
     })
       .then(res => res.json())
       .then(food => {
-        console.log(food);
         this.setState({ food: food, showFoodCard: true });
       });
   }
@@ -136,12 +124,15 @@ class SearchForm extends React.Component {
     const { servings, food } = this.state;
     if (this.state.buildDish) {
       this.props.addDishFood(Number(servings), food);
-      document.getElementById('add_food_servings_input').blur();
     } else {
+      console.log();
       const dish = { ...this.props.dish };
       dish.name = food.name;
+      dish.calories = food.calories * servings;
+      dish.foods[food.id] = { servings: Number(servings), food };
       this.props.createDish(dish);
     }
+    document.getElementById('add_food_servings_input').blur();
   }
 
   dishSubmitHandler(event) {
@@ -200,22 +191,20 @@ class SearchForm extends React.Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <button>Add</button>
+                <button id="add_food_servings_input_button">Add</button>
               </div>
             </form>
           </div>
         ) : null}
 
-        {this.state.buildDish && this.state.showFoodCard ? (
+        {this.state.showFoodCard ? (
           <div className="horizontal_seperator" />
         ) : null}
 
         <BuildDishCard
-          handleDishSubmit={this.handleDishSubmit}
           handleDishName={this.handleDishName}
           toggleDishForm={this.toggleDishForm}
           dish={this.props.dish}
-          calories={this.state.calories}
           buildDish={this.state.buildDish}
         />
       </div>
@@ -233,6 +222,9 @@ const mapDispatchToProps = dispatch => {
   return {
     createDish: dish => {
       dispatch(createDish(dish));
+    },
+    addDishFood: (servings, food) => {
+      dispatch(addDishFood(servings, food));
     }
   };
 };
