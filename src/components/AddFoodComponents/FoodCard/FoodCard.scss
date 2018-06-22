@@ -1,16 +1,18 @@
 .food_card {
-  width: unset;
+  // width: 360px;
+  min-width: 250px;
   height: fit-content;
   display: grid;
   // grid-template-rows: 108px 162px;
   grid-template-rows: 84px 144px;
-  margin: 32px;
+  margin: 24px 16px;
   background: white;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   .food_card_image {
     grid-area: 1/1/1/1;
-
+    border-radius: 8px 8px 0 0;
+    // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
     img {
       width: 100%;
       height: 100%;
@@ -26,9 +28,9 @@
       display: grid;
       grid-template-columns: 65% 35%;
       font-size: 20px;
-      font-weight: normal;
       text-transform: capitalize;
       .food_card_info_name {
+        font-weight: 400;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
@@ -36,6 +38,11 @@
       .food_card_info_calories_container {
         justify-self: end;
         color: #46a588;
+        font-weight: 400;
+        .food_card_info_calories {
+          font-size: 20px;
+          font-weight: 400;
+        }
         .food_card_info_calories_text {
           font-size: 14px;
           text-transform: lowercase;

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import {
+  getCaloriesExpended,
+  getTotalSteps
+} from '../../redux/actions/fitness-actions';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 
 import './App.css';
@@ -10,10 +13,10 @@ import Main from '../../components/Main/Main';
 
 import { loadUser } from '../../redux/actions/user-actions';
 class App extends Component {
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
 
-      this.state = {
+    this.state = {
       user: {
         email: '',
         first_name: '',
@@ -22,7 +25,6 @@ class App extends Component {
     };
   }
   componentDidMount() {
-
     let user = localStorage.getItem('user');
     user = JSON.parse(user);
     if (user) {
@@ -31,9 +33,7 @@ class App extends Component {
     }
   }
   render() {
-    console.log(this.props);
     if (!this.state.user && this.props.location.pathname !== '/') {
-      console.log('redirect');
       // return <Redirect to="/" />;
     }
     return (
@@ -46,7 +46,6 @@ class App extends Component {
     );
   }
 }
-
 
 const mapStateToProps = state => {
   return {
@@ -61,4 +60,9 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
-export default withRouter(connect (mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+);

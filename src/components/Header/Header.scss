@@ -9,10 +9,12 @@
   #header_logo {
     justify-self: start;
     margin: 0 0 0 32px;
+    font-size: 18px;
   }
   #header_allowance {
     justify-self: center;
     #header_allowance_value {
+      font-size: 24px;
     }
     #header_allowance_units {
       font-size: 10px;
@@ -22,6 +24,7 @@
   a {
     justify-self: end;
     margin: 0 32px 0 0;
+    line-height: 0px;
   }
   a:visited {
     color: inherit;

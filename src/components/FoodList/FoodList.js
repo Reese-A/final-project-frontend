@@ -26,6 +26,12 @@ class FoodList extends React.Component {
                         <div className="ingredient_name" key={ingredient.name}>
                           {ingredient.name}
                         </div>
+                        <div
+                          className="ingredient_servings"
+                          key={ingredient._pivot_servings}
+                        >
+                          Servings: {ingredient._pivot_servings}{' '}
+                        </div>
                         <li
                           className="nutrients_item"
                           key={ingredient.calories}

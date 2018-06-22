@@ -5,6 +5,7 @@ import { loadGenders } from '../../redux/actions/gender-actions';
 import { loadGoals } from '../../redux/actions/goal-actions';
 import { loadActivityLevels } from '../../redux/actions/activity-level-actions';
 
+import './AccountForm.css';
 class AccountForm extends React.Component {
   constructor(props) {
     super(props);
@@ -41,7 +42,7 @@ class AccountForm extends React.Component {
     this.props.loadActivityLevels();
     this.setState({ ...this.props.accountForm });
   }
-  
+
   handleSubmit(event) {
     event.preventDefault();
     if (this.state.password !== this.state.confirm) {
@@ -56,82 +57,82 @@ class AccountForm extends React.Component {
 
   render() {
     return (
+      <div id="accountForm">
 
-      <div id="account_form">
-        <div id="account_form_title">Register new user</div>
-        <br/>
-        <form onSubmit={this.handleSubmit}>
-          <div id="email_container">
-            <span>Email address:</span>
-            <input
-              type="email"
-              id="account_email"
-              name="email"
-              placeholder="Email"
-              required
-              value={this.state.email}
-              onChange={this.changeHandler}
-            />
-          </div>
-          <br />
-          <div id="password_container">
-            <span>Password:</span>
-            <input
-              type="password"
-              id="account_password"
-              name="password"
-              placeholder="Password"
-              required
-              value={this.state.password}
-              onChange={this.changeHandler}
-            />
-          </div>
-          <br />
-          <div id="confirm_container">
-            <span>Confirm password:</span>
-            <input
-              type="password"
-              id="account_confirm"
-              name="confirm"
-              placeholder="Confirm password"
-              required
-              value={this.state.confirm}
-              onChange={this.changeHandler}
-            />
-          </div>
-          <br />
-          <div id="first_name_container">
-            <span>First name:</span>
-            <input
-              type="text"
-              id="account_first_name"
-              name="first_name"
-              placeholder="First name"
-              required
-              value={this.state.first_name}
-              onChange={this.changeHandler}
-            />
-          </div>
-          <br />
+        <div id="accountFormImage">
+          <div className="homeTitle">fitbyte</div>
+        </div>
 
-          <div id="last_name_container">
-            <span>Last name:</span>
-            <input
-              type="text"
-              id="account_last_name"
-              name="last_name"
-              placeholder="Last name"
-              required
-              value={this.state.last_name}
-              onChange={this.changeHandler}
-            />
-          </div>
-          <br />
+        <div className="formModal">
 
-          <div hidden={this.state.hideErr}>Passwords must match</div>
-          <br/>
-          <button type="submit">Next</button>
-        </form>
+          <form className="registrationForm" onSubmit={this.handleSubmit}>
+
+            <div className="formGroup">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                value={this.state.email}
+                onChange={this.changeHandler}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label htmlFor="password">Password:</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                required
+                value={this.state.password}
+                onChange={this.changeHandler}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label htmlFor="confirm">Confirm Password:</label>
+              <input
+                type="password"
+                id="confirm"
+                name="confirm"
+                required
+                value={this.state.confirm}
+                onChange={this.changeHandler}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label htmlFor="first_name">First Name:</label>
+              <input
+                type="text"
+                id="first_name"
+                name="first_name"
+                required
+                value={this.state.first_name}
+                onChange={this.changeHandler}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label htmlFor="last_name">Last Name:</label>
+              <input
+                type="text"
+                id="last_name"
+                name="last_name"
+                required
+                value={this.state.last_name}
+                onChange={this.changeHandler}
+              />
+            </div>
+
+            <div hidden={this.state.hideErr}>Passwords must match</div>
+
+            <button type="submit">Next</button>
+
+          </form>
+        </div>
       </div>
     )
   };
