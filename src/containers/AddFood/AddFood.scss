@@ -1,5 +1,20 @@
 $header_height: 54px;
 #add_food {
+  input {
+    width: unset;
+    height: unset;
+    border: unset;
+    border-radius: unset;
+  }
+  input:valid {
+    background: none;
+  }
+  button {
+    min-width: unset;
+    max-width: unset;
+    margin: unset;
+  }
+
   // height: calc(100vh - 64px);
   height: 100vh;
   display: grid;

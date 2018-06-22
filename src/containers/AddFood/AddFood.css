@@ -2,6 +2,17 @@
   height: 100vh;
   display: grid;
   overflow: hidden; }
+  #add_food input {
+    width: unset;
+    height: unset;
+    border: unset;
+    border-radius: unset; }
+  #add_food input:valid {
+    background: none; }
+  #add_food button {
+    min-width: unset;
+    max-width: unset;
+    margin: unset; }
   #add_food #slide_down {
     display: none;
     grid-area: 1/1/1/1;
