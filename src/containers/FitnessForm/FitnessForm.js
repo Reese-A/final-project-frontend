@@ -78,7 +78,6 @@ class FitnessForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    genders: state.gender,
     activityLevels: state.activityLevel,
     fitnessForm: state.registrationForm.fitnessForm
   };
