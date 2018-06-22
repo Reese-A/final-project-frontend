@@ -49,6 +49,10 @@ export const loadConsumption = () => {
 
 export const createDish = dish => {
   return dispatch => {
+    // console.log(dish);
+    // return;
+
+    const { name, calories, foods } = dish;
     return fetch('/api/dishes', {
       method: 'POST',
       headers: {
@@ -57,8 +61,9 @@ export const createDish = dish => {
       },
       credentials: 'same-origin',
       body: JSON.stringify({
-        name: dish.name,
-        foods: dish.foods
+        name,
+        calories,
+        foods: Object.values(foods)
       })
     })
       .then(data => {
@@ -104,6 +109,7 @@ export const removeDishFood = id => {
 };
 
 export const clearDish = () => {
+  console.log('clearDish');
   return {
     type: CLEAR_DISH
   };
