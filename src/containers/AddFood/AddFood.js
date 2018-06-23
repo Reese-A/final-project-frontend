@@ -31,9 +31,9 @@ class AddFood extends React.Component {
     this.searchFood = this.searchFood.bind(this);
     this.addFoodToDish = this.addFoodToDish.bind(this);
   }
-  componentDidMount() {}
+  componentDidMount() { }
 
-  componentDidUpdate(prevProps, prevState) {}
+  componentDidUpdate(prevProps, prevState) { }
 
   toggleForm(event) {
     event.preventDefault();
@@ -122,11 +122,11 @@ class AddFood extends React.Component {
         <div id="loading" className={`${this.state.loading ? 'show' : ''}`}>
           <h1>Cooking in progress..</h1>
           <div id="cooking">
-            <div class="bubble" />
-            <div class="bubble" />
-            <div class="bubble" />
-            <div class="bubble" />
-            <div class="bubble" />
+            <div className="bubble" />
+            <div className="bubble" />
+            <div className="bubble" />
+            <div className="bubble" />
+            <div className="bubble" />
             <div id="area">
               <div id="sides">
                 <div id="pan" />
@@ -153,12 +153,12 @@ class AddFood extends React.Component {
               showLoading={this.showLoading}
             />
           ) : (
-            <SearchForm
-              item={this.state.item}
-              dish={this.state.dish}
-              addFoodToDish={this.addFoodToDish}
-            />
-          )}
+              <SearchForm
+                item={this.state.item}
+                dish={this.state.dish}
+                addFoodToDish={this.addFoodToDish}
+              />
+            )}
 
           {/* Can be made into a Component */}
 
@@ -180,8 +180,8 @@ class AddFood extends React.Component {
               {this.state.showCamera ? (
                 'Search Food'
               ) : (
-                <i className="material-icons">camera_alt</i>
-              )}
+                  <i className="material-icons">camera_alt</i>
+                )}
             </button>
           </div>
         </div>

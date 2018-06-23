@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import './FoodList.css';
 
 class FoodList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     console.log(this.props.dishes);
     return (
@@ -55,10 +51,10 @@ class FoodList extends React.Component {
             );
           })
         ) : (
-          <div id="no_dishes">
-            No dishes yet! Add some food to see your tracked dishes.
+            <div id="no_dishes">
+              No dishes yet! Add some food to see your tracked dishes.
           </div>
-        )}
+          )}
       </div>
     );
   }

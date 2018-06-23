@@ -34,14 +34,12 @@ class Camera extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   updateDimensions() {
-    const viewPort = document.getElementById('view_port');
     this.setState({
       window_width: window.innerWidth,
       window_height: window.innerHeight
     });
   }
   componentDidMount() {
-    const viewPort = document.getElementById('view_port');
 
     this.setState({
       window_width: window.innerWidth,
@@ -51,9 +49,7 @@ class Camera extends React.Component {
 
     const supported = 'mediaDevices' in navigator;
     if (supported) {
-      const viewPortContainer = document.getElementById('view_port_container');
       const viewPort = document.getElementById('view_port');
-      const shutterBtn = document.getElementById('shutter_btn');
 
       const constraints = {
         video: {

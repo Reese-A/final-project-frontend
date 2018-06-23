@@ -22,7 +22,8 @@ class Login extends React.Component {
   render() {
     return (
       <div id="login">
-        <form onSubmit={this.submitHandler}>
+        <form onSubmit={this.submitHandler} className="registrationForm">
+
           <div className="formGroup">
             <label htmlFor="email">Email:</label>
             <input

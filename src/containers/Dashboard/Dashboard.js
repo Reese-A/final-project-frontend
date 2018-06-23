@@ -18,10 +18,6 @@ import './Dashboard.css';
 import PieChartComponent from '../../components/PieChart/PieChart';
 
 class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.loadUserDishes();
     this.props.getCaloriesExpended();
