@@ -9,6 +9,10 @@ import { updateDaily } from '../../redux/actions/daily-actions';
 import './Header.css';
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.logoutHandler = this.logoutHandler.bind(this);
+  }
   componentDidMount() {
     if (this.props.user.id) {
       this.props.loadUser(this.props.user.id);
