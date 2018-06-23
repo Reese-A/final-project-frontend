@@ -9,6 +9,8 @@ import { loadActivityLevels } from '../../redux/actions/activity-level-actions';
 import { GoogleLogin } from 'react-google-login'
 import UpdateProfileForm from '../UpdateProfileForm/UpdateProfileForm';
 
+import './Settings.css';
+
 class Settings extends React.Component {
   constructor(props) {
     super(props);
@@ -18,49 +20,49 @@ class Settings extends React.Component {
     this.loading = this.loading.bind(this);
   }
 
-  success(res) {
-    console.log('auto connecting');
-    console.log('auto connect res', res);
+  componentDidMount() {
     this.props.loadGenders();
     this.props.loadGoals();
     this.props.loadActivityLevels();
+  }
+
+  success(res) {
     this.props.loginGoogle(res);
   }
 
   error = res => {
-    console.log('login error');
     console.error(res)
   }
-  
+
   loading = () => {
     console.log('loading')
   }
 
-  
+
   render() {
     return (
-    <div id="settingsWrap">
-    <div id="settingsTitle">Settings</div>
-      <GoogleLogin
-      clientId="754246514774-ei1kjc8cujnegap63tdedbg4qa6l48el.apps.googleusercontent.com"
-      scope="https://www.googleapis.com/auth/fitness.activity.read"
-      onSuccess={this.success}
-      onFailure={this.error}
-      onRequest={this.loading}
-      offline={false}
-      approvalPrompt="force"
-      responseType="id_token"
-      isSignedIn
-      // disabled
-      // prompt="consent"
-      // className='button'
-      // style={{ color: 'red' }}
-    >
-      <span>Connect Google Fit account</span>
-    </GoogleLogin>
-    <UpdateProfileForm />
-    <NavLink to="/dashboard">Back to Dashboard</NavLink>
-  </div>
+      <div id="settingsWrap">
+        <div id="settingsTitle">Settings</div>
+        <UpdateProfileForm />
+        <GoogleLogin
+          clientId="754246514774-ei1kjc8cujnegap63tdedbg4qa6l48el.apps.googleusercontent.com"
+          scope="https://www.googleapis.com/auth/fitness.activity.read"
+          onSuccess={this.success}
+          onFailure={this.error}
+          onRequest={this.loading}
+          offline={false}
+          approvalPrompt="force"
+          responseType="id_token"
+          isSignedIn
+        // disabled
+        // prompt="consent"
+        // className='button'
+        // style={{ color: 'red' }}
+        >
+          <span>Connect Google Fit account</span>
+        </GoogleLogin>
+        <NavLink to="/dashboard" id="dashboardLink">Back to Dashboard</NavLink>
+      </div>
     )
   }
 }

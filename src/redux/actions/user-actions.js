@@ -1,5 +1,6 @@
 export const LOAD_USER = 'LOAD_USER';
 export const LOGIN_USER = 'LOGIN_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
 export const LOAD_USER_DISHES = 'LOAD_USER_DISHES';
 
 export const loadUser = id => {
@@ -34,10 +35,7 @@ export const loginUser = (user, history) => {
         password: user.password
       })
     })
-      .then(data => {
-
-        return data.json();
-      })
+      .then(res => res.json())
       .then(user => {
         //error handle here
         user.online = true;
@@ -50,9 +48,29 @@ export const loginUser = (user, history) => {
 
         history.push('/dashboard');
       })
-      .catch((err) => {
-        err.message = 'Please check your email and password';
-        throw err;
+      .catch(err => {
+        console.log(err);
+        err.message = 'Incorrect Email or Password';
+        dispatch({ type: LOGIN_USER, err });
+      });
+  };
+};
+
+export const logoutUser = () => {
+  return dispatch => {
+    return fetch('/api/users/logout', { credentials: 'same-origin' })
+      .then(res => res.json())
+      .then(user => {
+        //error handle here
+        localStorage.removeItem('user');
+        dispatch({
+          type: LOGOUT_USER,
+          user
+        });
       })
+      .catch(err => {
+        console.log(err);
+        return err;
+      });
   };
 };

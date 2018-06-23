@@ -1,0 +1,16 @@
+#settingsWrap {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+    #settingsTitle {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    #dashboardLink {
+      margin-bottom: 5px;
+    }
+}
