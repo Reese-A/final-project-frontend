@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateProfile } from '../../redux/actions/settings-actions';
+
+import './UpdateProfileForm.css';
+
 class UpdateProfileForm extends React.Component {
   constructor(props) {
     super(props);
@@ -99,105 +102,145 @@ class UpdateProfileForm extends React.Component {
 
     return (
 
-      <div id="update_profile_form">
-        <div id="update_profile_form_title">Profile Information</div>
-        <br />
+      <div id="updateProfileForm" >
         <form onSubmit={this.handleSubmit} >
-          <div id="update_profile_gender_container" className="select_container">
-            <label htmlFor="profile_gender">Biological Gender:</label>
-            <select
-              name="gender_id"
-              id="profile_gender"
-              value={this.state.gender_id}
-              onChange={this.changeHandler}
-              required
-            >
-              {genderOptions}
-            </select>
+          <div className="updateContainer">
+
+            <div id="updateTitle">Profile Information</div>
+
+            <div className="formGroup">
+              <label htmlFor="profile_gender">Biological Gender:</label>
+              <select
+                name="gender_id"
+                id="profile_gender"
+                value={this.state.gender_id}
+                onChange={this.changeHandler}
+                required
+              >
+                {genderOptions}
+              </select>
+            </div>
+
+            <div className="formGroup">
+              <label htmlFor="birthday">Birthday:</label>
+              <input
+                type="date"
+                id="profile_birthday"
+                name="birthday"
+                placeholder="Birthday"
+                required
+                value={this.state.birthday}
+                onChange={this.changeHandler}
+                autoFocus
+              />
+            </div>
+
+            <div className="formGroup">
+              <label htmlFor="weight">Weight(lbs):</label>
+              <input
+                type="number"
+                id="profile_weight"
+                name="weight"
+                placeholder="Weight in pounds"
+                required
+                value={this.state.weight}
+                onChange={this.changeHandler}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label htmlFor="heightFeet">Height(feet):</label>
+              <input
+                type="number"
+                id="profile_height_feet"
+                name="heightFeet"
+                placeholder="Feet"
+                required
+                value={this.state.heightFeet}
+                onChange={this.changeHandler}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label htmlFor="heightInches">Height(inches):</label>
+              <input
+                type="number"
+                id="profile_height_inches"
+                name="heightInches"
+                placeholder="Inches"
+                min="0"
+                max="11"
+                required
+                value={this.state.heightInches}
+                onChange={this.changeHandler}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label htmlFor="goal_id">Goal:</label>
+              <select
+                name="goal_id"
+                id="profile_goal"
+                value={this.state.goal_id}
+                onChange={this.changeHandler}
+                required
+              >
+                {goalOptions}
+              </select>
+            </div>
+
+            <div className="formGroup">
+              <label htmlFor="activity_level_id">Activity Level:</label>
+              <select
+                name="activity_level_id"
+                id="activity_level"
+                value={this.state.activity_level_id}
+                onChange={this.changeHandler}
+                required
+              >
+                {activityOptions}
+              </select>
+            </div>
+
+            <div className="formGroup">
+              <button type="submit" name="save" >Save</button>
+            </div>
+
+          </div>
+
+          {/* <div id="update_profile_gender_container" className="select_container">
           </div>
           <br />
           <div id="update_birthday_container">
             <span>Birthday:</span>
-            <input
-              type="date"
-              id="profile_birthday"
-              name="birthday"
-              placeholder="Birthday"
-              required
-              value={this.state.birthday}
-              onChange={this.changeHandler}
-              autoFocus
-            />
+            
           </div>
           <br />
           <div id="update_weight_container">
             <span>Weight in pounds:</span>
-            <input
-              type="number"
-              id="profile_weight"
-              name="weight"
-              placeholder="Weight in pounds"
-              required
-              value={this.state.weight}
-              onChange={this.changeHandler}
-            />
+            
           </div>
           <br />
           <div id="update_profile_height_container">
             <div>Height:</div>
             <span>Feet:</span>
-            <input
-              type="number"
-              id="profile_height_feet"
-              name="heightFeet"
-              placeholder="Feet"
-              required
-              value={this.state.heightFeet}
-              onChange={this.changeHandler}
-            />
+            
             <br />
             <span>Inches:</span>
-            <input
-              type="number"
-              id="profile_height_inches"
-              name="heightInches"
-              placeholder="Inches"
-              min="0"
-              max="11"
-              required
-              value={this.state.heightInches}
-              onChange={this.changeHandler}
-            />
+            
             <br />
           </div>
           <br />
           <div id="update_profile_goal_container" className="select_container">
             <label htmlFor="profile_goal">Goal:</label>
-            <select
-              name="goal_id"
-              id="profile_goal"
-              value={this.state.goal_id}
-              onChange={this.changeHandler}
-              required
-            >
-              {goalOptions}
-            </select>
+            
           </div>
-          <br />
-          <div id="update_activity_level_container" className="select_container">
+          <br /> */}
+          {/* <div id="update_activity_level_container" className="select_container">
             <label htmlFor="activity_level">Activity level:</label>
-            <select
-              name="activity_level_id"
-              id="activity_level"
-              value={this.state.activity_level_id}
-              onChange={this.changeHandler}
-              required
-            >
-              {activityOptions}
-            </select>
           </div>
-          <br />
-          <button type="submit" name="save" >Save</button>
+          <br /> */}
+
         </form>
       </div>
     )

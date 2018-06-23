@@ -18,20 +18,27 @@ import './Dashboard.css';
 import PieChartComponent from '../../components/PieChart/PieChart';
 
 class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.loadUserDishes();
     this.props.getCaloriesExpended();
+    // this.props.loadDaily();
     this.props.getTotalSteps();
-    this.props.loadDaily();
   }
 
   render() {
-    if (!this.props.user.id) {
+    let currentUser = localStorage.getItem('user');
+    console.log('useruserusuer', currentUser);
+    if (!currentUser) {
       return <Redirect to="/" />;
+    }
+
+    let macroCheck = false;
+    if (
+      this.props.consumption.fat &&
+      this.props.consumption.carb &&
+      this.props.consumption.protein
+    ) {
+      macroCheck = true;
     }
 
     return (
@@ -43,13 +50,11 @@ class Dashboard extends React.Component {
               Calories Consumed: {this.props.consumption.calories}
               <CalorieChart />
             </div>
-            <div id="chart">
-              {/* Macronutrients: */}
-              {/* <div>Fat: {this.props.consumption.fat}g</div>
-              <div>Carbs: {this.props.consumption.carb}g</div>
-              <div>Protein: {this.props.consumption.protein}g</div> */}
-              <PieChartComponent consumption={this.props.consumption} />
-            </div>
+            {macroCheck ? (
+              <div id="chart">
+                <PieChartComponent consumption={this.props.consumption} />
+              </div>
+            ) : null}
             <br />
             <FoodList />
           </div>

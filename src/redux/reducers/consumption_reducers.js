@@ -4,8 +4,7 @@ const initialState = {
   calories: '',
   fat: '',
   carb: '',
-  protein: '',
-  calTracker: []
+  protein: ''
 };
 
 const consumption = (state = initialState, action) => {

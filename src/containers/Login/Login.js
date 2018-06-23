@@ -22,7 +22,7 @@ class Login extends React.Component {
   render() {
     return (
       <div id="login">
-        <form onSubmit={this.submitHandler}>
+        <form onSubmit={this.submitHandler} className="registrationForm">
           <div className="formGroup">
             <label htmlFor="email">Email:</label>
             <input
@@ -48,7 +48,9 @@ class Login extends React.Component {
 
           <button type="submit">Login</button>
         </form>
-        <div id="loginError">{this.state.loginError}</div>
+        {this.props.user.err ? (
+          <div id="loginError">{this.props.user.err}</div>
+        ) : null}
       </div>
     );
   }
@@ -66,6 +68,12 @@ class Login extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     loginUser: (user, history) => {
@@ -76,7 +84,7 @@ const mapDispatchToProps = dispatch => {
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(Login)
 );

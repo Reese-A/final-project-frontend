@@ -1,0 +1,11 @@
+#settingsWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 25px;
+  padding-bottom: 25px; }
+  #settingsWrap #settingsTitle {
+    font-size: 30px;
+    font-weight: bold; }
+  #settingsWrap #dashboardLink {
+    margin-bottom: 5px; }

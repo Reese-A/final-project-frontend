@@ -35,10 +35,7 @@ export const loginUser = (user, history) => {
         password: user.password
       })
     })
-      .then(data => {
-
-        return data.json();
-      })
+      .then(res => res.json())
       .then(user => {
         //error handle here
         user.online = true;
@@ -51,10 +48,11 @@ export const loginUser = (user, history) => {
 
         history.push('/dashboard');
       })
-      .catch((err) => {
-        err.message = 'Please check your email and password';
-        throw err;
-      })
+      .catch(err => {
+        console.log(err);
+        err.message = 'Incorrect Email or Password';
+        dispatch({ type: LOGIN_USER, err });
+      });
   };
 };
 
@@ -70,10 +68,9 @@ export const logoutUser = () => {
           user
         });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
         return err;
-      })
+      });
   };
 };
-

@@ -6,7 +6,7 @@ const FoodCard = props => {
   return (
     <div className="food_card">
       <div className="food_card_image">
-        <img src="https://picsum.photos/600/300/?random" />
+        <img src="https://picsum.photos/600/300/?random" alt="" />
       </div>
       <div className="food_card_info">
         <div className="food_card_row_name">
