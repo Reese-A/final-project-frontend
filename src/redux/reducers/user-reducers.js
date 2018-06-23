@@ -7,9 +7,12 @@ const user = (state = initialState, action) => {
     case LOAD_USER:
       return { ...state, ...action.user };
     case LOGIN_USER:
+      if (action.err) {
+        return { err: action.err.message };
+      }
       return { ...state, ...action.user };
     case LOGOUT_USER:
-      return { ...action.user }
+      return { ...action.user };
     default:
       return state;
   }
