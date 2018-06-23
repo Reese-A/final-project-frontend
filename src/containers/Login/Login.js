@@ -23,7 +23,6 @@ class Login extends React.Component {
     return (
       <div id="login">
         <form onSubmit={this.submitHandler} className="registrationForm">
-
           <div className="formGroup">
             <label htmlFor="email">Email:</label>
             <input
@@ -32,6 +31,7 @@ class Login extends React.Component {
               id="email"
               required
               onChange={this.changeHandler}
+              autoFocus
             />
           </div>
 
