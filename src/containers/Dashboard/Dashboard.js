@@ -30,7 +30,8 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    if (!this.props.user.id) {
+    let currentUser = localStorage.getItem('user');
+    if (!currentUser) {
       return <Redirect to="/" />;
     }
 
