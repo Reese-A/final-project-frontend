@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { saveAccountForm, } from '../../redux/actions/account-form-actions';
 import { loadGenders } from '../../redux/actions/gender-actions';
 import { loadGoals } from '../../redux/actions/goal-actions';
@@ -130,6 +132,8 @@ class AccountForm extends React.Component {
             <div hidden={this.state.hideErr}>Passwords must match</div>
 
             <button type="submit">Next</button>
+
+            <Link to="/">Back to homepage</Link>
 
           </form>
         </div>
