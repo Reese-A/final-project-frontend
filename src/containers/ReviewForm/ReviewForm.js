@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { postRegistration } from '../../redux/actions/review-form-actions';
 
 import './ReviewForm.css';
@@ -255,6 +255,8 @@ class ReviewForm extends React.Component {
 
               <button type="click" onClick={this.editFitnessPage}>Edit fitness information</button>
               <button id="submitButton" name="next" onClick={this.handleSubmit}>Submit</button>
+              <Link to="/">Back to homepage</Link>
+
             </div>
 
           </form>

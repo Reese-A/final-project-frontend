@@ -1,6 +1,8 @@
 import React from 'react';
 import Moment from 'moment';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { saveProfileForm } from '../../redux/actions/profile-form-actions';
 
 import './ProfileForm.css';
@@ -216,6 +218,8 @@ class ProfileForm extends React.Component {
                 Next
               </button>
             </div>
+            <Link to="/">Back to homepage</Link>
+
           </form>
         </div>
       </div>
