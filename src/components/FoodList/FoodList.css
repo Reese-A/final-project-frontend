@@ -1,40 +1,84 @@
-#foods_list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 65%;
-  max-height: 55vh;
-  padding-top: 15px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-  overflow: auto; }
-  #foods_list #list_title {
-    text-align: center;
-    font-size: 25px;
-    margin-bottom: 10px; }
-  #foods_list #no_dishes {
-    margin: 10px 0px;
-    padding: 0px 10px;
-    text-align: center; }
-  #foods_list .dish_wrap {
-    width: 60%;
-    min-height: fit-content;
-    padding-top: 20px;
-    border-top: 1px solid #c6c6c6;
-    text-align: center;
+#food_list {
+  display: grid; }
+  #food_list button {
+    outline: none; }
+  #food_list #food_list_header {
+    height: 64px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px 0px;
-    font-size: 18px; }
-    #foods_list .dish_wrap .dish_name {
-      font-weight: bold;
-      text-transform: uppercase; }
-    #foods_list .dish_wrap .ingredients_wrap {
-      margin-top: 10px; }
-      #foods_list .dish_wrap .ingredients_wrap .ingredient_name {
-        text-decoration: underline;
-        text-transform: uppercase; }
-      #foods_list .dish_wrap .ingredients_wrap li {
-        list-style: none; }
+    justify-content: center;
+    align-items: center; }
+    #food_list #food_list_header #food_list_header_text {
+      font-size: 1.5rem; }
+  #food_list #food_list_navbar {
+    height: 52px;
+    margin: 0 0 8px 0;
+    color: white;
+    background: linear-gradient(to right, #ffd07b, #fa8090);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: 25% 50% 25%; }
+    #food_list #food_list_navbar #food_list_filter_all {
+      justify-self: start;
+      margin: 0 0 0 16px;
+      font-size: 1.2rem;
+      text-transform: capitalize; }
+    #food_list #food_list_navbar #food_list_filter_meal {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center; }
+      #food_list #food_list_navbar #food_list_filter_meal #food_list_filter_meal_text {
+        font-size: 1.2rem;
+        text-transform: capitalize; }
+      #food_list #food_list_navbar #food_list_filter_meal button.disabled {
+        opacity: 0.25; }
+    #food_list #food_list_navbar #food_list_calories {
+      margin: 0 16px 0 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center; }
+      #food_list #food_list_navbar #food_list_calories #food_list_calories_text {
+        font-size: 1.2rem; }
+        #food_list #food_list_navbar #food_list_calories #food_list_calories_text #food_list_calories_units {
+          font-size: 0.8rem;
+          text-transform: uppercase; }
+  #food_list #food_list_body {
+    margin: 2px;
+    background: #f7f7f7;
+    display: grid; }
+    #food_list #food_list_body .food_list_item {
+      height: 52px;
+      margin: 0 0 4px 0;
+      background: white;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+      display: grid;
+      grid-template-columns: 82px 1fr 32px; }
+      #food_list #food_list_body .food_list_item .item_created_at {
+        padding: 0 8px 0 8px;
+        background: #fcfcfc;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+        #food_list #food_list_body .food_list_item .item_created_at .item_created_at_time {
+          font-size: 15px; }
+          #food_list #food_list_body .food_list_item .item_created_at .item_created_at_time .item_created_at_period {
+            font-size: 12px; }
+      #food_list #food_list_body .food_list_item .food_list_item_body {
+        display: grid;
+        align-items: center; }
+        #food_list #food_list_body .food_list_item .food_list_item_body .item_name {
+          grid-area: 1/1/1/1;
+          justify-self: start;
+          margin: 0 0 0 8px;
+          text-transform: capitalize; }
+        #food_list #food_list_body .food_list_item .food_list_item_body .item_calories {
+          grid-area: 1/1/1/1;
+          justify-self: end;
+          color: #46a588;
+          background: #fcfcfc; }
+          #food_list #food_list_body .food_list_item .food_list_item_body .item_calories #item_calories_units {
+            font-size: 0.65rem;
+            text-transform: uppercase; }
+      #food_list #food_list_body .food_list_item .item_button {
+        display: flex;
+        justify-content: center;
+        align-items: center; }
