@@ -47,21 +47,23 @@ class Header extends Component {
         {this.props.user ? (
           <div id="header_allowance">
             <span id="header_allowance_value">
-              {`${this.props.user.allowance - consumption}`}
+              {`${this.props.user.allowance - consumption}`}{' '}
+              <span id="header_allowance_units"> cal</span>
             </span>
-            <span id="header_allowance_units"> cal</span>
           </div>
         ) : null}
         {this.props.match.path === '/dashboard' ? (
           <div id="logoutWrap">
-            <button id="logout" onClick={this.logoutHandler}> Logout </button>
+            <button id="logout" onClick={this.logoutHandler}>
+              {' '}
+              Logout{' '}
+            </button>
           </div>
         ) : (
-            <NavLink to="/dashboard">
-              <i className="material-icons">account_circle</i>
-            </NavLink>
-          )}
-
+          <NavLink to="/dashboard">
+            <i className="material-icons">account_circle</i>
+          </NavLink>
+        )}
       </header>
     );
   }

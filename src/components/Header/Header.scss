@@ -1,6 +1,9 @@
 #header {
+  height: 52px;
+
   color: white;
   background: linear-gradient(to right, orange, salmon);
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 
@@ -9,17 +12,17 @@
   }
   #header_logo {
     justify-self: start;
-    margin: 0 0 0 32px;
-    font-size: 18px;
+    margin: 0 0 0 16px;
+    font-size: 1.1rem;
   }
   #header_allowance {
     justify-self: center;
     #header_allowance_value {
-      font-size: 24px;
-    }
-    #header_allowance_units {
-      font-size: 10px;
-      text-transform: uppercase;
+      font-size: 1.4rem;
+      #header_allowance_units {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+      }
     }
   }
   a {
