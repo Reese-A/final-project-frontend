@@ -1,4 +1,5 @@
 #header {
+  height: 52px;
   color: white;
   background: linear-gradient(to right, orange, salmon);
   display: grid;
@@ -7,15 +8,15 @@
     align-self: center; }
   #header #header_logo {
     justify-self: start;
-    margin: 0 0 0 32px;
-    font-size: 18px; }
+    margin: 0 0 0 16px;
+    font-size: 1.1rem; }
   #header #header_allowance {
     justify-self: center; }
     #header #header_allowance #header_allowance_value {
-      font-size: 24px; }
-    #header #header_allowance #header_allowance_units {
-      font-size: 10px;
-      text-transform: uppercase; }
+      font-size: 1.4rem; }
+      #header #header_allowance #header_allowance_value #header_allowance_units {
+        font-size: 0.8rem;
+        text-transform: uppercase; }
   #header a {
     justify-self: end;
     margin: 0 32px 0 0;
