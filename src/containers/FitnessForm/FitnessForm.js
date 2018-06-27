@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { saveFitnessForm } from '../../redux/actions/fitness-form-actions';
 
 import './FitnessForm.css';
@@ -91,6 +93,7 @@ class FitnessForm extends React.Component {
               <button type="click" name="previous" onClick={this.previousPage}>Previous</button>
               <button type="submit" name="next" >Next</button>
             </div>
+            <Link to="/">Back to homepage</Link>
 
           </form>
 

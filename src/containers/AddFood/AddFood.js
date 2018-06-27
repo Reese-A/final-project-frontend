@@ -31,9 +31,9 @@ class AddFood extends React.Component {
     this.searchFood = this.searchFood.bind(this);
     this.addFoodToDish = this.addFoodToDish.bind(this);
   }
-  componentDidMount() { }
+  componentDidMount() {}
 
-  componentDidUpdate(prevProps, prevState) { }
+  componentDidUpdate(prevProps, prevState) {}
 
   toggleForm(event) {
     event.preventDefault();
@@ -113,7 +113,13 @@ class AddFood extends React.Component {
                   data-value={option}
                   onClick={this.searchFood}
                 >
-                  <span className="slide_down_text">{option}</span>
+                  <span
+                    className="slide_down_text"
+                    data-value={option}
+                    onClick={this.searchFood}
+                  >
+                    {option}
+                  </span>
                 </div>
               );
             })}
@@ -153,12 +159,12 @@ class AddFood extends React.Component {
               showLoading={this.showLoading}
             />
           ) : (
-              <SearchForm
-                item={this.state.item}
-                dish={this.state.dish}
-                addFoodToDish={this.addFoodToDish}
-              />
-            )}
+            <SearchForm
+              item={this.state.item}
+              dish={this.state.dish}
+              addFoodToDish={this.addFoodToDish}
+            />
+          )}
 
           {/* Can be made into a Component */}
 
@@ -180,8 +186,8 @@ class AddFood extends React.Component {
               {this.state.showCamera ? (
                 'Search Food'
               ) : (
-                  <i className="material-icons">camera_alt</i>
-                )}
+                <i className="material-icons">camera_alt</i>
+              )}
             </button>
           </div>
         </div>
