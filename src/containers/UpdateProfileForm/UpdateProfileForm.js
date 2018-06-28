@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { updateProfile } from '../../redux/actions/settings-actions';
 
 import './UpdateProfileForm.css';
@@ -40,6 +41,7 @@ class UpdateProfileForm extends React.Component {
       activity_level_id: this.state.activity_level_id
     };
     this.props.updateProfile(this.props.user.user_id, { ...updateObject });
+    this.props.history.push('/dashboard');
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -264,6 +266,6 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps, mapDispatchToProps
-)(UpdateProfileForm);
+)(UpdateProfileForm));

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
+import Header from '../../components/Header/Header';
 
 import { loginGoogle } from '../../redux/actions/settings-actions';
 import { loadGenders } from '../../redux/actions/gender-actions';
@@ -42,6 +43,7 @@ class Settings extends React.Component {
   render() {
     return (
       <div id="settingsWrap">
+        <Header />
         <div id="settingsTitle">Settings</div>
         <UpdateProfileForm />
         <GoogleLogin
