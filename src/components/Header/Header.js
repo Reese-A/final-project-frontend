@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter, Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { loadUser, logoutUser } from '../../redux/actions/user-actions';
@@ -11,7 +11,12 @@ import './Header.css';
 class Header extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showMenu: false
+    };
     this.logoutHandler = this.logoutHandler.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
+    this.hideMenu = this.hideMenu.bind(this);
   }
   componentDidMount() {
     if (this.props.user.id) {
@@ -20,17 +25,25 @@ class Header extends Component {
     }
   }
 
-  logoutHandler(event) {
-    event.preventDefault();
-    this.props.logoutUser();
-    this.props.history.push('/');
-  }
-
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.consumption === this.props.consumption) {
       this.props.loadConsumption();
     }
     this.props.updateDaily(this.props.consumption.calories);
+  }
+
+  toggleMenu(event) {
+    this.setState({ showMenu: !this.state.showMenu });
+  }
+
+  hideMenu(event) {
+    this.setState({ showMenu: false });
+  }
+
+  logoutHandler(event) {
+    event.preventDefault();
+    this.props.logoutUser();
+    this.props.history.push('/');
   }
 
   render() {
@@ -42,7 +55,7 @@ class Header extends Component {
     return (
       <header id="header">
         <div id="header_logo">
-          <NavLink to="/">FitByte</NavLink>
+          <NavLink to="/dashboard">FitByte</NavLink>
         </div>
         {this.props.user ? (
           <div id="header_allowance">
@@ -52,18 +65,35 @@ class Header extends Component {
             </span>
           </div>
         ) : null}
-        {this.props.match.path === '/dashboard' ? (
-          <div id="logoutWrap">
-            <button id="logout" onClick={this.logoutHandler}>
-              {' '}
-              Logout{' '}
-            </button>
+        <div id="header_account_button">
+          <i className="material-icons" onClick={this.toggleMenu}>
+            account_circle
+          </i>
+        </div>
+        <div
+          id="header_menu"
+          className={`${this.state.showMenu ? 'show' : null}`}
+          onClick={this.toggleMenu}
+        >
+          <div id="menu_option_profile" className="menu_option">
+            <Link to="/settings">
+              <span className="menu_option_text">Profile</span>
+            </Link>
           </div>
-        ) : (
-          <NavLink to="/dashboard">
-            <i className="material-icons">account_circle</i>
-          </NavLink>
-        )}
+          <div className="menu_seperator" />
+          <div
+            id="menu_option_logout"
+            className="menu_option"
+            onClick={this.logoutHandler}
+          >
+            <span className="menu_option_text">Logout</span>
+          </div>
+        </div>
+        <div
+          id="header_menu_background"
+          className={`${this.state.showMenu ? 'show' : null}`}
+          onClick={this.hideMenu}
+        />
       </header>
     );
   }
