@@ -38,14 +38,24 @@ export const getCaloriesExpended = () => {
           return res.json();
         })
         .then(data => {
-          const caloriesExpended = data.bucket[0].dataset[0].point[0].value[0].fpVal;    
-          dispatch({
-            type: GET_CALORIES_EXPENDED,
-            caloriesExpended
-          })
+          if (data.bucket[0].dataset[0].point.length === 0) {
+            const caloriesExpended = "No calories burned yet today.";
+            dispatch({
+              type: GET_CALORIES_EXPENDED,
+              caloriesExpended
+            })
+          } else {
+            const caloriesExpended = data.bucket[0].dataset[0].point[0].value[0].fpVal;
+            dispatch({
+              type: GET_CALORIES_EXPENDED,
+              caloriesExpended
+            })
+          }
         })
         .catch(err => {
           console.log(err);
+          err.message = 'Please reconnect your Fit account in Settings.';
+          dispatch({ type: GET_CALORIES_EXPENDED, err})
         })
       })
   }
@@ -66,7 +76,6 @@ export const getTotalSteps = () => {
     return fetch('/api/oauth/google/token', {
       credentials: 'same-origin' })
       .then(res => {
-        console.log('steps res from back', res);
        return res.json()
       })
       .then(token => {
@@ -83,14 +92,24 @@ export const getTotalSteps = () => {
       return res.json();
     })
     .then(data => {
-      const totalSteps = data.bucket[0].dataset[0].point[0].value[0].intVal;
-      dispatch({
-        type: GET_TOTAL_STEPS,
-        totalSteps
-      })
+      if (data.bucket[0].dataset[0].point.length === 0) {
+        const totalSteps = "No steps recorded yet today.";
+        dispatch({
+          type: GET_TOTAL_STEPS,
+          totalSteps
+        })
+      }else{
+        const totalSteps = data.bucket[0].dataset[0].point[0].value[0].intVal;
+        dispatch({
+          type: GET_TOTAL_STEPS,
+          totalSteps
+        })
+      }
     })
     .catch(err => {
       console.log(err);
+      err.message = 'Please reconnect your Fit account in Settings.';
+      dispatch({ type: GET_CALORIES_EXPENDED, err})
     })
   })
   }

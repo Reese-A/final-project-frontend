@@ -12,7 +12,7 @@ import fitness from './fitness-reducers';
 import settings from './settings-reducers';
 import daily from './daily-reducers';
 
-export default combineReducers({
+const appReducer = combineReducers({
   user,
   gender,
   goal,
@@ -25,4 +25,14 @@ export default combineReducers({
   fitness,
   settings,
   daily
-});
+})
+
+const rootReducer = (state, action) => {
+  if (action.type === 'LOGOUT_USER') {
+    state = undefined
+  }
+
+  return appReducer(state, action)
+}
+
+export default rootReducer;

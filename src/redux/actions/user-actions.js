@@ -11,7 +11,6 @@ export const loadUser = id => {
       })
       .then(user => {
         //error handle here (backend --> frontend, display based on status)
-        console.log(user);
         dispatch({ type: LOAD_USER, user });
       })
       .catch(err => {
@@ -40,7 +39,6 @@ export const loginUser = (user, history) => {
         //error handle here
         user.online = true;
         localStorage.setItem('user', JSON.stringify(user));
-        console.log(user);
         dispatch({
           type: LOGIN_USER,
           user
