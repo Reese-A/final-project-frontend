@@ -1,6 +1,9 @@
 #header {
+  height: 52px;
+
   color: white;
   background: linear-gradient(to right, orange, salmon);
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 
@@ -9,18 +12,113 @@
   }
   #header_logo {
     justify-self: start;
-    margin: 0 0 0 32px;
-    font-size: 18px;
+    margin: 0 0 0 16px;
+    font-size: 1.1rem;
   }
   #header_allowance {
     justify-self: center;
     #header_allowance_value {
-      font-size: 24px;
+      font-size: 1.4rem;
+      #header_allowance_units {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+      }
     }
-    #header_allowance_units {
-      font-size: 10px;
-      text-transform: uppercase;
+  }
+
+  #header_account_button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    i {
+      margin: 0 16px 0 0;
     }
+  }
+
+  #header_menu {
+    width: 0px;
+    height: 0px;
+
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    background: white;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    border: none;
+    border-radius: 4px;
+
+    overflow: hidden;
+
+    transition: all 0.1s ease-in-out;
+
+    display: grid;
+    grid-template-rows: 1fr 2px 1fr;
+
+    .menu_option {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      // justify-content: center;
+      align-items: center;
+      a {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        .menu_option_text {
+          margin: 0 0 0 8px;
+
+          font-size: 1.1rem;
+          color: #3d404c;
+        }
+      }
+      .menu_option_text {
+        margin: 0 0 0 8px;
+
+        font-size: 1.1rem;
+        color: #3d404c;
+      }
+    }
+
+    .menu_option:hover {
+      background: #3d404c;
+      transition: all 0.3s ease-in-out;
+      .menu_option_text {
+        color: white;
+      }
+    }
+
+    .menu_seperator {
+      height: 2px;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.05);
+      // box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.25);
+      justify-self: center;
+    }
+  }
+  #header_menu.show {
+    width: 96px;
+    height: 88px;
+    z-index: 2;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+  }
+
+  #header_menu_background {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+  #header_menu_background.show {
+    display: block;
   }
   a {
     justify-self: end;

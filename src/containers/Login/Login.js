@@ -47,10 +47,10 @@ class Login extends React.Component {
           </div>
 
           <button type="submit">Login</button>
+          {this.props.user.err ? (
+            <div id="loginError">{this.props.user.err}</div>
+          ) : null}
         </form>
-        {this.props.user.err ? (
-          <div id="loginError">{this.props.user.err}</div>
-        ) : null}
       </div>
     );
   }

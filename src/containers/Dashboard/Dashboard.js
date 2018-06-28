@@ -44,32 +44,30 @@ class Dashboard extends React.Component {
     return (
       <div id="dashboard">
         <Header />
-        <div id="dashboardWrap">
-          <div id="intake">
-            <div id="calories">
-              Calories Consumed: {this.props.consumption.calories}
-              <CalorieChart />
+        <div id="dashboard_body">
+          <div id="calories">
+            Calories Consumed: {this.props.consumption.calories}
+            <CalorieChart />
+          </div>
+          {macroCheck ? (
+            <div id="chart">
+              <PieChartComponent consumption={this.props.consumption} />
             </div>
-            {macroCheck ? (
-              <div id="chart">
-                <PieChartComponent consumption={this.props.consumption} />
-              </div>
-            ) : null}
-            <br />
-            <FoodList />
-          </div>
-          <div>
-            <GoogleFit />
-          </div>
-          <div>
-            <Link to="/add">Add</Link>
-          </div>
-          <div>
-            <Link to="/settings">Settings</Link>
-          </div>
-          <div>
-            <Footer />
-          </div>
+          ) : null}
+          <br />
+          <FoodList />
+        </div>
+        <div>
+          <GoogleFit />
+        </div>
+        <div>
+          <Link to="/add">Add</Link>
+        </div>
+        <div>
+          <Link to="/settings">Settings</Link>
+        </div>
+        <div>
+          <Footer />
         </div>
       </div>
     );
