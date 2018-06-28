@@ -18,11 +18,31 @@ import './Dashboard.css';
 import PieChartComponent from '../../components/PieChart/PieChart';
 
 class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {
+        google_fit: ''
+      }
+    }
+  }
+
   componentDidMount() {
     this.props.loadUserDishes();
-    this.props.getCaloriesExpended();
     // this.props.loadDaily();
-    this.props.getTotalSteps();
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (state.user.google_fit) return state.user.google_fit;
+
+    const stateChanges = {};
+
+    if (props.user.google_fit) {
+      props.getCaloriesExpended();
+      props.getTotalSteps();
+      stateChanges.google_fit = props.user.google_fit
+    }
+    return stateChanges
   }
 
   render() {
@@ -41,6 +61,7 @@ class Dashboard extends React.Component {
       macroCheck = true;
     }
 
+  
     return (
       <div id="dashboard">
         <Header />
@@ -58,7 +79,10 @@ class Dashboard extends React.Component {
           <FoodList />
         </div>
         <div>
-          <GoogleFit />
+          {this.props.user.google_fit ? (
+            <GoogleFit />
+          ): (<div id="gfit_alert">Google Fit is not enabled.</div>)
+          }
         </div>
         <div>
           <Link to="/add">Add</Link>

@@ -33,12 +33,8 @@ class GoogleFit extends React.Component {
 
     return (
       <div id="googleFitWrap">
-      { this.props.caloriesExpended ? (
         <div id="caloriesExpended">Calories expended:{caloriesExpended}</div>
-      ): ''}
-      { this.props.totalSteps ? (
         <div id="stepsTaken">Steps taken:{stepsTaken}</div>
-      ): ''}
       </div>
     )
   }
