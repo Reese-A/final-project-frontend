@@ -21,13 +21,12 @@ class Dashboard extends React.Component {
   componentDidMount() {
     this.props.loadUserDishes();
     this.props.getCaloriesExpended();
-    // this.props.loadDaily();
+    this.props.loadDaily();
     this.props.getTotalSteps();
   }
 
   render() {
     let currentUser = localStorage.getItem('user');
-    console.log('useruserusuer', currentUser);
     if (!currentUser) {
       return <Redirect to="/" />;
     }
