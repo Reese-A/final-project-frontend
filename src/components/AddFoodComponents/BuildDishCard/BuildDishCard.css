@@ -22,7 +22,7 @@
 #build_dish_card.prompt #build_dish_card_body {
   padding: 0 16px;
   color: rgba(0, 0, 0, 0.5);
-  font-size: 12px; }
+  font-size: 15px; }
 
 #build_dish_card.prompt #build_dish_card_button {
   width: 100%;

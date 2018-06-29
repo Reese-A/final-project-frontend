@@ -37,12 +37,12 @@
           font-size: 20px;
           font-weight: 400; }
         .food_card .food_card_info .food_card_row_name .food_card_info_calories_container .food_card_info_calories_text {
-          font-size: 14px;
+          font-size: 16px;
           text-transform: lowercase; }
     .food_card .food_card_info .food_card_row_serving {
       position: relative;
       top: -8px;
-      font-size: 10px;
+      font-size: 14px;
       color: #46a588; }
       .food_card .food_card_info .food_card_row_serving .food_card_info_seperator {
         font-size: 10px; }
@@ -59,9 +59,9 @@
           .food_card .food_card_info .food_card_row_nutrients .nutrient_container .nutrient_value_container .nutrient_value {
             margin-bottom: 4px; }
           .food_card .food_card_info .food_card_row_nutrients .nutrient_container .nutrient_value_container .nutrient_units {
-            font-size: 10px; }
+            font-size: 14px; }
         .food_card .food_card_info .food_card_row_nutrients .nutrient_container .nutrient_text {
-          font-size: 10px; }
+          font-size: 16px; }
       .food_card .food_card_info .food_card_row_nutrients .vert_seperator {
         width: 1px;
         height: 80%;
@@ -70,4 +70,4 @@
   .food_card .food_card_per_serving {
     align-self: end;
     text-align: end;
-    font-size: 9px; }
+    font-size: 14px; }
