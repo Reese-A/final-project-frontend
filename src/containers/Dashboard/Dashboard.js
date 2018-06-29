@@ -21,10 +21,24 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      chart: 'line',
       user: {
         google_fit: ''
       }
     };
+
+    this.toggleChart = this.toggleChart.bind(this);
+  }
+
+  toggleChart() {
+    if (this.state.chart === 'line') {
+      return this.setState({
+        chart: 'pie'
+      });
+    }
+    return this.setState({
+      chart: 'line'
+    });
   }
 
   componentDidMount() {
@@ -67,10 +81,15 @@ class Dashboard extends React.Component {
         <Header />
         <div id="dashboard_body">
           <div id="calories">
-            Calories Consumed: {this.props.consumption.calories}
-            <CalorieChart />
+            <div id="calories_consumed">
+              Calories Consumed: {this.props.consumption.calories}
+            </div>
+            <button id="chart_toggle" onClick={this.toggleChart}>
+              Change Charts
+            </button>
+            {this.state.chart === 'line' ? <CalorieChart /> : null}
           </div>
-          {macroCheck ? (
+          {this.state.chart === 'pie' && macroCheck ? (
             <div id="chart">
               <PieChartComponent consumption={this.props.consumption} />
             </div>
