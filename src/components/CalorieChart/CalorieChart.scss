@@ -1,0 +1,13 @@
+#chart_wrapper {
+  width: 100%;
+  height: 60vh;
+  #chart_cover {
+    z-index: 1;
+    width: 100%;
+    height: 60vh;
+    position: absolute;
+  }
+  #calorie_chart {
+    z-index: 0;
+  }
+}
