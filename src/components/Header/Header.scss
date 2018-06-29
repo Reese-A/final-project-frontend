@@ -104,9 +104,9 @@
   #header_menu.show {
     width: 96px;
     height: 88px;
-    z-index: 2;
+    z-index: 3;
     opacity: 1;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.1s ease-in-out;
   }
 
   #header_menu_background {
@@ -119,6 +119,7 @@
   }
   #header_menu_background.show {
     display: block;
+    z-index: 2;
   }
   a {
     justify-self: end;
