@@ -69,13 +69,13 @@ class Dashboard extends React.Component {
 
     let macroCheck = false;
     if (
-      this.props.consumption.fat &&
-      this.props.consumption.carb &&
+      this.props.consumption.fat ||
+      this.props.consumption.carb ||
       this.props.consumption.protein
     ) {
       macroCheck = true;
     }
-
+    console.log(macroCheck);
     return (
       <div id="dashboard">
         <Header />
