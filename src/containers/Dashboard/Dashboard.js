@@ -84,9 +84,6 @@ class Dashboard extends React.Component {
             <div id="calories_consumed">
               Calories Consumed: {this.props.consumption.calories}
             </div>
-            <button id="chart_toggle" onClick={this.toggleChart}>
-              Change Charts
-            </button>
             {this.state.chart === 'line' ? <CalorieChart /> : null}
           </div>
           {this.state.chart === 'pie' && macroCheck ? (
@@ -94,6 +91,9 @@ class Dashboard extends React.Component {
               <PieChartComponent consumption={this.props.consumption} />
             </div>
           ) : null}
+          <button id="chart_toggle" onClick={this.toggleChart}>
+            Switch Charts
+          </button>
           <br />
           <FoodList />
         </div>
