@@ -1,61 +1,63 @@
 import React from 'react';
-import { Line } from 'react-chartjs-2';
 import { connect } from 'react-redux';
+import { VictoryLine, VictoryChart, VictoryTheme } from 'victory';
 
-import { loadConsumption } from '../../redux/actions/dishes-actions';
 import './CalorieChart.css';
 
+const moment = require('moment');
+
 class CalorieChart extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.consumption === this.props.consumption) {
-  //     this.props.loadConsumption();
-  //   }
-  // }
-
   render() {
-    const data = this.props.daily
-      ? {
-          labels: this.props.daily.tracked_calories,
-          datasets: [
-            {
-              label: 'Total Calories Consumed Today',
-              fill: true,
-              borderColor: 'rgba(255,165,0,0.8)',
-              backgroundColor: 'rgba(250,128,114,0.4)',
-              data: this.props.daily.tracked_calories
-            }
-          ]
-        }
-      : {
-          datasets: [
-            {
-              label: 'Total Calories Consumed Today',
-              fill: true,
-              borderColor: 'rgba(255,165,0,0.8)',
-              backgroundColor: 'rgba(250,128,114,0.4)',
-              data: []
-            }
-          ]
-        };
+    const data =
+      Object.keys(this.props.daily).length > 0
+        ? this.props.daily.tracked_calories
+        : [];
+    const labels =
+      Object.keys(this.props.daily).length > 0
+        ? this.props.daily.tracked_calories
+        : [];
+    const max = this.props.user.allowance ? this.props.user.allowance : 2000;
+    const times =
+      Object.keys(this.props.daily).length > 0
+        ? this.props.daily.tracked_times.map(time => {
+            return moment(Number(time)).toDate();
+          })
+        : [];
+    const formatData = [];
+    for (let i = 0; i < data.length; i++) {
+      formatData.push({ x: times[i], y: data[i] });
+    }
+    const start = moment(Date.now())
+      .subtract(2, 'hours')
+      .toDate();
+    // .setHours(18);
+    const end = moment(Date.now())
+      .add(2, 'hours')
+      .toDate();
+    console.log(start);
     return (
-      <Line
-        data={data}
-        width={350}
-        height={300}
-        options={
-          {
-            // scales: {
-            //   yAxes: [
-            //     { ticks: { suggestedMax: this.props.user.allowance, min: 0 } }
-            //   ]
-            // }
-          }
-        }
-      />
+      <div id="chart_wrapper">
+        <div id="chart_cover" />
+        <VictoryChart
+          id="calorie_chart"
+          domain={{ x: [start, end], y: [0, max] }}
+          animate={{ duration: 500, onLoad: { duration: 500 } }}
+          theme={VictoryTheme.material}
+          scale={{ x: 'time' }}
+        >
+          <VictoryLine
+            labels={labels}
+            data={formatData}
+            style={{
+              data: {
+                stroke: '#FA8072',
+                strokeWidth: 3,
+                strokeLinecap: 'round'
+              }
+            }}
+          />
+        </VictoryChart>
+      </div>
     );
   }
 }
@@ -63,20 +65,11 @@ class CalorieChart extends React.Component {
 const mapStateToProps = state => {
   return {
     daily: state.daily,
-    user: state.user,
-    consumption: state.consumption
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    loadConsumption: () => {
-      dispatch(loadConsumption());
-    }
+    user: state.user
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(CalorieChart);

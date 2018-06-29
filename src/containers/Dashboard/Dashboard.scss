@@ -1,24 +1,42 @@
-button {
-  padding: unset;
-  color: unset;
-  background: unset;
-  border: unset;
-  border-radius: unset;
-  box-shadow: unset;
-  min-width: unset;
-  max-width: unset;
-  height: unset;
-  margin: unset;
-}
-
 #dashboard {
   display: grid;
+  button {
+    padding: unset;
+    color: unset;
+    background: unset;
+    border: unset;
+    border-radius: unset;
+    box-shadow: unset;
+    min-width: unset;
+    max-width: unset;
+    height: unset;
+    margin: unset;
+  }
+  #chart_toggle {
+    padding: 8px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    min-width: 100px;
+    max-width: 300px;
+    height: 50px;
+    margin: 10px;
+    font-size: 15px;
+  }
   #header {
   }
 
   #dashboard_body {
     color: #3d404c;
-
+    text-align: center;
     overflow: hidden;
+    #calories {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+      font-size: 20px;
+    }
   }
 }

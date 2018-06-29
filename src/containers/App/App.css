@@ -58,7 +58,8 @@ input {
   width: 90%;
   height: 24px;
   border: 1px solid black;
-  border-radius: 8px; }
+  border-radius: 8px;
+  padding-left: 5px; }
 
 input:valid {
   background-color: rgba(35, 220, 61, 0.5); }

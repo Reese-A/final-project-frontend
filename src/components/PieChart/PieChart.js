@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Pie } from 'react-chartjs-2';
 
+import './PieChart.css';
 class PieChartComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +30,7 @@ class PieChartComponent extends React.Component {
       ]
     };
 
-    return <Pie data={data} width={350} height={300} />;
+    return <Pie id="pie" data={data} width={350} height={300} />;
   }
 }
 

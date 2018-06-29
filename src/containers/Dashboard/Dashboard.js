@@ -21,15 +21,31 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      chart: 'line',
       user: {
         google_fit: ''
       }
+    };
+
+    this.toggleChart = this.toggleChart.bind(this);
+  }
+
+  toggleChart() {
+    if (this.state.chart === 'line') {
+      return this.setState({
+        chart: 'pie'
+      });
     }
+    return this.setState({
+      chart: 'line'
+    });
   }
 
   componentDidMount() {
     this.props.loadUserDishes();
-    // this.props.loadDaily();
+    this.props.getCaloriesExpended();
+    this.props.loadDaily();
+    this.props.getTotalSteps();
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -40,14 +56,13 @@ class Dashboard extends React.Component {
     if (props.user.google_fit) {
       props.getCaloriesExpended();
       props.getTotalSteps();
-      stateChanges.google_fit = props.user.google_fit
+      stateChanges.google_fit = props.user.google_fit;
     }
-    return stateChanges
+    return stateChanges;
   }
 
   render() {
     let currentUser = localStorage.getItem('user');
-    console.log('useruserusuer', currentUser);
     if (!currentUser) {
       return <Redirect to="/" />;
     }
@@ -61,28 +76,33 @@ class Dashboard extends React.Component {
       macroCheck = true;
     }
 
-  
     return (
       <div id="dashboard">
         <Header />
         <div id="dashboard_body">
           <div id="calories">
-            Calories Consumed: {this.props.consumption.calories}
-            <CalorieChart />
+            <div id="calories_consumed">
+              Calories Consumed: {this.props.consumption.calories}
+            </div>
+            {this.state.chart === 'line' ? <CalorieChart /> : null}
           </div>
-          {macroCheck ? (
+          {this.state.chart === 'pie' && macroCheck ? (
             <div id="chart">
               <PieChartComponent consumption={this.props.consumption} />
             </div>
           ) : null}
+          <button id="chart_toggle" onClick={this.toggleChart}>
+            Switch Charts
+          </button>
           <br />
           <FoodList />
         </div>
         <div>
           {this.props.user.google_fit ? (
             <GoogleFit />
-          ): (<div id="gfit_alert">Google Fit is not enabled.</div>)
-          }
+          ) : (
+            <div id="gfit_alert">Google Fit is not enabled.</div>
+          )}
         </div>
         <div>
           <Link to="/add">Add</Link>

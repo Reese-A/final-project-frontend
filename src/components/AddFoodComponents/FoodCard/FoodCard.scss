@@ -44,7 +44,7 @@
           font-weight: 400;
         }
         .food_card_info_calories_text {
-          font-size: 14px;
+          font-size: 16px;
           text-transform: lowercase;
         }
       }
@@ -53,7 +53,7 @@
       position: relative;
       top: -8px;
 
-      font-size: 10px;
+      font-size: 14px;
       color: #46a588;
       .food_card_info_seperator {
         font-size: 10px;
@@ -73,11 +73,11 @@
             margin-bottom: 4px;
           }
           .nutrient_units {
-            font-size: 10px;
+            font-size: 14px;
           }
         }
         .nutrient_text {
-          font-size: 10px;
+          font-size: 16px;
         }
       }
       .vert_seperator {
@@ -91,6 +91,6 @@
   .food_card_per_serving {
     align-self: end;
     text-align: end;
-    font-size: 9px;
+    font-size: 14px;
   }
 }
