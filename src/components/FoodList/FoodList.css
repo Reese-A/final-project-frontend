@@ -11,7 +11,6 @@
       font-size: 1.5rem; }
   #food_list #food_list_navbar {
     height: 52px;
-    margin: 0 0 8px 0;
     color: white;
     background: linear-gradient(to right, #ffd07b, #fa8090);
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
@@ -42,7 +41,6 @@
           font-size: 0.8rem;
           text-transform: uppercase; }
   #food_list #food_list_body {
-    margin: 2px;
     background: #f7f7f7;
     display: grid; }
     #food_list #food_list_body .food_list_item {
@@ -82,3 +80,10 @@
         display: flex;
         justify-content: center;
         align-items: center; }
+    #food_list #food_list_body #food_list_empty {
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      #food_list #food_list_body #food_list_empty #empty_message {
+        font-size: 1.2rem; }

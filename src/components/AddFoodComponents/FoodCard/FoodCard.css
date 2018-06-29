@@ -2,7 +2,7 @@
   min-width: 250px;
   height: fit-content;
   display: grid;
-  grid-template-rows: 84px 144px;
+  grid-template-rows: 84px 164px;
   margin: 24px 16px;
   background: white;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
@@ -22,7 +22,7 @@
     .food_card .food_card_info .food_card_row_name {
       display: grid;
       grid-template-columns: 65% 35%;
-      font-size: 20px;
+      font-size: 1.5rem;
       text-transform: capitalize; }
       .food_card .food_card_info .food_card_row_name .food_card_info_name {
         font-weight: 400;
@@ -34,19 +34,20 @@
         color: #46a588;
         font-weight: 400; }
         .food_card .food_card_info .food_card_row_name .food_card_info_calories_container .food_card_info_calories {
-          font-size: 20px;
+          font-size: 1.5rem;
           font-weight: 400; }
         .food_card .food_card_info .food_card_row_name .food_card_info_calories_container .food_card_info_calories_text {
           font-size: 16px;
           text-transform: lowercase; }
     .food_card .food_card_info .food_card_row_serving {
       position: relative;
-      top: -8px;
-      font-size: 14px;
+      top: -6px;
+      font-size: 0.8rem;
       color: #46a588; }
       .food_card .food_card_info .food_card_row_serving .food_card_info_seperator {
         font-size: 10px; }
     .food_card .food_card_info .food_card_row_nutrients {
+      margin: 12px 0;
       display: flex;
       justify-content: space-evenly;
       align-items: center; }
@@ -59,9 +60,9 @@
           .food_card .food_card_info .food_card_row_nutrients .nutrient_container .nutrient_value_container .nutrient_value {
             margin-bottom: 4px; }
           .food_card .food_card_info .food_card_row_nutrients .nutrient_container .nutrient_value_container .nutrient_units {
-            font-size: 14px; }
+            font-size: 1.1rem; }
         .food_card .food_card_info .food_card_row_nutrients .nutrient_container .nutrient_text {
-          font-size: 16px; }
+          font-size: 0.9rem; }
       .food_card .food_card_info .food_card_row_nutrients .vert_seperator {
         width: 1px;
         height: 80%;
@@ -70,4 +71,4 @@
   .food_card .food_card_per_serving {
     align-self: end;
     text-align: end;
-    font-size: 14px; }
+    font-size: 0.8rem; }
