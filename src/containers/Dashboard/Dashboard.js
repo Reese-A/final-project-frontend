@@ -94,8 +94,15 @@ class Dashboard extends React.Component {
           <button id="chart_toggle" onClick={this.toggleChart}>
             Switch Charts
           </button>
-          <br />
+
+          <div className="horizontal_seperator" />
           <FoodList />
+        </div>
+
+        <div id="add_meal_button">
+          <Link to="/add">
+            <span id="add_meal_text">Add</span>
+          </Link>
         </div>
         <div>
           {this.props.user.google_fit ? (
@@ -104,9 +111,7 @@ class Dashboard extends React.Component {
             <div id="gfit_alert">Google Fit is not enabled.</div>
           )}
         </div>
-        <div>
-          <Link to="/add">Add</Link>
-        </div>
+
         <div>
           <Link to="/settings">Settings</Link>
         </div>

@@ -23,6 +23,11 @@
     height: 50px;
     margin: 10px;
     font-size: 15px; }
+  #dashboard .horizontal_seperator {
+    width: 100vw;
+    height: 2px;
+    margin: 32px 0 12px 0;
+    background: rgba(0, 0, 0, 0.08); }
   #dashboard #dashboard_body {
     color: #3d404c;
     text-align: center;
@@ -32,3 +37,25 @@
       margin-bottom: 10px;
       text-align: center;
       font-size: 20px; }
+  #dashboard #add_meal_button {
+    box-shadow: 0 -3px 10px 0 rgba(0, 0, 0, 0.15);
+    display: grid; }
+    #dashboard #add_meal_button a {
+      justify-self: center;
+      align-self: center;
+      width: 72px;
+      margin: 16px 0;
+      padding: 12px 8px;
+      border-radius: 8px;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease-in-out;
+      display: grid; }
+      #dashboard #add_meal_button a #add_meal_text {
+        justify-self: center;
+        align-self: center; }
+    #dashboard #add_meal_button a:visited {
+      color: white; }
+    #dashboard #add_meal_button a:hover {
+      background: linear-gradient(to right, orange, salmon);
+      transition: all 0.3s ease-in-out; }
