@@ -72,10 +72,8 @@ class FoodList extends React.Component {
         end: endOfDay
       };
 
-      console.log(this.state);
       const meals = this.props.dishes.reduce((meals, dish) => {
         let meal = '';
-        console.log(meals);
 
         meals.all.dishes[dish.created_at] = dish;
         meals.all.calories = meals.all.calories + Number(dish.calories);
@@ -89,7 +87,6 @@ class FoodList extends React.Component {
         if (moment(dish.created_at).isBetween(dinner.start, dinner.end)) {
           meal = 'dinner';
         }
-        console.log(meal);
         meals[meal].dishes[dish.created_at] = dish;
         meals[meal].calories = meals[meal].calories + Number(dish.calories);
         meal = '';
@@ -97,10 +94,7 @@ class FoodList extends React.Component {
         return meals;
       }, this.state.meals);
       meals.ready = true;
-      console.log(meals);
-      this.setState({ meals }, () => {
-        console.log(this.state);
-      });
+      this.setState({ meals }, () => {});
     }
   }
 
@@ -108,21 +102,13 @@ class FoodList extends React.Component {
     this.setState({ meal: meals['all'] });
   }
   handleFilterPrev(event) {
-    console.log('prev');
     this.setState({ meal: meals[this.state.meal.prev] });
   }
   handleFilterNext(event) {
-    console.log('next');
     this.setState({ meal: meals[this.state.meal.next] });
   }
 
   render() {
-    console.log(this.state.meal.prev);
-    console.log(!this.state.meal.prev);
-    console.log(!!this.state.meal.prev);
-
-    console.log(this.state.meal);
-    console.log(Object.values(this.state.meals[this.state.meal.value]));
     return (
       <div id="food_list">
         <div id="food_list_header">
@@ -157,92 +143,43 @@ class FoodList extends React.Component {
           </div>
         </div>
         <div id="food_list_body">
-          {this.state.meals.ready
-            ? Object.values(this.state.meals[this.state.meal.value].dishes).map(
-                (dish, index) => {
-                  return (
-                    <div className="food_list_item" key={index}>
-                      <div className="item_created_at">
-                        <span className="item_created_at_time">
-                          {moment(dish.created_at).format('h:mm')}{' '}
-                          <span className="item_created_at_period">
-                            {moment(dish.created_at).format('a')}
-                          </span>
+          {this.state.meals.ready ? (
+            Object.values(this.state.meals[this.state.meal.value].dishes).map(
+              (dish, index) => {
+                return (
+                  <div className="food_list_item" key={index}>
+                    <div className="item_created_at">
+                      <span className="item_created_at_time">
+                        {moment(dish.created_at).format('h:mm')}{' '}
+                        <span className="item_created_at_period">
+                          {moment(dish.created_at).format('a')}
                         </span>
-                      </div>
-                      <div className="food_list_item_body">
-                        <span className="item_name">{dish.name}</span>
-                        <span className="item_calories">
-                          {Number(dish.calories)}{' '}
-                          <span id="item_calories_units">cal</span>
-                        </span>
-                      </div>
-                      <div className="item_button">
-                        <button>
-                          <i className="material-icons">more_vert</i>
-                        </button>
-                      </div>
+                      </span>
                     </div>
-                  );
-                }
-              )
-            : null}
+                    <div className="food_list_item_body">
+                      <span className="item_name">{dish.name}</span>
+                      <span className="item_calories">
+                        {Number(dish.calories)}{' '}
+                        <span id="item_calories_units">cal</span>
+                      </span>
+                    </div>
+                    <div className="item_button">
+                      <button>
+                        <i className="material-icons">more_vert</i>
+                      </button>
+                    </div>
+                  </div>
+                );
+              }
+            )
+          ) : (
+            <div id="food_list_empty">
+              <span id="empty_message">No meals added today</span>
+            </div>
+          )}
         </div>
       </div>
     );
-    // console.log(this.props.dishes);
-    // return (
-    //   <div id="foods_list">
-    //     <div id="list_title">Today's dishes</div>
-    //     {this.props.dishes.length > 0 ? (
-    //       this.props.dishes.map(dish => {
-    //         return (
-    //           <div className="dish_wrap" key={dish.id}>
-    //             <div className="dish_name" key={dish.name}>
-    //               {dish.name}
-    //             </div>
-    //             <div className="food_wrap" key={dish.id}>
-    //               {dish.ingredients.map(ingredient => {
-    //                 return (
-    //                   <div className="ingredients_wrap" key={ingredient.id}>
-    //                     <div className="ingredient_name" key={ingredient.name}>
-    //                       {ingredient.name}
-    //                     </div>
-    //                     <div
-    //                       className="ingredient_servings"
-    //                       key={ingredient._pivot_servings}
-    //                     >
-    //                       Servings: {ingredient._pivot_servings}{' '}
-    //                     </div>
-    //                     <li
-    //                       className="nutrients_item"
-    //                       key={ingredient.calories}
-    //                     >
-    //                       Calories: {ingredient.calories}
-    //                     </li>
-    //                     <li className="nutrients_item" key={ingredient.fat}>
-    //                       Fat: {ingredient.fat}g
-    //                     </li>
-    //                     <li className="nutrients_item" key={ingredient.carb}>
-    //                       Carbs: {ingredient.carb}g
-    //                     </li>
-    //                     <li className="nutrients_item" key={ingredient.protein}>
-    //                       Protein: {ingredient.protein}g
-    //                     </li>
-    //                   </div>
-    //                 );
-    //               })}
-    //             </div>
-    //           </div>
-    //         );
-    //       })
-    //     ) : (
-    //         <div id="no_dishes">
-    //           No dishes yet! Add some food to see your tracked dishes.
-    //       </div>
-    //       )}
-    //   </div>
-    // );
   }
 }
 
