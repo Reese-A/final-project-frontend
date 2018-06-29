@@ -9,19 +9,27 @@ class Footer extends React.Component {
     super(props);
     this.state = {};
   }
-  componentDidMount() { }
+  componentDidMount() {}
 
   render() {
-
     return (
       <div id="footer">
         {this.props.user.default_profile ? (
-          <div id="footer_text_wrap">
-            <div id="footer_text">We noticed that you're currently using a default physical profile. To ensure that you get the most accurate user experience possible from FitByte, please update your profile in Settings. </div>
-            <NavLink to="/settings">
-              Go to Settings
-      </NavLink>
-          </div>) : null}
+          <div id="alert">
+            <div id="alert_header" />
+            <div id="alert_body">
+              <div id="alert_text">
+                We noticed that you're currently using a default physical
+                profile. To ensure that you get the most accurate user
+                experience possible from FitByte, please update your profile in
+                Settings.
+              </div>
+            </div>
+            <div id="alert_button">
+              <NavLink to="/settings">Go to Settings</NavLink>
+            </div>
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -33,4 +41,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, null)(Footer));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    null
+  )(Footer)
+);

@@ -11,6 +11,8 @@ import GoogleFit from '../GoogleFit/GoogleFit';
 
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+import Alert from '../../components/Alert/Alert';
+
 import FoodList from '../../components/FoodList/FoodList';
 import CalorieChart from '../../components/CalorieChart/CalorieChart';
 
@@ -79,6 +81,8 @@ class Dashboard extends React.Component {
     return (
       <div id="dashboard">
         <Header />
+        {this.props.user.default_profile ? <Alert /> : null}
+
         <div id="dashboard_body">
           <div id="calories">
             <div id="calories_consumed">
@@ -112,12 +116,12 @@ class Dashboard extends React.Component {
           )}
         </div>
 
-        <div>
+        {/* <div>
           <Link to="/settings">Settings</Link>
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <Footer />
-        </div>
+        </div> */}
       </div>
     );
   }

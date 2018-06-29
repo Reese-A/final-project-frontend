@@ -1,0 +1,24 @@
+#alert {
+  z-index: 2;
+  margin: 8px;
+  padding: 16px;
+  background: white;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 8px; }
+  #alert #alert_header {
+    margin: 8px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr; }
+    #alert #alert_header #alert_header_text {
+      align-self: center;
+      font-size: 1.3rem; }
+    #alert #alert_header #alert_header_close {
+      justify-self: end;
+      align-self: start; }
+  #alert #alert_body {
+    margin: 16px 0; }
+  #alert #alert_button a:visited {
+    color: black; }
+
+#alert.hide {
+  display: none; }

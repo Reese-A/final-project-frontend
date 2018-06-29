@@ -59,3 +59,6 @@
     #dashboard #add_meal_button a:hover {
       background: linear-gradient(to right, orange, salmon);
       transition: all 0.3s ease-in-out; }
+  #dashboard #alert {
+    position: absolute;
+    top: 0px; }
