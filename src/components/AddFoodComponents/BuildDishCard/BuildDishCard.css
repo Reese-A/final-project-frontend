@@ -17,12 +17,13 @@
 #build_dish_card.prompt #build_dish_card_header {
   padding: 16px 16px 0 16px;
   color: rgba(0, 0, 0, 0.75);
-  font-size: 22px; }
+  font-size: 1.4rem; }
 
 #build_dish_card.prompt #build_dish_card_body {
+  margin: 8px 0;
   padding: 0 16px;
   color: rgba(0, 0, 0, 0.5);
-  font-size: 15px; }
+  font-size: 0.9rem; }
 
 #build_dish_card.prompt #build_dish_card_button {
   width: 100%;
@@ -34,7 +35,8 @@
   #build_dish_card.prompt #build_dish_card_button #build_dish_card_button_text {
     justify-self: center;
     align-self: center;
-    font-size: 22px; }
+    margin: 4px 0;
+    font-size: 1.4rem; }
 
 #build_dish_card.prompt #build_dish_card_button:hover {
   color: white;
