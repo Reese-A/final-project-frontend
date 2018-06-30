@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import './GoogleFit.css'
+
 class GoogleFit extends React.Component {
   constructor(props) {
     super(props);
@@ -26,15 +28,16 @@ class GoogleFit extends React.Component {
 
   render() {
     const stepsTaken = this.state.totalSteps ? this.state.totalSteps : null
-
-    const caloriesExpended = 
-    this.state.caloriesExpended ?
-    this.state.caloriesExpended : null
-
+    const caloriesExpended =
+      this.state.caloriesExpended ?
+        this.state.caloriesExpended : null
     return (
-      <div id="googleFitWrap">
-        <div id="caloriesExpended">Calories expended:{caloriesExpended}</div>
-        <div id="stepsTaken">Steps taken:{stepsTaken}</div>
+      <div id="google_fit_wrap">
+        <div id="google_fit_header">
+        <span id="google_fit_header_text">Today's Google Fit Data</span>
+        </div>
+          <div id="caloriesExpended">Calories expended: {caloriesExpended}</div>
+          <div id="stepsTaken">Steps taken: {stepsTaken}</div>
       </div>
     )
   }

@@ -39,13 +39,13 @@ export const getCaloriesExpended = () => {
         })
         .then(data => {
           if (data.bucket[0].dataset[0].point.length === 0) {
-            const caloriesExpended = "No calories burned yet today.";
+            const caloriesExpended = "No Data.";
             dispatch({
               type: GET_CALORIES_EXPENDED,
               caloriesExpended
             })
           } else {
-            const caloriesExpended = data.bucket[0].dataset[0].point[0].value[0].fpVal;
+            const caloriesExpended = Math.round(data.bucket[0].dataset[0].point[0].value[0].fpVal);
             dispatch({
               type: GET_CALORIES_EXPENDED,
               caloriesExpended
@@ -93,7 +93,7 @@ export const getTotalSteps = () => {
     })
     .then(data => {
       if (data.bucket[0].dataset[0].point.length === 0) {
-        const totalSteps = "No steps recorded yet today.";
+        const totalSteps = "No data.";
         dispatch({
           type: GET_TOTAL_STEPS,
           totalSteps

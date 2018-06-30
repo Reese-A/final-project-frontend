@@ -1,0 +1,10 @@
+#google_fit_wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 200px;
+  justify-content: space-evenly; }
+  #google_fit_wrap #google_fit_header {
+    font-size: 1.5rem; }
+  #google_fit_wrap #no_data_message {
+    font-size: 1.2rem; }
