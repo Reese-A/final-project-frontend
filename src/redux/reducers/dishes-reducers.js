@@ -13,7 +13,12 @@ const initialState = {};
 export const dishes = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_USER_DISHES:
-      return action.dishes;
+      const dishes = action.dishes.reduce((dishes, dish) => {
+        dishes[dish.id] = dish;
+        return dishes;
+      }, {});
+      return dishes;
+    // return action.dishes;
     default:
       return state;
   }

@@ -10,7 +10,7 @@ import { loadDaily } from '../../redux/actions/daily-actions';
 import GoogleFit from '../GoogleFit/GoogleFit';
 
 import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
+// import Footer from '../../components/Footer/Footer';
 import Alert from '../../components/Alert/Alert';
 
 import FoodList from '../../components/FoodList/FoodList';
@@ -30,6 +30,7 @@ class Dashboard extends React.Component {
     };
 
     this.toggleChart = this.toggleChart.bind(this);
+    this.routeToDish = this.routeToDish.bind(this);
   }
 
   toggleChart() {
@@ -63,6 +64,11 @@ class Dashboard extends React.Component {
     return stateChanges;
   }
 
+  routeToDish(event, id) {
+    console.log(this.props);
+    this.props.history.push(`/dish/${id}`);
+  }
+
   render() {
     let currentUser = localStorage.getItem('user');
     if (!currentUser) {
@@ -77,7 +83,6 @@ class Dashboard extends React.Component {
     ) {
       macroCheck = true;
     }
-    console.log(macroCheck);
     return (
       <div id="dashboard">
         <Header />
@@ -100,7 +105,7 @@ class Dashboard extends React.Component {
           </button>
 
           <div className="horizontal_seperator" />
-          <FoodList />
+          <FoodList routeToDish={this.routeToDish} />
         </div>
 
         <div id="add_meal_button">

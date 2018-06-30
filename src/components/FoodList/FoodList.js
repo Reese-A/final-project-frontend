@@ -34,7 +34,7 @@ class FoodList extends React.Component {
   componentDidMount() {}
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (!this.props.dishes.length) return;
+    if (!Object.values(this.props.dishes).length) return;
     if (!this.state.meals.ready) {
       const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
       const startOfDay = moment()
@@ -72,7 +72,7 @@ class FoodList extends React.Component {
         end: endOfDay
       };
 
-      const meals = this.props.dishes.reduce((meals, dish) => {
+      const meals = Object.values(this.props.dishes).reduce((meals, dish) => {
         let meal = '';
 
         meals.all.dishes[dish.created_at] = dish;
@@ -156,7 +156,10 @@ class FoodList extends React.Component {
                         </span>
                       </span>
                     </div>
-                    <div className="food_list_item_body">
+                    <div
+                      className="food_list_item_body"
+                      onClick={event => this.props.routeToDish(event, dish.id)}
+                    >
                       <span className="item_name">{dish.name}</span>
                       <span className="item_calories">
                         {Number(dish.calories)}{' '}
