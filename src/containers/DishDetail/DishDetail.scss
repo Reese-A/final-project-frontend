@@ -1,0 +1,257 @@
+#dish_detail {
+  button {
+    padding: unset;
+    color: unset;
+    background: unset;
+    border: unset;
+    border-radius: unset;
+    box-shadow: unset;
+    min-width: unset;
+    max-width: unset;
+    height: unset;
+    margin: unset;
+  }
+
+  display: flex;
+  flex-direction: column;
+
+  #dish_detail_header {
+    height: 192px;
+    background: #3d404c;
+
+    display: grid;
+    #dish_detail_image {
+      grid-area: 1/1/1/1;
+      justify-self: center;
+      align-self: center;
+      width: 144px;
+      height: 144px;
+      border-radius: 50%;
+
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+    }
+    #dish_detail_menu {
+      grid-area: 1/1/1/1;
+      justify-self: end;
+      align-self: start;
+
+      margin: 16px 16px 0 0;
+
+      color: white;
+    }
+  }
+
+  #dish_detail_info {
+    grid-area: 2/1/2/1;
+    height: 144px;
+    padding: 16px 16px 12px 16px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+    display: grid;
+    .dish_detail_row_name {
+      display: grid;
+      grid-template-columns: 65% 35%;
+      font-size: 1.5rem;
+      text-transform: capitalize;
+      .dish_detail_info_name {
+        font-weight: 400;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .dish_detail_info_calories_container {
+        justify-self: end;
+        color: #46a588;
+        font-weight: 400;
+        .dish_detail_info_calories {
+          font-size: 1.5rem;
+          font-weight: 400;
+        }
+        .dish_detail_info_calories_text {
+          font-size: 16px;
+          text-transform: lowercase;
+        }
+      }
+    }
+    .dish_detail_row_serving {
+      position: relative;
+      top: -6px;
+
+      font-size: 0.8rem;
+      color: #46a588;
+      .dish_detail_info_seperator {
+        font-size: 10px;
+      }
+    }
+    .dish_detail_row_nutrients {
+      margin: 12px 0;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      .nutrient_container {
+        display: grid;
+        justify-content: center;
+        text-align: center;
+        .nutrient_value_container {
+          color: #46a588;
+          .nutrient_value {
+            margin-bottom: 4px;
+          }
+          .nutrient_units {
+            font-size: 1.1rem;
+          }
+        }
+        .nutrient_text {
+          font-size: 0.9rem;
+        }
+      }
+      .vert_seperator {
+        width: 1px;
+        height: 80%;
+        background: rgba(192, 198, 198, 0.25);
+        padding: 4px 0;
+      }
+    }
+  }
+  #dish_detail_footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    .dish_detail_creator {
+      // grid-area: 1/1/1/1;
+      justify-self: start;
+      align-self: end;
+      font-size: 0.8rem;
+    }
+    .dish_detail_per_dish {
+      // grid-area: 1/1/1/1;
+      justify-self: end;
+      align-self: end;
+      font-size: 0.8rem;
+    }
+  }
+
+  #dish_detail_ingredients {
+    display: flex;
+    flex-direction: column;
+
+    #dish_detail_ingredients_header {
+      height: 52px;
+
+      color: white;
+      background: linear-gradient(to right, #ffd07b, #fa8090);
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+
+      display: grid;
+      #ingredients_header_text {
+        justify-self: center;
+        align-self: center;
+
+        font-size: 1.4rem;
+      }
+    }
+
+    #dish_detail_ingredients_body {
+      padding: 16px;
+      color: rgba(0, 0, 0, 0.5);
+
+      font-size: 12px;
+
+      display: flex;
+      flex-direction: column;
+
+      .ingredients_item {
+        height: 68px;
+
+        display: grid;
+        grid-template-columns: 64px 1fr 64px;
+
+        margin: 0 0 4px 0;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);
+
+        .ingredients_item_serving_container {
+          height: 100%;
+          width: 100%;
+
+          background: rgba(252, 252, 252, 1);
+
+          display: grid;
+          // justify-content: center;
+          // align-items: center;
+
+          button {
+            height: fit-content;
+            width: fit-content;
+            padding: 0;
+            color: rgba(112, 112, 112, 1);
+            border: none;
+            outline: none;
+            background: none;
+            box-shadow: none;
+            align-self: center;
+            justify-self: center;
+            i {
+              font-size: 24px;
+            }
+          }
+          .ingredients_item_serving {
+            text-align: center;
+            align-self: center;
+            justify-self: center;
+            color: rgba(112, 112, 112, 1);
+          }
+        }
+
+        .ingredients_item_info {
+          padding: 8px;
+          z-index: 1;
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.04);
+          display: grid;
+          .ingredients_item_name {
+            grid-area: 1/1/1/1;
+            align-self: center;
+
+            font-size: 1.2rem;
+            text-transform: capitalize;
+          }
+          .ingredients_item_calories_container {
+            grid-area: 1/1/1/1;
+            justify-self: end;
+            align-self: center;
+
+            margin-right: 8px;
+
+            .ingredients_item_calories {
+              font-size: 1.2rem;
+            }
+            .ingredients_item_text {
+              font-size: 12px;
+            }
+          }
+        }
+
+        .ingredients_delete_button {
+          height: 100%;
+          width: 100%;
+
+          background: rgba(252, 252, 252, 1);
+
+          display: grid;
+          button {
+            height: fit-content;
+            width: fit-content;
+            padding: 0;
+            color: rgba(112, 112, 112, 1);
+            border: none;
+            outline: none;
+            background: none;
+            box-shadow: none;
+            align-self: center;
+            justify-self: center;
+            i {
+              font-size: 24px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
