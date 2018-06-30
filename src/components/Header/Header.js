@@ -47,7 +47,6 @@ class Header extends Component {
   }
 
   render() {
-    console.log('header match', this.props.match);
     const consumption = this.props.consumption.calories
       ? this.props.consumption.calories
       : 0;
